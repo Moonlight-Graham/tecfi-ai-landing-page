@@ -1,26 +1,20 @@
-import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
-import inject from '@rollup/plugin-inject';
-import commonjs from '@rollup/plugin-commonjs';
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
 
 export default defineConfig({
-  plugins: [
-    react(),
-    inject({
-      Buffer: ['buffer', 'Buffer'],
-      process: 'process',
-    }),
-    commonjs(), // <- add this line
-  ],
+  plugins: [react()],
+  define: {
+    global: 'globalThis'
+  },
   resolve: {
     alias: {
       stream: 'stream-browserify',
-      events: 'events/',
-      buffer: 'buffer/',
       process: 'process/browser',
+      buffer: 'buffer',
     },
   },
-  define: {
-    global: 'globalThis',
+  optimizeDeps: {
+    exclude: ['@ethersproject/keccak256']
   },
-});
+})
+

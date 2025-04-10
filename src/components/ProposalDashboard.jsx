@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { aiReviewProposal } from "../utils/aiReview";
-import supabase from '../components/supabaseClient';
+import { supabase } from './supabaseClient';
 import './ProposalDashboard.css';
 
 // Mock: 2 billion supply = 80M = 4% quorum
@@ -15,7 +15,7 @@ const ProposalDashboard = ({ account, tokenBalance }) => {
 
   // Token-based access
   const canPropose = parseFloat(tokenBalance) >= 40000;
-  const canVote = parseFloat(tokenBalance) > 0;
+  const canVote = parseFloat(tokenBalance) > 40000;
 
   // Add new proposal
   const handleSubmitProposal = () => {

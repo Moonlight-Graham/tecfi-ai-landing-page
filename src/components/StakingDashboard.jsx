@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { ethers } from "ethers";
 import stakingABI from "../abi/TecFiStakingABI.json";
 
-const stakingAddress = "0x585CD4B832591C96D35135f3c66c9bb7FFA1F4B6"; // Sepolia staking contract
+const stakingAddress = "0x96bEbEBB219d8DF410E3662583d8Bf2EB5aF0fb7";
 
 const StakingDashboard = ({ account }) => {
   const [provider, setProvider] = useState(null);

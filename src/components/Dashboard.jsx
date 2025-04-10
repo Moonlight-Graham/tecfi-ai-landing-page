@@ -3,6 +3,8 @@ import { ethers } from "ethers";
 import TokenBalance from "./TokenBalance";
 import StakingDashboard from "./StakingDashboard";
 import tokenABI from "../abi/TecFiTokenABI.json";
+import HistoryLog from "../components/HistoryLog";
+import { supabase } from '../components/supabaseClient';
 
 const TOKEN_ADDRESS = "0xEc34Fd8C49F0F87266c45e296CDC717c52D7B2e9";
 const QUORUM_TOKENS = 80000000; // 4% of 2B
@@ -160,7 +162,10 @@ const Dashboard = ({ account }) => {
 </button>
             )}
           </div>
-        ))
+        
+// History Log
+  <h2>📜 History Log</h2>
+  <HistoryLog />
       )}
     </div>
   );

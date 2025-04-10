@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { ethers } from "ethers";
-import TokenBalance from './src/components/TokenBalance';
-import StakingDashboard from './src/components/StakingDashboard';
-import ProposalDashboard from './src/components/ProposalDashboard';
-import './src/index.css';
-import { supabase } from './src/components/supabaseClient';
-import HistoryLog from './src/components/HistoryLog';
-import tokenABI from './src/abi/TecFiTokenABI.json';
+import TokenBalance from './components/TokenBalance';
+import StakingDashboard from './components/StakingDashboard';
+import ProposalDashboard from './components/ProposalDashboard';
+import './index.css';
+import { supabase } from './components/supabaseClient';
+import HistoryLog from './components/HistoryLog';
+import tokenABI from './abi/TecFiTokenABI.json';
 
 const tokenAddress = "0xEc34Fd8C49F0F87266c45e296CDC717c52D7B2e9";
 

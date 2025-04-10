@@ -37,9 +37,10 @@ function App() {
 
   return (
     <div className="App" style={{ padding: "2rem", textAlign: "center" }}>
-      <h1>🌐 TECFI AI Governance DApp</h1>
-
-      {!account ? (
+      <h1>TECFI AI Governance DApp</h1>
+	  <img src="/tecfiai-icon-32x32.svg" alt="TecfiAI Icon" width="32" height="32" />
+      <p>This is the official site for TecfiAI.</p>
+         {!account ? (
   <>
     <p>🔌 Connect your wallet to begin:</p>
     <button

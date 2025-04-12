@@ -16,24 +16,24 @@ const StakingDashboard = ({ account }) => {
   useEffect(() => {
     if (!account || typeof window.ethereum === "undefined") return;
 
-    const web3Provider = new ethers.BrowserProvider(window.ethereum);
+    const web3Provider = new ethers.providers.Web3Provider(window.ethereum); // ✅ v5 syntax
     const contractInstance = new ethers.Contract(stakingAddress, stakingABI, web3Provider);
 
     setProvider(web3Provider);
     setContract(contractInstance);
   }, [account]);
 
-  // Load staked + reward
+  // Load staked + reward balances
   useEffect(() => {
     const loadStakingInfo = async () => {
       if (!contract || !account) return;
 
       try {
-        const staked = await contract.stakedBalance(account);
-        const reward = await contract.calculateReward(account);
+        const stakedRaw = await contract.stakedBalance(account);
+        const rewardRaw = await contract.calculateReward(account);
 
-        setStaked(ethers.formatUnits(staked, 18));
-        setReward(ethers.formatUnits(reward, 18));
+        setStaked(ethers.utils.formatUnits(stakedRaw, 18)); // ✅ v5 formatUnits
+        setReward(ethers.utils.formatUnits(rewardRaw, 18));
       } catch (error) {
         console.error("Staking info error:", error);
       }
@@ -42,58 +42,64 @@ const StakingDashboard = ({ account }) => {
     loadStakingInfo();
   }, [contract, account]);
 
-  // Handlers
+  // Stake
   const stake = async () => {
     if (!provider || !contract || !inputAmount) return;
 
-    const signer = await provider.getSigner();
+    const signer = provider.getSigner();
     const stakeWithSigner = contract.connect(signer);
-    const amount = ethers.parseUnits(inputAmount, 18);
+    const amount = ethers.utils.parseUnits(inputAmount, 18); // ✅ v5 parseUnits
 
     try {
       const tx = await stakeWithSigner.stake(amount);
       await tx.wait();
-      alert("Staked successfully!");
+      alert("✅ Staked successfully!");
     } catch (error) {
       console.error("Stake error:", error);
+      alert("⚠️ Stake failed. See console for details.");
     }
   };
 
+  // Unstake
   const unstake = async () => {
     if (!provider || !contract) return;
 
-    const signer = await provider.getSigner();
+    const signer = provider.getSigner();
     const unstakeWithSigner = contract.connect(signer);
 
     try {
       const tx = await unstakeWithSigner.unstake();
       await tx.wait();
-      alert("Unstaked successfully!");
+      alert("✅ Unstaked successfully!");
     } catch (error) {
       console.error("Unstake error:", error);
+      alert("⚠️ Unstake failed.");
     }
   };
 
+  // Claim rewards
   const claimRewards = async () => {
     if (!provider || !contract) return;
 
-    const signer = await provider.getSigner();
+    const signer = provider.getSigner();
     const claimWithSigner = contract.connect(signer);
 
     try {
       const tx = await claimWithSigner.claimRewards();
       await tx.wait();
-      alert("Rewards claimed!");
+      alert("🎉 Rewards claimed!");
     } catch (error) {
       console.error("Claim error:", error);
+      alert("⚠️ Claim failed.");
     }
   };
 
+  // Estimate earnings
   const calculateEstimate = () => {
     const amount = parseFloat(inputAmount);
     if (isNaN(amount) || amount <= 0) return;
 
-    const apy = 2.1;
+    const apy = 2.1; // Example APY
     const yearly = amount * apy;
     const monthly = yearly / 12;
     const daily = yearly / 365;
@@ -125,7 +131,7 @@ const StakingDashboard = ({ account }) => {
         <button onClick={claimRewards} style={styles.button}>Claim Rewards</button>
       </div>
 
-      {/* Estimate Reward Section */}
+      {/* Reward Estimator */}
       <div style={{ marginTop: "2rem", textAlign: "left" }}>
         <h3 style={styles.sectionTitle}>📈 Estimate Your Rewards</h3>
         <button onClick={calculateEstimate} style={styles.secondaryButton}>Calculate from input</button>
@@ -186,5 +192,3 @@ const styles = {
     cursor: "pointer",
   },
 };
-
-

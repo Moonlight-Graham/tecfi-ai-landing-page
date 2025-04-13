@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react";
-import { ethers } from "ethers";
+import { useState, useEffect } from 'react';
+import { ethers } from 'ethers';
 import tokenABI from "../abi/TecFiTokenABI.json";
 import stakingABI from "../abi/TecFiStakingABI.json";
 import HistoryLog from "./HistoryLog";
+
 
 const TOKEN_ADDRESS = "0x0B642a9555dAfdBCB0303E30802a64261b4eBE7b";
 const STAKING_ADDRESS = "0x6f8b2f84a82e3190cC631a4e593c7Ab8533f0a0";

@@ -156,9 +156,8 @@ const Dashboard = ({ account }) => {
   };
 
   return (
-    <div style={{ padding: "2rem", maxWidth: "900px", margin: "0 auto", fontFamily: "sans-serif" }}>
-      <h1 style={{ textAlign: "center" }}>💎 TecFi AI DAO Dashboard</h1>
-
+    <div style={{ padding: ".2rem", maxWidth: "900px", margin: "0 auto", fontFamily: "sans-serif" }}>
+      <h1 style={{ textAlign: "center" }}>💎 TecFi AI DAO Dashboard 💎</h1>
       <div style={sectionStyle}>
         <h2>💰 Staking Dashboard</h2>
         <p><strong>Wallet:</strong> {account}</p>

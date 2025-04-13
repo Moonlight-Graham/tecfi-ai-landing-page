@@ -4,7 +4,7 @@ import './index.css';
 import Dashboard from './components/Dashboard';
 import tokenABI from './abi/TecFiTokenABI';
 
-const tokenAddress = "0xEc34Fd8C49F0F87266c45e296CDC717c52D7B2e9";
+const tokenAddress = "0x0B642a9555dAfdBCB0303E30802a64261b4eBE7b";
 
 function App() {
   const [account, setAccount] = useState(null);

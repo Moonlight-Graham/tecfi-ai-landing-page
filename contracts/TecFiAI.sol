@@ -2,31 +2,28 @@
 pragma solidity ^0.8.20;
 
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
-import "@openzeppelin/contracts/access/Ownable.sol";
 
-contract TecFiAI is ERC20, Ownable {
+contract TecFiAI is ERC20 {
+    uint256 public constant INITIAL_SUPPLY = 1_500_000 * 10**6; // 1.5M TECFI with 6 decimals
 
-    uint8 private constant _DECIMALS = 6;
+    // Predefined wallet allocations
+    address public constant AIRDROP = 0x6843B7e61C88B0907A58d8886cCb21048C1d8a29;
+    address public constant LIQUIDITY = 0x06CfeD651770a818F45BdC21f82c7c78b6DE3BD1;
+    address public constant STAKING = 0x28fF3dFbFa27cCa78e72492f59E3DF8353Eef49C;
+    address public constant DAO = 0xcbbe195Fc44B302Aa7DED74CA8376206bfD225a8;
+    address public constant MARKETING = 0x74eA68A9b092B7777d5c8f26FB6136115CE7371c;
+    address public constant CREATOR = 0x61cF3f2574bBDCbdF87f5DA4fcaF904763Ab9877;
 
-    // --- Allocation Wallets ---
-    address public constant AIRDROP_WALLET      = 0x1958904FD332904B0865936A7fE7BE6DC49e452F;
-    address public constant LIQUIDITY_WALLET    = 0x2e3023944d3de029a6069F20279Da0c601eb8cB2;
-    address public constant STAKING_WALLET      = 0x8C1B917bB9d783302354F2e85F355324e37DB356;
-    address public constant TREASURY_WALLET     = 0x3779bfa7B066f98050e585Aa7D4e0687e19107ca;
-    address public constant DEV_WALLET          = 0x754F52fdd50A8f145bCd2B57af67A445D6D78F3f;
-
-    constructor(address initialOwner) ERC20("TecFi AI", "TECFI") Ownable(initialOwner) {
-        uint256 unit = 10 ** _DECIMALS;
-
-        // --- Distribute Fixed Supply ---
-        _mint(AIRDROP_WALLET,     150_000_000 * unit); // 7.5%
-        _mint(LIQUIDITY_WALLET,   500_000_000 * unit); // 25%
-        _mint(STAKING_WALLET,     800_000_000 * unit); // 40%
-        _mint(TREASURY_WALLET,    450_000_000 * unit); // 22.5%
-        _mint(DEV_WALLET,         100_000_000 * unit); // 5%
+    constructor() ERC20("TecFi AI", "TECFI") {
+        _mint(AIRDROP, 225_000 * 10**6);
+        _mint(LIQUIDITY, 225_000 * 10**6);
+        _mint(STAKING, 450_000 * 10**6);
+        _mint(DAO, 300_000 * 10**6);
+        _mint(MARKETING, 225_000 * 10**6);
+        _mint(CREATOR, 75_000 * 10**6);
     }
 
-    function decimals() public pure override returns (uint8) {
-        return _DECIMALS;
+    function decimals() public view virtual override returns (uint8) {
+        return 6;
     }
 }

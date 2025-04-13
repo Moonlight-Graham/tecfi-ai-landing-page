@@ -3,8 +3,8 @@ import { aiReviewProposal } from "../utils/aiReview";
 import { supabase } from './supabaseClient';
 import './ProposalDashboard.css';
 
-// Mock: 2 billion supply = 80M = 4% quorum
-const QUORUM_THRESHOLD = 80000000;
+
+const QUORUM_THRESHOLD = { useState }
 
 const ProposalDashboard = ({ account, tokenBalance }) => {
   const [proposals, setProposals] = useState([]);
@@ -14,13 +14,13 @@ const ProposalDashboard = ({ account, tokenBalance }) => {
   const [voted, setVoted] = useState({});
 
   // Token-based access
-  const canPropose = parseFloat(tokenBalance) >= 40000;
-  const canVote = parseFloat(tokenBalance) > 40000;
+  const canPropose = parseFloat(tokenBalance) >= 250;
+  const canVote = parseFloat(tokenBalance) > 250;
 
   // Add new proposal
   const handleSubmitProposal = () => {
     if (!canPropose) {
-      alert("You need at least 40,000 TECFI to create proposals.");
+      alert("You need at least 250 TECFI to create proposals.");
       return;
     }
     if (!newProposal.trim()) return;

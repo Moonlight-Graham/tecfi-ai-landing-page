@@ -4,5 +4,5 @@
 - Symbol: **TECFI**
 - Decimals: `6`
 - Chain: Ethereum Mainnet
-- Contract: [`0xEc34F...2D7B2E9`](https://etherscan.io/address/0xEc34Fd8C49F0f87266c45e296CDC717c52D7B2E9)
+- Contract: [`0x0B642a9555dAfdBCB0303E30802a64261b4eBE7b`](https://etherscan.io/address/0x0B642a9555dAfdBCB0303E30802a64261b4eBE7b)
 - ABI: [`TecFiAI.json`](src/contracts/TecFiAI/TecFiAI.json)

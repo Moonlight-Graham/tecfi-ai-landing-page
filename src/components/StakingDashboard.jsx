@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { ethers } from "ethers";
 import stakingABI from "../abi/TecFiStakingABI.json";
 
-const stakingAddress = "0x96bEbEBB219d8DF410E3662583d8Bf2EB5aF0fb7";
+const stakingAddress = "0x6F86bf2B4a82e31B90cC631a4e593c7Ab853f0a0"; 
 
 const StakingDashboard = ({ account }) => {
   const [provider, setProvider] = useState(null);
@@ -12,28 +12,26 @@ const StakingDashboard = ({ account }) => {
   const [inputAmount, setInputAmount] = useState("");
   const [estimates, setEstimates] = useState(null);
 
-  // Setup provider and contract
   useEffect(() => {
     if (!account || typeof window.ethereum === "undefined") return;
 
-    const web3Provider = new ethers.providers.Web3Provider(window.ethereum); // ✅ v5 syntax
-    const contractInstance = new ethers.Contract(stakingAddress, stakingABI, web3Provider);
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    const contractInstance = new ethers.Contract(stakingAddress, stakingABI, provider);
 
-    setProvider(web3Provider);
+    setProvider(provider);
     setContract(contractInstance);
   }, [account]);
 
-  // Load staked + reward balances
   useEffect(() => {
     const loadStakingInfo = async () => {
       if (!contract || !account) return;
 
       try {
-        const stakedRaw = await contract.stakedBalance(account);
+        const stakeInfo = await contract.getStakeInfo(account);
         const rewardRaw = await contract.calculateReward(account);
 
-        setStaked(ethers.utils.formatUnits(stakedRaw, 18)); // ✅ v5 formatUnits
-        setReward(ethers.utils.formatUnits(rewardRaw, 18));
+        setStaked(ethers.formatUnits(stakeInfo[0], 6));
+        setReward(ethers.formatUnits(rewardRaw, 6));
       } catch (error) {
         console.error("Staking info error:", error);
       }
@@ -42,64 +40,57 @@ const StakingDashboard = ({ account }) => {
     loadStakingInfo();
   }, [contract, account]);
 
-  // Stake
   const stake = async () => {
     if (!provider || !contract || !inputAmount) return;
 
-    const signer = provider.getSigner();
+    const signer = await provider.getSigner();
     const stakeWithSigner = contract.connect(signer);
-    const amount = ethers.utils.parseUnits(inputAmount, 18); // ✅ v5 parseUnits
+    const amount = ethers.parseUnits(inputAmount, 6);
 
     try {
       const tx = await stakeWithSigner.stake(amount);
       await tx.wait();
-      alert("✅ Staked successfully!");
+      alert("Staked successfully!");
     } catch (error) {
       console.error("Stake error:", error);
-      alert("⚠️ Stake failed. See console for details.");
     }
   };
 
-  // Unstake
   const unstake = async () => {
     if (!provider || !contract) return;
 
-    const signer = provider.getSigner();
+    const signer = await provider.getSigner();
     const unstakeWithSigner = contract.connect(signer);
 
     try {
-      const tx = await unstakeWithSigner.unstake();
+      const tx = await unstakeWithSigner.unstake(ethers.parseUnits(staked, 6));
       await tx.wait();
-      alert("✅ Unstaked successfully!");
+      alert("Unstaked successfully!");
     } catch (error) {
       console.error("Unstake error:", error);
-      alert("⚠️ Unstake failed.");
     }
   };
 
-  // Claim rewards
   const claimRewards = async () => {
     if (!provider || !contract) return;
 
-    const signer = provider.getSigner();
+    const signer = await provider.getSigner();
     const claimWithSigner = contract.connect(signer);
 
     try {
       const tx = await claimWithSigner.claimRewards();
       await tx.wait();
-      alert("🎉 Rewards claimed!");
+      alert("Rewards claimed!");
     } catch (error) {
       console.error("Claim error:", error);
-      alert("⚠️ Claim failed.");
     }
   };
 
-  // Estimate earnings
   const calculateEstimate = () => {
     const amount = parseFloat(inputAmount);
     if (isNaN(amount) || amount <= 0) return;
 
-    const apy = 2.1; // Example APY
+    const apy = 0.50; // 50% APY
     const yearly = amount * apy;
     const monthly = yearly / 12;
     const daily = yearly / 365;
@@ -131,7 +122,6 @@ const StakingDashboard = ({ account }) => {
         <button onClick={claimRewards} style={styles.button}>Claim Rewards</button>
       </div>
 
-      {/* Reward Estimator */}
       <div style={{ marginTop: "2rem", textAlign: "left" }}>
         <h3 style={styles.sectionTitle}>📈 Estimate Your Rewards</h3>
         <button onClick={calculateEstimate} style={styles.secondaryButton}>Calculate from input</button>
@@ -192,3 +182,5 @@ const styles = {
     cursor: "pointer",
   },
 };
+
+

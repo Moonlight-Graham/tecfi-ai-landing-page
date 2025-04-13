@@ -1,20 +1,17 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.20;
 
-interface IERC20 {
-    function transferFrom(address from, address to, uint256 value) external returns (bool);
-    function transfer(address to, uint256 value) external returns (bool);
-    function balanceOf(address account) external view returns (uint256);
-}
+import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 
-contract TecFiStaking {
-    IERC20 public token;
+contract StakingContract {
+    IERC20 public token;  // The ERC20 token to stake
 
-    uint256 public constant APY = 210; // 210% annual yield
+    uint256 public constant APY = 50;  // 50% annual yield
     uint256 public constant SECONDS_IN_YEAR = 31536000;
     uint256 public constant LOCK_PERIOD = 7 days;
-    uint256 public constant MAX_REWARD_SUPPLY = 800_000_000 ether; // Match TECFI token decimals (18)
     uint256 public totalRewardsDistributed;
+    uint256 public maxStakingSupply;  // 15% of total supply (liquidity pool cap)
+    uint256 public totalStakedAmount;  // Track total staked amount
 
     struct StakeInfo {
         uint256 amount;
@@ -25,49 +22,63 @@ contract TecFiStaking {
 
     mapping(address => StakeInfo) public stakes;
 
+    event Staked(address indexed user, uint256 amount, uint256 unlockTime);
+    event Unstaked(address indexed user, uint256 amount, uint256 rewards);
+    event RewardsClaimed(address indexed user, uint256 rewards);
+
     constructor(address _token) {
         token = IERC20(_token);
+        maxStakingSupply = 1_500_000 * 15 / 100; // 15% of 1,500,000 (225,000 TECFI)
     }
 
     modifier updateReward(address user) {
         StakeInfo storage userStake = stakes[user];
 
         if (userStake.amount > 0) {
-            uint256 timeElapsed = block.timestamp - userStake.lastUpdated;
-            uint256 pending = (userStake.amount * APY * timeElapsed) / (SECONDS_IN_YEAR * 100);
-            
-            // Enforce reward cap
-            uint256 available = MAX_REWARD_SUPPLY - totalRewardsDistributed;
-            if (pending > available) {
-                pending = available;
-            }
-
-            userStake.rewardDebt += pending;
-            totalRewardsDistributed += pending;
+            uint256 reward = calculateReward(user);
+            userStake.rewardDebt += reward;
+            totalRewardsDistributed += reward;
         }
-
-        userStake.lastUpdated = block.timestamp;
         _;
     }
 
-    function stake(uint256 amount) external updateReward(msg.sender) {
-        require(amount > 0, "Amount must be > 0");
-        token.transferFrom(msg.sender, address(this), amount);
+    modifier onlyAfterUnlockTime(address user) {
+        require(block.timestamp >= stakes[user].unlockTime, "Tokens are still locked");
+        _;
+    }
+
+    modifier limitStaking(uint256 amount) {
+        require(totalStakedAmount + amount <= maxStakingSupply, "Staking exceeds max allowed supply");
+        _;
+    }
+
+    function stake(uint256 amount) external updateReward(msg.sender) limitStaking(amount) {
+        require(amount > 0, "Cannot stake 0");
+        require(token.transferFrom(msg.sender, address(this), amount), "Transfer failed");
 
         StakeInfo storage userStake = stakes[msg.sender];
         userStake.amount += amount;
+        userStake.lastUpdated = block.timestamp;
         userStake.unlockTime = block.timestamp + LOCK_PERIOD;
+
+        totalStakedAmount += amount;  // Update the total staked amount
+
+        emit Staked(msg.sender, amount, userStake.unlockTime);
     }
 
-    function unstake() external updateReward(msg.sender) {
+    function unstake(uint256 amount) external updateReward(msg.sender) onlyAfterUnlockTime(msg.sender) {
         StakeInfo storage userStake = stakes[msg.sender];
-        require(userStake.amount > 0, "No tokens staked");
-        require(block.timestamp >= userStake.unlockTime, "Tokens are still locked");
+        require(amount > 0, "Cannot unstake 0");
+        require(userStake.amount >= amount, "Insufficient staked amount");
 
-        uint256 toUnstake = userStake.amount;
-        userStake.amount = 0;
+        uint256 reward = userStake.rewardDebt;
+        userStake.amount -= amount;
+        userStake.rewardDebt = 0;  // Reset the reward debt after unstaking
 
-        token.transfer(msg.sender, toUnstake);
+        totalStakedAmount -= amount;  // Update the total staked amount
+
+        require(token.transfer(msg.sender, amount), "Transfer failed");
+        emit Unstaked(msg.sender, amount, reward);
     }
 
     function claimRewards() external updateReward(msg.sender) {
@@ -75,23 +86,27 @@ contract TecFiStaking {
         uint256 reward = userStake.rewardDebt;
         require(reward > 0, "No rewards to claim");
 
-        userStake.rewardDebt = 0;
-        token.transfer(msg.sender, reward);
+        userStake.rewardDebt = 0;  // Reset the reward debt after claiming
+        require(token.transfer(msg.sender, reward), "Transfer failed");
+
+        emit RewardsClaimed(msg.sender, reward);
     }
 
-    function calculateReward(address user) external view returns (uint256) {
-        StakeInfo memory userStake = stakes[user];
+    function calculateReward(address user) public view returns (uint256) {
+        StakeInfo storage userStake = stakes[user];
+        if (userStake.amount == 0) return 0;
 
-        if (userStake.amount == 0) return userStake.rewardDebt;
+        uint256 stakingDuration = block.timestamp - userStake.lastUpdated;
+        uint256 reward = (userStake.amount * APY / 100) * stakingDuration / SECONDS_IN_YEAR;
+        return reward;
+    }
 
-        uint256 timeElapsed = block.timestamp - userStake.lastUpdated;
-        uint256 pending = (userStake.amount * APY * timeElapsed) / (SECONDS_IN_YEAR * 100);
+    function getStakeInfo(address user) external view returns (uint256 amount, uint256 unlockTime, uint256 rewardDebt) {
+        StakeInfo storage userStake = stakes[user];
+        return (userStake.amount, userStake.unlockTime, userStake.rewardDebt);
+    }
 
-        uint256 available = MAX_REWARD_SUPPLY - totalRewardsDistributed;
-        if (pending > available) {
-            pending = available;
-        }
-
-        return userStake.rewardDebt + pending;
+    function getTotalStaked() public view returns (uint256) {
+        return totalStakedAmount;  // Return the tracked total staked amount
     }
 }

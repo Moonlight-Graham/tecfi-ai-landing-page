@@ -72,11 +72,11 @@ const Dashboard = ({ account }) => {
   const quorumPercent = (votes) => ((votes / QUORUM_TOKENS) * 100).toFixed(1);
 
   return (
-    <div style={{ padding: "2rem" }}>
-      <h1>💎 TECFI AI DAO Dashboard</h1>
-      <p><strong>Wallet:</strong> {account}</p>
+    <div style={{ padding: ".2rem" }}>
+      <h1>💎 TecFi AI DAO Dashboard 💎</h1>
+      <p><strong>Connected Wallet:</strong> {account}</p>
       <p><strong>Your TECFI Balance:</strong> {balance?.toLocaleString()} TECFI</p>
-      <hr style={{ margin: "2rem 0" }} />
+      <hr style={{ margin: ".75rem 0" }} />
       <TokenBalance account={account} />
       <StakingDashboard account={account} />
       <hr style={{ margin: "2rem 0" }} />

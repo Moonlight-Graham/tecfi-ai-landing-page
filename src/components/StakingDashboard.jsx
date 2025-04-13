@@ -104,7 +104,7 @@ const StakingDashboard = ({ account }) => {
 
   return (
     <div style={styles.card}>
-      <h2 style={styles.sectionTitle}>🔥 TECFI Staking Dashboard</h2>
+      <h2 style={styles.sectionTitle}>💰 TECFI Staking Dashboard 💰</h2>
       <p><strong>Wallet:</strong> {account}</p>
       <p><strong>Currently Staked:</strong> {staked} TECFI</p>
       <p><strong>Reward:</strong> {reward} TECFI</p>
@@ -182,5 +182,3 @@ const styles = {
     cursor: "pointer",
   },
 };
-
-

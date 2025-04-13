@@ -4,11 +4,6 @@ import './TokenBalance.css';
 function TokenBalance({ account, balance }) {
   return (
     <div style={styles.container}>
-      <h2>🔥 Your TECFI Balance</h2>
-      <div style={styles.card}>
-        <p><strong>🍬 Wallet:</strong> {account || "Not connected"}</p>
-        <p><strong>🥇 Balance:</strong> {balance || "Fetching..."}</p>
-      </div>
     </div>
   );
 }

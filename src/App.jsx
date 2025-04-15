@@ -104,7 +104,7 @@ function App() {
       className="App"
       style={{
         minHeight: '100vh',
-        background: 'linear-gradient(135deg, #D1FCC4 0%, #E9EDEC 100%)',
+        background: 'linear-gradient(135deg, #DFEFEC 0%, #EDF8F6 100%)',
         fontFamily: 'Segoe UI, sans-serif'
       }}
     >
@@ -155,12 +155,11 @@ function App() {
         <input type="number" placeholder="Enter ETH amount" value={contributionAmount} onChange={(e) => setContributionAmount(e.target.value)} style={{ padding: '10px', marginTop: '10px', width: '220px', fontSize: '16px' }} />
         <br />
         <button onClick={contributeToPresale} disabled={contributing} style={{ marginTop: '12px', padding: '10px 25px', fontSize: '16px', backgroundColor: '#417ebf', color: 'white', border: 'none', borderRadius: '6px', cursor: 'pointer' }}>
-          {contributing ? 'Processing...' : 'Buy BRANI'}
+          {contributing ? 'Processing...' : 'Buy $BRANI'}
         </button>
-
         <div style={{ marginTop: '18px' }}>
           <button onClick={claimTokens} style={{ padding: '10px 20px', fontSize: '14px', backgroundColor: '#888', color: 'white', border: 'none', borderRadius: '6px', cursor: 'not-allowed' }}>
-            Claim BRANI Tokens (Disabled until end)
+            Claim $BRANI (Disabled until end)
           </button>
         </div>
 

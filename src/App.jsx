@@ -138,19 +138,19 @@ function App() {
       </div>
 
       {/* 🌍 Project Description */}
-      <div style={{ textAlign: 'center', marginTop: '40px' }}>
+      <div style={{ textAlign: 'center', marginTop: '20px' }}>
         <h1 style={{ fontSize: '2rem' }}>Powering the Future of AI Finance</h1>
-        <p style={{ fontSize: '18px', maxWidth: '700px', margin: '20px auto' }}>
+        <p style={{ fontSize: '18px', maxWidth: '700px', margin: '10px auto' }}>
           Brainzy AI is the next-generation platform that lets you participate in decentralized governance, earn rewards, and influence how AI interacts with DeFi. Join the movement!
         </p>
       </div>
 
       {/* 🚀 Presale Section */}
-      <div style={{ textAlign: 'center', marginTop: '40px' }}>
-        <h2 style={{ color: '#333', fontSize: '24px' }}>🚀 Presale is LIVE</h2>
+      <div style={{ textAlign: 'center', marginTop: '20px' }}>
+        <h2 style={{ color: '#8C2424', fontSize: '24px' }}>🚀 Presale is LIVE</h2>
         <p style={{ fontSize: '16px' }}>1 ETH = 100,000 BRANI · Max: 15 ETH · Min: 0.05 ETH</p>
         <p style={{ fontWeight: '600', fontSize: '20px', color: '#417ebf' }}>Total ETH Raised: {ethRaised} ETH</p>
-        <p style={{ fontSize: '16px', marginBottom: '5px' }}>⏳ Countdown: {getCountdown()}</p>
+        <p style={{ fontSize: '16px', marginBottom: '4px' }}>⏳ Countdown: {getCountdown()}</p>
 
         <input type="number" placeholder="Enter ETH amount" value={contributionAmount} onChange={(e) => setContributionAmount(e.target.value)} style={{ padding: '10px', marginTop: '10px', width: '220px', fontSize: '16px' }} />
         <br />
@@ -158,14 +158,14 @@ function App() {
           {contributing ? 'Processing...' : 'Buy BRANI'}
         </button>
 
-        <div style={{ marginTop: '20px' }}>
+        <div style={{ marginTop: '18px' }}>
           <button onClick={claimTokens} style={{ padding: '10px 20px', fontSize: '14px', backgroundColor: '#888', color: 'white', border: 'none', borderRadius: '6px', cursor: 'not-allowed' }}>
             Claim BRANI Tokens (Disabled until end)
           </button>
         </div>
 
         {showModal && (
-          <div style={{ background: 'white', border: '1px solid #ccc', padding: '20px', marginTop: '20px', borderRadius: '8px', maxWidth: '400px', margin: '20px auto', textAlign: 'center' }}>
+          <div style={{ background: 'white', border: '1px solid #ccc', padding: '20px', marginTop: '18px', borderRadius: '8px', maxWidth: '400px', margin: '20px auto', textAlign: 'center' }}>
             <h3>✅ Success!</h3>
             <p>Your contribution has been received.</p>
             <button onClick={() => setShowModal(false)} style={{ padding: '6px 12px', backgroundColor: '#417ebf', border: 'none', borderRadius: '6px', color: '#fff', cursor: 'pointer' }}>Close</button>
@@ -174,14 +174,14 @@ function App() {
       </div>
 
       {/* 🔗 Etherscan Links */}
-      <div style={{ textAlign: 'center', marginTop: '30px', fontSize: '14px' }}>
+      <div style={{ textAlign: 'center', marginTop: '25px', fontSize: '14px' }}>
         <a href={`https://etherscan.io/address/${tokenAddress}`} target="_blank" rel="noopener noreferrer" style={{ color: '#417ebf', marginRight: '20px' }}>View BRANI Token on Etherscan</a>
         <a href={`https://etherscan.io/address/${presaleAddress}`} target="_blank" rel="noopener noreferrer" style={{ color: '#417ebf' }}>View Presale Contract</a>
       </div>
 
       {/* 📄 White Paper Link */}
-      <div style={{ textAlign: 'center', marginTop: '30px' }}>
-        <a href="/whitepaper.pdf" target="_blank" rel="noopener noreferrer" style={{ color: '#417ebf', fontWeight: '600', textDecoration: 'none', fontSize: '20px' }}>
+      <div style={{ textAlign: 'center', marginTop: '25px' }}>
+        <a href="/whitepaper.pdf" target="_blank" rel="noopener noreferrer" style={{ color: '#100C26', fontWeight: '600', textDecoration: 'none', fontSize: '20px' }}>
           📄 Read Our White Paper
         </a>
       </div>

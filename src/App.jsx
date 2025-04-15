@@ -5,7 +5,7 @@ import tokenABI from './abi/BrainzyTokenABI.json';
 
 const tokenAddress = "0xDD9d0827Ee76Ae85762DD30976C3883bbC89A0D5";
 const presaleAddress = "0x6C29ac5980da5B531b268462b8eD17e6edA31D94";
-const presaleStartTime = null; // Set actual UNIX timestamp when you launch
+const presaleStartTime = null;
 const presaleDuration = 30 * 24 * 60 * 60; // 30 days in seconds
 
 function App() {
@@ -104,7 +104,7 @@ function App() {
       className="App"
       style={{
         minHeight: '100vh',
-        background: 'linear-gradient(135deg, #DFEFEC 0%, #EDF8F6 100%)',
+        background: 'linear-gradient(135deg, #D1FCC4 0%, #E9EDEC 100%)',
         fontFamily: 'Segoe UI, sans-serif'
       }}
     >
@@ -141,50 +141,69 @@ function App() {
       <div style={{ textAlign: 'center', marginTop: '20px' }}>
         <h1 style={{ fontSize: '2rem' }}>Powering the Future of AI Finance</h1>
         <p style={{ fontSize: '18px', maxWidth: '700px', margin: '10px auto' }}>
-          Brainzy AI is the next-generation platform that lets you participate in decentralized governance, earn rewards, and influence how AI interacts with DeFi. Join the movement!
+          Brainzy AI is the next-generation platform that lets you participate in decentralized governance, earn rewards, and influence how AI interacts with DeFi.
         </p>
       </div>
 
       {/* 🚀 Presale Section */}
       <div style={{ textAlign: 'center', marginTop: '20px' }}>
-        <h2 style={{ color: '#8C2424', fontSize: '24px' }}>🚀 Presale is LIVE</h2>
-        <p style={{ fontSize: '16px' }}>1 ETH = 100,000 BRANI · Max: 15 ETH · Min: 0.05 ETH</p>
+        <h2 style={{ color: '#8C4224', fontSize: '24px' }}>🚀 Presale is LIVE</h2>
+        <p style={{ fontSize: '16px' }}>1 ETH = 100,000 BRANI · Max: 15 ETH · Min: <span style={{ color: 'red' }}>0.05</span> ETH</p>
         <p style={{ fontWeight: '600', fontSize: '20px', color: '#417ebf' }}>Total ETH Raised: {ethRaised} ETH</p>
         <p style={{ fontSize: '16px', marginBottom: '4px' }}>⏳ Countdown: {getCountdown()}</p>
 
-        <input type="number" placeholder="Enter ETH amount" value={contributionAmount} onChange={(e) => setContributionAmount(e.target.value)} style={{ padding: '10px', marginTop: '10px', width: '220px', fontSize: '16px' }} />
+        <input
+          type="number"
+          placeholder="Enter ETH amount"
+          value={contributionAmount}
+          onChange={(e) => setContributionAmount(e.target.value)}
+          style={{ padding: '10px', marginTop: '10px', width: '220px', fontSize: '16px' }}
+        />
         <br />
-        <button onClick={contributeToPresale} disabled={contributing} style={{ marginTop: '12px', padding: '10px 25px', fontSize: '16px', backgroundColor: '#417ebf', color: 'white', border: 'none', borderRadius: '6px', cursor: 'pointer' }}>
+        <button
+          onClick={contributeToPresale}
+          disabled={contributing}
+          style={{ marginTop: '12px', padding: '10px 25px', fontSize: '16px', backgroundColor: '#417ebf', color: 'white', border: 'none', borderRadius: '6px', cursor: 'pointer' }}
+        >
           {contributing ? 'Processing...' : 'Buy $BRANI'}
         </button>
+
         <div style={{ marginTop: '18px' }}>
-          <button onClick={claimTokens} style={{ padding: '10px 20px', fontSize: '14px', backgroundColor: '#888', color: 'white', border: 'none', borderRadius: '6px', cursor: 'not-allowed' }}>
+          <button onClick={claimTokens} style={{ padding: '10px 20px', fontSize: '14px', backgroundColor: '#888', color: 'white', border: 'none', borderRadius: '6px' }}>
             Claim $BRANI (Disabled until end)
           </button>
         </div>
-
-        {showModal && (
-          <div style={{ background: 'white', border: '1px solid #ccc', padding: '20px', marginTop: '18px', borderRadius: '8px', maxWidth: '400px', margin: '20px auto', textAlign: 'center' }}>
-            <h3>✅ Success!</h3>
-            <p>Your contribution has been received.</p>
-            <button onClick={() => setShowModal(false)} style={{ padding: '6px 12px', backgroundColor: '#417ebf', border: 'none', borderRadius: '6px', color: '#fff', cursor: 'pointer' }}>Close</button>
-          </div>
-        )}
-      </div>
-
-      {/* 🔗 Etherscan Links */}
-      <div style={{ textAlign: 'center', marginTop: '25px', fontSize: '14px' }}>
-        <a href={`https://etherscan.io/address/${tokenAddress}`} target="_blank" rel="noopener noreferrer" style={{ color: '#417ebf', marginRight: '20px' }}>View BRANI Token on Etherscan</a>
-        <a href={`https://etherscan.io/address/${presaleAddress}`} target="_blank" rel="noopener noreferrer" style={{ color: '#417ebf' }}>View Presale Contract</a>
       </div>
 
       {/* 📄 White Paper Link */}
-      <div style={{ textAlign: 'center', marginTop: '25px' }}>
+      <div style={{ textAlign: 'center', marginTop: '30px' }}>
         <a href="/whitepaper.pdf" target="_blank" rel="noopener noreferrer" style={{ color: '#100C26', fontWeight: '600', textDecoration: 'none', fontSize: '20px' }}>
           📄 Read Our White Paper
         </a>
       </div>
 
+      {/* 🧑‍💻 Meet the Team Section */}
+<div style={{ textAlign: 'center', marginTop: '40px' }}>
+  <h3 style={{ fontSize: '22px', color: '#333', marginBottom: '16px' }}>Meet the Team</h3>
+  <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '20px', flexWrap: 'wrap' }}>
+    <div style={{ maxWidth: '240px', textAlign: 'center' }}>
+      <img src="/ryan-putz.jpg" alt="Ryan R. Putz" style={{ width: '160px', height: '160px', borderRadius: '50%', objectFit: 'cover', boxShadow: '0 2px 10px rgba(0,0,0,0.1)' }} />
+      <h4 style={{ margin: '12px 0 4px', fontSize: '18px', color: '#1a1a1a' }}>Ryan R. Putz</h4>
+      <p style={{ fontSize: '14px', color: '#555', fontStyle: 'italic' }}>Creator & Developer</p>
+      <p style={{ fontSize: '14px', color: '#444', marginTop: '8px' }}>
+        Licensed Attorney turned full-time Web3 and AI developer; building DeFi ecosystems that incorporate my passion for the future of AI-powered finance.
+      </p>
+    </div>
+  </div>
+</div>
+
+      {/* 🔗 Etherscan Links */}
+      <div style={{ textAlign: 'center', marginTop: '25px', fontSize: '14px' }}>
+        <a href={`https://etherscan.io/address/${tokenAddress}`} target="_blank" rel="noopener noreferrer" style={{ color: '#417ebf', marginRight: '20px' }}>View Token Contract</a>
+        <a href={`https://etherscan.io/address/${presaleAddress}`} target="_blank" rel="noopener noreferrer" style={{ color: '#417ebf' }}>View Presale Contract</a>
+      </div>
+
+      {/* 📊 Optional Dashboard Section */}
       {account && (
         <div style={{ marginTop: '20px' }}>
           <Dashboard account={account} balance={tokenBalance} symbol={symbol} />

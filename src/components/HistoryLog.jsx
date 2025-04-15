@@ -1,71 +1,46 @@
-import React, { useEffect, useState } from 'react';
-import { supabase } from '../components/supabaseClient'; 
+import { useEffect, useState } from 'react';
+import supabase from './supabaseClient';
 
 const HistoryLog = () => {
-  const [logData, setLogData] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [logEntries, setLogEntries] = useState([]);
 
   useEffect(() => {
     const fetchLog = async () => {
-      const { data, error } = await supabase.from('HistoryLog').select('*').order('id', { ascending: false });
+      const { data, error } = await supabase
+        .from('HistoryLog')
+        .select('*')
+        .order('created_at', { ascending: false });
+
       if (error) {
-        console.error('Error fetching history log:', error.message);
+        console.error('Error fetching history log:', error);
       } else {
-        setLogData(data);
+        setLogEntries(data);
       }
-      setLoading(false);
     };
 
     fetchLog();
   }, []);
 
-  if (loading) return <p>Loading history...</p>;
-
   return (
-    <div style={{ padding: '1rem', maxWidth: '800px', margin: '0 auto' }}>
-      <h3>📜 Governance History Log</h3>
-      {logData.length === 0 ? (
+    <div>
+      {logEntries.length === 0 ? (
         <p>No log entries yet.</p>
       ) : (
-        <table style={{ width: '100%', borderCollapse: 'collapse' }}>
-          <thead>
-            <tr>
-              <th style={thStyle}>ID</th>
-              <th style={thStyle}>Title</th>
-              <th style={thStyle}>Description</th>
-              <th style={thStyle}>Decision</th>
-              <th style={thStyle}>Reason</th>
-            </tr>
-          </thead>
-          <tbody>
-            {logData.map((entry) => (
-              <tr key={entry.id}>
-                <td style={tdStyle}>{entry.id}</td>
-                <td style={tdStyle}>{entry.title}</td>
-                <td style={tdStyle}>{entry.description}</td>
-                <td style={tdStyle}>{entry.decision}</td>
-                <td style={tdStyle}>{entry.reason}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+        logEntries.map((entry, idx) => (
+          <div key={idx} style={{ backgroundColor: '#fdf6e3', padding: '10px', marginBottom: '1rem', borderRadius: '8px' }}>
+            <h4>{entry.title}</h4>
+            <p><strong>🕒</strong> {new Date(entry.created_at).toLocaleString()}</p>
+            <p><strong>🧠 Decision:</strong> {entry.decision}</p>
+            <p><strong>📝 Reason:</strong> {entry.reason}</p>
+            <p><em>{entry.description}</em></p>
+          </div>
+        ))
       )}
     </div>
   );
 };
 
-const thStyle = {
-  border: '1px solid #ccc',
-  padding: '0.5rem',
-  backgroundColor: '#f0f0f0',
-  textAlign: 'left'
-};
-
-const tdStyle = {
-  border: '1px solid #ddd',
-  padding: '0.5rem'
-};
-
 export default HistoryLog;
+
 
 

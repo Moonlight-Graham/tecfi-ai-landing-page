@@ -2,9 +2,9 @@ export async function aiReviewProposal(proposalText) {
   const OPENAI_API_KEY = import.meta.env.VITE_OPENAI_API_KEY;
 
   const prompt = `
-You are an AI governance advisor for a crypto project called TECFI. A proposal was submitted by a community member. Analyze the text and return one of the following decisions:
+You are an AI governance advisor for a crypto project called BRANI. A proposal was submitted by a community member. Analyze the text and return one of the following decisions:
 
-- "Approved" if the proposal is valuable, aligns with TECFI goals, or benefits the community.
+- "Approved" if the proposal is valuable, aligns with BRANI goals, or benefits the community.
 - "Rejected" if the proposal is vague, harmful, or off-topic.
 
 Also include a short explanation of why you made that decision.

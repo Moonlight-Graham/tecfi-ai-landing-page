@@ -1,9 +1,9 @@
-export const TECFI_CONTRACT = {
-  name: "TecFi AI",
-  symbol: "TECFI",
-  address: "0x0B642a9555dAfdBCB0303E30802a64261b4eBE7b",
+export const BRANI_CONTRACT = {
+  name: "Brainzy AI",
+  symbol: "BRANI",
+  address: "0xDD9d0827Ee76Ae85762DD30976C3883bbC89A0D5",
   decimals: 6,
   chain: "Ethereum Mainnet",
   verified: true,
-  explorer: "https://etherscan.io/address/0x0B642a9555dAfdBCB0303E30802a64261b4eBE7b",
+  explorer: "https://etherscan.io/address/0xDD9d0827Ee76Ae85762DD30976C3883bbC89A0D5",
 };

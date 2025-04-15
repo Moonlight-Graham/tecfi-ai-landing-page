@@ -1,8 +1,8 @@
-## TECFI Token Info
+## BRANI Token Info
 
-- Name: **TecFi AI**
-- Symbol: **TECFI**
+- Name: **Brainzy AI**
+- Symbol: **BRANI**
 - Decimals: `6`
 - Chain: Ethereum Mainnet
-- Contract: [`0x0B642a9555dAfdBCB0303E30802a64261b4eBE7b`](https://etherscan.io/address/0x0B642a9555dAfdBCB0303E30802a64261b4eBE7b)
-- ABI: [`TecFiAI.json`](src/contracts/TecFiAI/TecFiAI.json)
+- Contract: [`0xDD9d0827Ee76Ae85762DD30976C3883bbC89A0D5`](https://etherscan.io/address/0xDD9d0827Ee76Ae85762DD30976C3883bbC89A0D5)
+- ABI: [`BrainzyTokenABI.json`](src/abi/BrainzyTokenABI.json)

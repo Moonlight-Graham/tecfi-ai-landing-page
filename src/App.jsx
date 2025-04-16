@@ -199,6 +199,37 @@ function App() {
           📄 Read Our White Paper
         </a>
       </div>
+	  {/* 🌐 Social Links */}
+<div style={{ textAlign: 'center', marginTop: '20px' }}>
+  <a
+    href="https://x.com/BrainzyAI"  // replace with your actual handle
+    target="_blank"
+    rel="noopener noreferrer"
+    style={{
+      color: '#1DA1F2',
+      fontWeight: '600',
+      textDecoration: 'none',
+      fontSize: '18px',
+      marginRight: '25px'
+    }}
+  >
+    X Follow us on X
+  </a>
+  <a
+    href="https://t.me/brainzyai"
+    target="_blank"
+    rel="noopener noreferrer"
+    style={{
+      color: '#0088cc',
+      fontWeight: '600',
+      textDecoration: 'none',
+      fontSize: '18px'
+    }}
+  >
+    💬 Join our Telegram
+  </a>
+</div>
+
 
       {/* 🔗 Etherscan Links */}
       <div style={{ textAlign: 'center', marginTop: '25px', fontSize: '14px' }}>

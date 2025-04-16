@@ -5,7 +5,9 @@ import tokenABI from './abi/BrainzyTokenABI.json';
 
 const tokenAddress = "0xDD9d0827Ee76Ae85762DD30976C3883bbC89A0D5";
 const presaleAddress = "0x6C29ac5980da5B531b268462b8eD17e6edA31D94";
-const presaleStartTime = null;
+
+// Presale begins April 18, 2025 at 00:00 UTC (Unix timestamp: 1744934400)
+const presaleStartTime = 1744934400;
 const presaleDuration = 30 * 24 * 60 * 60; // 30 days in seconds
 
 function App() {
@@ -89,15 +91,15 @@ function App() {
   }, []);
 
   const getCountdown = () => {
-    if (!presaleStartTime) return 'Presale countdown not started.';
-    const remaining = presaleStartTime + presaleDuration - now;
-    if (remaining <= 0) return 'Presale has ended.';
-    const days = Math.floor(remaining / (24 * 3600));
-    const hours = Math.floor((remaining % (24 * 3600)) / 3600);
-    const minutes = Math.floor((remaining % 3600) / 60);
-    const seconds = remaining % 60;
-    return `${days}d ${hours}h ${minutes}m ${seconds}s`;
-  };
+  const presaleStartTime = 1745001600; // April 18, 2025 @ 12:00 PM CST
+  const remaining = presaleStartTime - now;
+  if (remaining <= 0) return 'Presale is now live!';
+  const days = Math.floor(remaining / (24 * 3600));
+  const hours = Math.floor((remaining % (24 * 3600)) / 3600);
+  const minutes = Math.floor((remaining % 3600) / 60);
+  const seconds = remaining % 60;
+  return `${days}d ${hours}h ${minutes}m ${seconds}s`;
+};
 
   return (
     <div
@@ -117,7 +119,8 @@ function App() {
             <p style={{ margin: 0, fontSize: '14px', color: '#666' }}>
               This is the official site of Brainzy AI.<br />
               <span style={{ fontWeight: '600', color: '#417ebf' }}>
-                AI-Governed. DAO Powered. 50% Rewards.
+                AI-Governed. DAO Powered. 50% Rewards.<br />
+                Presale Opens April 18
               </span>
             </p>
           </div>
@@ -138,17 +141,17 @@ function App() {
       </div>
 
       {/* 🌍 Project Description */}
-      <div style={{ textAlign: 'center', marginTop: '20px' }}>
+      <div style={{ textAlign: 'center', marginTop: '40px' }}>
         <h1 style={{ fontSize: '2rem' }}>Powering the Future of AI Finance</h1>
-        <p style={{ fontSize: '18px', maxWidth: '700px', margin: '10px auto' }}>
-          Brainzy AI is the next-generation platform that lets you participate in decentralized governance, earn rewards, and influence how AI interacts with DeFi.
+        <p style={{ fontSize: '18px', maxWidth: '700px', margin: '20px auto' }}>
+          Brainzy AI is the next-generation platform that lets you participate in decentralized governance, earn rewards, and influence how AI interacts with DeFi. Join the movement!
         </p>
       </div>
 
       {/* 🚀 Presale Section */}
-      <div style={{ textAlign: 'center', marginTop: '20px' }}>
-        <h2 style={{ color: '#8C4224', fontSize: '24px' }}>🚀 Presale is LIVE</h2>
-        <p style={{ fontSize: '16px' }}>1 ETH = 100,000 BRANI · Max: 15 ETH · Min: <span style={{ color: 'red' }}>0.05</span> ETH</p>
+      <div style={{ textAlign: 'center', marginTop: '40px' }}>
+        <h2 style={{ color: '#8C4224', fontSize: '24px' }}>🚀 Presale Countdown</h2>
+        <p style={{ fontSize: '16px' }}>1 ETH = 100,000 BRANI · Max: 15 ETH · Min: 0.05 ETH</p>
         <p style={{ fontWeight: '600', fontSize: '20px', color: '#417ebf' }}>Total ETH Raised: {ethRaised} ETH</p>
         <p style={{ fontSize: '16px', marginBottom: '4px' }}>⏳ Countdown: {getCountdown()}</p>
 
@@ -165,9 +168,8 @@ function App() {
           disabled={contributing}
           style={{ marginTop: '12px', padding: '10px 25px', fontSize: '16px', backgroundColor: '#417ebf', color: 'white', border: 'none', borderRadius: '6px', cursor: 'pointer' }}
         >
-          {contributing ? 'Processing...' : 'Buy $BRANI'}
+          {contributing ? 'Processing...' : 'Buy BRANI'}
         </button>
-
         <div style={{ marginTop: '18px' }}>
           <button onClick={claimTokens} style={{ padding: '10px 20px', fontSize: '14px', backgroundColor: '#888', color: 'white', border: 'none', borderRadius: '6px' }}>
             Claim $BRANI (Disabled until end)
@@ -177,25 +179,10 @@ function App() {
 
       {/* 📄 White Paper Link */}
       <div style={{ textAlign: 'center', marginTop: '30px' }}>
-        <a href="/whitepaper.pdf" target="_blank" rel="noopener noreferrer" style={{ color: '#100C26', fontWeight: '600', textDecoration: 'none', fontSize: '20px' }}>
+        <a href="/whitepaper.pdf" target="_blank" rel="noopener noreferrer" style={{ color: '#417ebf', fontWeight: '600', textDecoration: 'none', fontSize: '20px' }}>
           📄 Read Our White Paper
         </a>
       </div>
-
-      {/* 🧑‍💻 Meet the Team Section */}
-<div style={{ textAlign: 'center', marginTop: '40px' }}>
-  <h3 style={{ fontSize: '22px', color: '#333', marginBottom: '16px' }}>Meet the Team</h3>
-  <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '20px', flexWrap: 'wrap' }}>
-    <div style={{ maxWidth: '240px', textAlign: 'center' }}>
-      <img src="/ryan-putz.jpg" alt="Ryan R. Putz" style={{ width: '160px', height: '160px', borderRadius: '50%', objectFit: 'cover', boxShadow: '0 2px 10px rgba(0,0,0,0.1)' }} />
-      <h4 style={{ margin: '12px 0 4px', fontSize: '18px', color: '#1a1a1a' }}>Ryan R. Putz</h4>
-      <p style={{ fontSize: '14px', color: '#555', fontStyle: 'italic' }}>Creator & Developer</p>
-      <p style={{ fontSize: '14px', color: '#444', marginTop: '8px' }}>
-        Licensed Attorney turned full-time Web3 and AI developer; building DeFi ecosystems that incorporate my passion for the future of AI-powered finance.
-      </p>
-    </div>
-  </div>
-</div>
 
       {/* 🔗 Etherscan Links */}
       <div style={{ textAlign: 'center', marginTop: '25px', fontSize: '14px' }}>

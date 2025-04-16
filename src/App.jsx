@@ -159,7 +159,6 @@ function App() {
 
         <p style={{ margin: '4px 0', color: '#666' }}>This is the official Governance dApp of Brainzy AI.</p>
         <p style={{ fontWeight: '600', fontSize: '14px', color: '#417ebf' }}>AI-Governed. <br /> DAO Powered. <br /> 50% Rewards.</p>
-        <a href="mailto:developer@brainzytoken.com" style={{ position: 'absolute', right: '20px', top: '20px', color: '#417ebf', fontWeight: '600', fontSize: '14px', textDecoration: 'none' }}>📫 developer@brainzytoken.com</a>
         <button
   onClick={connectWallet}
   style={{
@@ -169,7 +168,7 @@ function App() {
     border: 'none',
     borderRadius: '6px',
     fontWeight: '600',
-    fontSize: '14px',
+    fontSize: '15px',
     marginTop: '10px',
     cursor: 'pointer',
     width: '100%',
@@ -179,15 +178,26 @@ function App() {
   🔐 Connect Wallet
 </button>
 
-
         <div style={{ marginTop: '16px' }}>
-          <a href="/whitepaper.pdf" target="_blank" rel="noopener noreferrer" style={{ color: '#1f00c2', fontWeight: '600', fontSize: '14px', marginRight: '20px', textDecoration: 'none' }}>📄 Whitepaper</a>
-          <a href={`https://etherscan.io/0xDD9d0827Ee76Ae85762DD30976C3883bbC89A0D5/ {tokenAddress}`} target="_blank" rel="noopener noreferrer" style={{ color: '#1f00c2', fontSize: '14px', textDecoration: 'none', marginRight: '20px' }}>Token Contract</a>
-          <a href={`https://etherscan.io/0x6C29ac5980da5B531b268462b8eD17e6edA31D94/ {presaleAddress}`} target="_blank" rel="noopener noreferrer" style={{ color: '#1f00c2', fontSize: '14px', textDecoration: 'none' }}>Presale Contract</a>
-        </div>
+          <a href="/whitepaper.pdf" target="_blank" rel="noopener noreferrer" style={{ color: '#1f00c2', fontWeight: '600', fontSize: '14px', marginRight: '14px', textDecoration: 'none' }}>📄<u>Whitepaper</u></a>
+          <a href={`https://etherscan.io/0xDD9d0827Ee76Ae85762DD30976C3883bbC89A0D5/ {tokenAddress}`} target="_blank" rel="noopener noreferrer" style={{ color: '#1f00c2', fontWeight: '600', fontSize: '14px', textDecoration: 'none', marginRight: '14px' }}><u>Token Contract</u></a>
+          <a href={`https://etherscan.io/0x6C29ac5980da5B531b268462b8eD17e6edA31D94/ {presaleAddress}`} target="_blank" rel="noopener noreferrer" style={{ color: '#1f00c2', fontWeight: '600', fontSize: '14px', textDecoration: 'none' }}><u>Presale Contract</u></a>
+		</div> 
+		
+		<div style={{ textAlign: 'center', marginTop: '12px' }}>
+          <a href="mailto:developer@brainzytoken.com" style={{ fontSize: '15px', color: '#1f00c2',  textDecoration: 'none' }}>Contact:📫<u>developer@brainzytoken.com</u></a>
+		</div>
       </div>
+	  
+	  <div style={{ textAlign: 'center', marginTop: '10px' }}>
+        <h3 style={{ fontSize: '22px', color: '#333', marginBottom: '1px' }}>Brainzy AI is the Evolution of DeFi and AI Governance</h3>
+        <p style={{ fontSize: '16px', color: '#09292B', marginBottom: '1px' }}><i>'transparent, smart, efficient, and community-first'</i></p> 
+		<p style={{ fontSize: '17px', color: '#09292B', marginBottom: '12px' }}>If you believe tokens should evolve with intelligence, not just hype, BRANI is your new home.</p>		
 
-      <div style={{ textAlign: 'center', marginTop: '40px' }}>
+     <div style={{ backgroundColor: '#8DA28E', padding: '8px 20px' }}>
+  {/* Presale countdown and ETH info */}
+</div>
+      <div style={{ textAlign: 'center', marginTop: '20px' }}>
         <h2 style={{ fontSize: '22px', color: '#222' }}>📣 Presale Countdown</h2>
         <p style={{ fontSize: '16px' }}>1 ETH = 100,000 BRANI · Max: 15 ETH · Min: 0.05 ETH</p>
         <p style={{ fontWeight: '600', fontSize: '16px', color: '#417ebf' }}>Total ETH Raised: {ethRaised} ETH</p>
@@ -228,18 +238,24 @@ function App() {
           </div>
         )}
       </div>
-
-      <div style={{ textAlign: 'center', marginTop: '30px' }}>
-        <h3 style={{ fontSize: '20px', marginBottom: '12px' }}>👤 Meet the Team</h3>
+	  
+         <div style={{ backgroundColor: '#8DA28E', padding: '8px 20px' }}>
+              {/* Team section or About BRANI */}
+</div>
+      <div style={{ textAlign: 'center', marginTop: '25px' }}>
+        <h3 style={{ fontSize: '20px', marginBottom: '10px' }}>👤 Meet the Team</h3>
         <img src="/ryan-putz.jpg" alt="Ryan R. Putz" style={{ width: '140px', height: '140px', borderRadius: '50%', objectFit: 'cover', boxShadow: '0 2px 10px rgba(0,0,0,0.1)' }} />
         <h4 style={{ marginTop: '12px', fontSize: '16px', color: '#1a1a1a' }}>Ryan R. Putz</h4>
         <p style={{ fontSize: '14px', fontStyle: 'italic' }}>Creator & Developer</p>
-        <p style={{ fontSize: '14px', color: '#444', marginTop: '8px' }}>
+        <p style={{ fontSize: '14px', color: '#444', marginTop: '6px' }}>
           Licensed Attorney turned full-time Web3 and AI developer; building DeFi ecosystems that incorporate his passion for a future of decentralized, AI-powered finance.
         </p>
       </div>
 
-      <div style={{
+<div style={{ backgroundColor: '#8DA28E', padding: '8px 20px' }}>
+              {/* Social Media Links */}
+</div>
+	  <div style={{
   textAlign: 'center',
   marginTop: '25px',
   display: 'flex',
@@ -249,11 +265,13 @@ function App() {
   gap: '10px',
   flexWrap: 'wrap'
 }}>
-  <a href="https://x.com/BrainzyAI" target="_blank" rel="noopener noreferrer" style={{ color: '#0088cc', fontWeight: '600', textDecoration: 'none', fontSize: '18px', marginRight: '20px' }}>X / Twitter</a>
-  <a href="https://t.me/brainzyai" target="_blank" rel="noopener noreferrer" style={{ color: '#0088cc', fontWeight: '600', textDecoration: 'none', fontSize: '18px', marginRight: '20px' }}>Telegram</a>
-  <a href="https://www.linkedin.com/in/brainzytoken/" target="_blank" rel="noopener noreferrer" style={{ color: '#0088cc', fontWeight: '600', textDecoration: 'none', fontSize: '18px' }}>LinkedIn</a>
-</div>
-</div>
+       <a href="https://x.com/BrainzyAI" target="_blank" rel="noopener noreferrer" style={{ color: '#0088cc', fontWeight: '600', textDecoration: 'none', fontSize: '18px', marginRight: '20px' }}>X / Twitter</a>
+       <a href="https://t.me/brainzyai" target="_blank" rel="noopener noreferrer" style={{ color: '#0088cc', fontWeight: '600', textDecoration: 'none', fontSize: '18px', marginRight: '20px' }}>Telegram</a>
+       <a href="https://www.linkedin.com/in/brainzytoken" target="_blank" rel="noopener noreferrer" style={{color: '#0088cc', fontWeight: '600', textDecoration: 'none', fontSize: '18px'}}>LinkedIn</a>
+      </div>
+     </div>
+  
+    </div>
   );
 }
 

@@ -110,8 +110,8 @@ function App() {
       }}>
 
       {/* 💳 Wallet Connection Banner */}
-      <div style={{ backgroundColor: 'white', display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '15px', borderBottom: '1px solid #ccc' }}>
-        <img src="/brainzyai-icon-32x32.svg" alt="Brainzy AI Icon" style={{ width: '48px', height: '48px', marginBottom: '10px' }} />
+      <div style={{ backgroundColor: 'white', display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '10px', borderBottom: '1px solid #ccc' }}>
+        <img src="/brainzyai-icon-32x32.svg" alt="Brainzy AI Icon" style={{ width: '48px', height: '48px', marginBottom: '8px' }} />
         <h3 style={{ margin: 0, color: '#333', fontSize: '18px' }}>Brainzy AI Governance DApp</h3>
         <p style={{ margin: 0, fontSize: '13px', color: '#666' }}>
           This is the official site of Brainzy AI.
@@ -123,7 +123,7 @@ function App() {
 		</p>
       </div>
 
-      <div style={{ textAlign: 'center', marginTop: '20px' }}>
+      <div style={{ textAlign: 'center', marginTop: '15px' }}>
         {!account ? (
           <>
             <p style={{ margin: 0, fontSize: '14px', color: '#121213' }}>Connect wallet to begin:</p>
@@ -147,8 +147,8 @@ function App() {
       </div>
 
       {/* 🌍 Project Description */}
-      <div style={{ textAlign: 'center', marginTop: '30px' }}>
-        <h1 style={{ fontSize: '1.6rem' }}>Powering the Future of AI Finance</h1>
+      <div style={{ textAlign: 'center', marginTop: '25px' }}>
+        <h1 style={{ fontSize: '1.4rem' }}>Powering the Future of AI Finance</h1>
         <p style={{ fontSize: '15px', maxWidth: '90%', margin: '10px auto' }}>
           Brainzy AI is the next-generation platform that lets you participate in decentralized governance, earn rewards, and influence how AI interacts with DeFi.
         </p>

@@ -102,18 +102,7 @@ function App() {
     setSymbol('');
     setPresaleContract(null);
   };
-
-  useEffect(() => {
-    if (window.ethereum && window.ethereum.selectedAddress) connectWallet();
-    fetchEthPrice();
-    const priceInterval = setInterval(fetchEthPrice, 60000);
-    const timeInterval = setInterval(() => setNow(Math.floor(Date.now() / 1000)), 1000);
-    return () => {
-      clearInterval(priceInterval);
-      clearInterval(timeInterval);
-    };
-  }, []);
-
+  
   const getCountdown = () => {
     const remaining = presaleStartTime - now;
     if (remaining <= 0) return 'Presale is now live!';
@@ -123,6 +112,17 @@ function App() {
     const seconds = remaining % 60;
     return `${days}d ${hours}h ${minutes}m ${seconds}s`;
   };
+  
+    useEffect(() => {
+    if (window.ethereum && window.ethereum.selectedAddress) connectWallet();
+    fetchEthPrice();
+    const priceInterval = setInterval(fetchEthPrice, 60000);
+    const timeInterval = setInterval(() => setNow(Math.floor(Date.now() / 1000)), 1000);
+    return () => {
+      clearInterval(priceInterval);
+      clearInterval(timeInterval);
+    };
+  }, []);
 
   const braniValue = ethPrice ? ethPrice.toFixed(2) : '...';
   const braniValue100k = ethPrice ? (ethPrice).toFixed(2) : '...';
@@ -134,55 +134,53 @@ function App() {
       fontFamily: 'Segoe UI, sans-serif',
       padding: '10px'
     }}>
-      <div style={{ backgroundColor: 'white', textAlign: 'center', padding: '20px 10px', borderBottom: '1px solid #ccc' }}>
+      <div style={{ backgroundColor: 'white', padding: '20px', borderBottom: '1px solid #ccc', textAlign: 'center', position: 'relative' }}>
         <img src="/brainzyai-icon-32x32.svg" alt="Brainzy AI Icon" style={{ width: '48px', height: '48px', marginBottom: '8px' }} />
-        <h3 style={{ margin: 0, color: '#333', fontSize: '18px' }}>Brainzy AI Governance DApp</h3>
-        <p style={{ fontSize: '14px', color: '#666' }}>This is the official site of Brainzy AI.</p>
+        <h2 style={{ margin: 0 }}>Brainzy AI (BRANI)</h2>
+        <p style={{ margin: '4px 0', color: '#666' }}>This is the official Governance dApp of Brainzy AI.</p>
         <p style={{ fontWeight: '600', fontSize: '14px', color: '#417ebf' }}>AI-Governed. <br /> DAO Powered. <br /> 50% Rewards.</p>
+        <a href="mailto:developer@brainzytoken.com" style={{ position: 'absolute', right: '20px', top: '20px', color: '#417ebf', fontWeight: '600', fontSize: '14px', textDecoration: 'none' }}>📫 developer@brainzytoken.com</a>
+        <button 
+         onClick={connectWallet} 
+         style={{ 
+          padding: '10px 20px', 
+          backgroundColor: '#417ebf', 
+          color: 'white', 
+          border: 'none', 
+          borderRadius: '6px', 
+          fontWeight: '600', 
+          fontSize: '14px', 
+          marginTop: '10px',
+          cursor: 'pointer' 
+  }}
+>
+  🔐 Connect Wallet
+  </button>
+
+        <div style={{ marginTop: '16px' }}>
+          <a href="/whitepaper.pdf" target="_blank" rel="noopener noreferrer" style={{ color: '#1f00c2', fontWeight: '600', fontSize: '14px', marginRight: '20px', textDecoration: 'none' }}>📄 Whitepaper</a>
+          <a href={`https://etherscan.io/address/${tokenAddress}`} target="_blank" rel="noopener noreferrer" style={{ color: '#1f00c2', fontSize: '14px', textDecoration: 'none', marginRight: '20px' }}>Token Contract</a>
+          <a href={`https://etherscan.io/address/${presaleAddress}`} target="_blank" rel="noopener noreferrer" style={{ color: '#1f00c2', fontSize: '14px', textDecoration: 'none' }}>Presale Contract</a>
+        </div>
       </div>
 
-      <div style={{ textAlign: 'center', marginTop: '20px' }}>
-        <h2 style={{ fontSize: '24px', color: '#111' }}>🚀 Powering the Future of AI Finance</h2>
-        <p style={{ fontSize: '16px', maxWidth: '700px', margin: '10px auto' }}>
-          Brainzy AI is the next-generation platform that lets you participate in decentralized governance, earn rewards, and influence how AI interacts with DeFi.
-        </p>
-      </div>
-{!account && (
-  <div style={{ textAlign: 'center', marginTop: '15px' }}>
-    <p style={{ margin: 0, fontSize: '14px', color: '#121213' }}>Connect wallet to begin:</p>
-    <button
-      onClick={connectWallet}
-      disabled={loading}
-      style={{
-        marginTop: '8px',
-        padding: '10px 20px',
-        fontSize: '15px',
-        backgroundColor: '#417ebf',
-        color: 'white',
-        border: 'none',
-        borderRadius: '4px'
-      }}
-    >
-      {loading ? 'Connecting...' : 'Connect Wallet'}
-    </button>
-  </div>
-)}
-
-      <div style={{ textAlign: 'center', marginTop: '20px', fontSize: '16px', color: '#333' }}>
-        {ethPrice ? (
-          <p>
-            💰 1 ETH ≈ ${braniValue} USD → 100,000 BRANI ≈ ${braniValue100k} USD<br />📉 1 BRANI ≈ ${(ethPrice / 100000).toFixed(6)} USD
-          </p>
-        ) : (
-          <p>Fetching ETH price...</p>
-        )}
-      </div>
-
-      <div style={{ textAlign: 'center', marginTop: '30px', fontSize: '18px' }}>
+      <div style={{ textAlign: 'center', marginTop: '40px' }}>
         <h2 style={{ fontSize: '22px', color: '#222' }}>📣 Presale Countdown</h2>
         <p style={{ fontSize: '16px' }}>1 ETH = 100,000 BRANI · Max: 15 ETH · Min: 0.05 ETH</p>
         <p style={{ fontWeight: '600', fontSize: '16px', color: '#417ebf' }}>Total ETH Raised: {ethRaised} ETH</p>
         <p style={{ fontSize: '16px', marginBottom: '10px' }}>⏳ Countdown: {getCountdown()}</p>
+
+        <div style={{ fontSize: '16px', color: '#333', marginTop: '20px' }}>
+          {ethPrice ? (
+            <p>
+              💰 1 ETH ≈ ${braniValue} USD → 100,000 BRANI ≈ ${braniValue100k} USD<br />
+              📉 1 BRANI ≈ ${(ethPrice / 100000).toFixed(6)} USD
+            </p>
+          ) : (
+            <p>Fetching ETH price...</p>
+          )}
+        </div>
+
         <input
           type="number"
           placeholder="Enter ETH amount"
@@ -198,24 +196,18 @@ function App() {
         <button onClick={claimTokens} style={{ marginTop: '10px', padding: '10px 25px', fontSize: '14px', backgroundColor: '#888', color: 'white', border: 'none', borderRadius: '6px' }}>
           Claim $BRANI (Disabled until end)
         </button>
-      </div>
 
-      {showModal && (
-        <div style={{ background: 'white', border: '1px solid #ccc', padding: '20px', borderRadius: '8px', maxWidth: '400px', margin: '20px auto' }}>
-          <h3>✅ Success!</h3>
-          <p>Your contribution has been received.</p>
-          <button onClick={() => setShowModal(false)} style={{ padding: '6px 12px', backgroundColor: '#417ebf', border: 'none', borderRadius: '6px', color: 'white' }}>Close</button>
-        </div>
-      )}
+        {showModal && (
+          <div style={{ background: 'white', border: '1px solid #ccc', padding: '20px', borderRadius: '8px', maxWidth: '400px', margin: '20px auto' }}>
+            <h3>✅ Success!</h3>
+            <p>Your contribution has been received.</p>
+            <button onClick={() => setShowModal(false)} style={{ padding: '6px 12px', backgroundColor: '#417ebf', border: 'none', borderRadius: '6px', color: 'white' }}>Close</button>
+          </div>
+        )}
+      </div>
 
       <div style={{ textAlign: 'center', marginTop: '30px' }}>
-        <a href="/whitepaper.pdf" target="_blank" rel="noopener noreferrer" style={{ color: '#1f00c2', fontWeight: '600', fontSize: '16px', marginRight: '20px', textDecoration: 'none' }}>📄 Whitepaper</a>
-        <a href={`https://etherscan.io/address/${tokenAddress}`} target="_blank" rel="noopener noreferrer" style={{ color: '#1f00c2', fontSize: '16px', textDecoration: 'none', marginRight: '20px' }}>Token Contract</a>
-        <a href={`https://etherscan.io/address/${presaleAddress}`} target="_blank" rel="noopener noreferrer" style={{ color: '#1f00c2', fontSize: '16px', textDecoration: 'none' }}>Presale Contract</a>
-      </div>
-
-      <div style={{ textAlign: 'center', marginTop: '50px' }}>
-        <h3 style={{ fontSize: '20px', marginBottom: '16px' }}>👤 Meet the Team</h3>
+        <h3 style={{ fontSize: '20px', marginBottom: '12px' }}>👤 Meet the Team</h3>
         <img src="/ryan-putz.jpg" alt="Ryan R. Putz" style={{ width: '140px', height: '140px', borderRadius: '50%', objectFit: 'cover', boxShadow: '0 2px 10px rgba(0,0,0,0.1)' }} />
         <h4 style={{ marginTop: '12px', fontSize: '16px', color: '#1a1a1a' }}>Ryan R. Putz</h4>
         <p style={{ fontSize: '14px', fontStyle: 'italic' }}>Creator & Developer</p>
@@ -224,11 +216,12 @@ function App() {
         </p>
       </div>
 
-      <div style={{ textAlign: 'center', marginTop: '30px' }}>
-        <a href="https://x.com/BrainzyAI" target="_blank" rel="noopener noreferrer" style={{ color: '#1DA1F2', fontWeight: '600', textDecoration: 'none', fontSize: '18px', marginRight: '25px' }}>X / Twitter</a>
-        <a href="https://t.me/brainzyai" target="_blank" rel="noopener noreferrer" style={{ color: '#0088cc', fontWeight: '600', textDecoration: 'none', fontSize: '18px' }}>Telegram</a>
-      </div>
-    </div>
+      <div style={{ textAlign: 'center', marginTop: '25px' }}>
+  <a href="https://x.com/BrainzyAI" target="_blank" rel="noopener noreferrer" style={{ color: '#0088cc', fontWeight: '600', textDecoration: 'none', fontSize: '18px', marginRight: '20px' }}>X / Twitter</a>
+  <a href="https://t.me/brainzyai" target="_blank" rel="noopener noreferrer" style={{ color: '#0088cc', fontWeight: '600', textDecoration: 'none', fontSize: '18px', marginRight: '20px' }}>Telegram</a>
+  <a href="https://www.linkedin.com/in/brainzytoken/" target="_blank" rel="noopener noreferrer" style={{ color: '#0088cc', fontWeight: '600', textDecoration: 'none', fontSize: '18px' }}>LinkedIn</a>
+</div>
+</div>
   );
 }
 

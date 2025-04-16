@@ -129,38 +129,61 @@ function App() {
 
   return (
     <div className="App" style={{
-      minHeight: '100vh',
-      background: 'linear-gradient(135deg, #DFF1F7 0%, #E6EAEB 100%)',
-      fontFamily: 'Segoe UI, sans-serif',
-      padding: '10px'
-    }}>
-      <div style={{ backgroundColor: 'white', padding: '20px', borderBottom: '1px solid #ccc', textAlign: 'center', position: 'relative' }}>
-        <img src="/brainzyai-icon-32x32.svg" alt="Brainzy AI Icon" style={{ width: '48px', height: '48px', marginBottom: '8px' }} />
-        <h2 style={{ margin: 0 }}>Brainzy AI (BRANI)</h2>
+  minHeight: '100vh',
+  padding: '5vw',
+  boxSizing: 'border-box',
+  background: 'linear-gradient(135deg, #DFF1F7 0%, #E6EAEB 100%)',
+  fontFamily: 'Segoe UI, sans-serif',
+}}>
+      <div style={{
+  backgroundColor: 'white',
+  padding: '20px',
+  borderBottom: '1px solid #ccc',
+  textAlign: 'center',
+  position: 'relative',
+  maxWidth: '100%',
+  wordWrap: 'break-word'
+}}>
+  <img src="/brainzyai-icon-32x32.svg" alt="Brainzy AI Icon"
+    style={{
+      width: '48px',
+      height: '48px',
+      marginBottom: '8px',
+      maxWidth: '100%'
+    }}
+  />
+  <h2 style={{
+    margin: 0,
+    fontSize: window.innerWidth < 480 ? '18px' : '24px'
+  }}>Brainzy AI (BRANI)</h2>
+
         <p style={{ margin: '4px 0', color: '#666' }}>This is the official Governance dApp of Brainzy AI.</p>
         <p style={{ fontWeight: '600', fontSize: '14px', color: '#417ebf' }}>AI-Governed. <br /> DAO Powered. <br /> 50% Rewards.</p>
         <a href="mailto:developer@brainzytoken.com" style={{ position: 'absolute', right: '20px', top: '20px', color: '#417ebf', fontWeight: '600', fontSize: '14px', textDecoration: 'none' }}>📫 developer@brainzytoken.com</a>
-        <button 
-         onClick={connectWallet} 
-         style={{ 
-          padding: '10px 20px', 
-          backgroundColor: '#417ebf', 
-          color: 'white', 
-          border: 'none', 
-          borderRadius: '6px', 
-          fontWeight: '600', 
-          fontSize: '14px', 
-          marginTop: '10px',
-          cursor: 'pointer' 
+        <button
+  onClick={connectWallet}
+  style={{
+    padding: '10px 20px',
+    backgroundColor: '#417ebf',
+    color: 'white',
+    border: 'none',
+    borderRadius: '6px',
+    fontWeight: '600',
+    fontSize: '14px',
+    marginTop: '10px',
+    cursor: 'pointer',
+    width: '100%',
+    maxWidth: '300px'
   }}
 >
   🔐 Connect Wallet
-  </button>
+</button>
+
 
         <div style={{ marginTop: '16px' }}>
           <a href="/whitepaper.pdf" target="_blank" rel="noopener noreferrer" style={{ color: '#1f00c2', fontWeight: '600', fontSize: '14px', marginRight: '20px', textDecoration: 'none' }}>📄 Whitepaper</a>
-          <a href={`https://etherscan.io/address/${tokenAddress}`} target="_blank" rel="noopener noreferrer" style={{ color: '#1f00c2', fontSize: '14px', textDecoration: 'none', marginRight: '20px' }}>Token Contract</a>
-          <a href={`https://etherscan.io/address/${presaleAddress}`} target="_blank" rel="noopener noreferrer" style={{ color: '#1f00c2', fontSize: '14px', textDecoration: 'none' }}>Presale Contract</a>
+          <a href={`https://etherscan.io/0xDD9d0827Ee76Ae85762DD30976C3883bbC89A0D5/ {tokenAddress}`} target="_blank" rel="noopener noreferrer" style={{ color: '#1f00c2', fontSize: '14px', textDecoration: 'none', marginRight: '20px' }}>Token Contract</a>
+          <a href={`https://etherscan.io/0x6C29ac5980da5B531b268462b8eD17e6edA31D94/ {presaleAddress}`} target="_blank" rel="noopener noreferrer" style={{ color: '#1f00c2', fontSize: '14px', textDecoration: 'none' }}>Presale Contract</a>
         </div>
       </div>
 
@@ -216,7 +239,16 @@ function App() {
         </p>
       </div>
 
-      <div style={{ textAlign: 'center', marginTop: '25px' }}>
+      <div style={{
+  textAlign: 'center',
+  marginTop: '25px',
+  display: 'flex',
+  flexDirection: window.innerWidth < 480 ? 'column' : 'row',
+  justifyContent: 'center',
+  alignItems: 'center',
+  gap: '10px',
+  flexWrap: 'wrap'
+}}>
   <a href="https://x.com/BrainzyAI" target="_blank" rel="noopener noreferrer" style={{ color: '#0088cc', fontWeight: '600', textDecoration: 'none', fontSize: '18px', marginRight: '20px' }}>X / Twitter</a>
   <a href="https://t.me/brainzyai" target="_blank" rel="noopener noreferrer" style={{ color: '#0088cc', fontWeight: '600', textDecoration: 'none', fontSize: '18px', marginRight: '20px' }}>Telegram</a>
   <a href="https://www.linkedin.com/in/brainzytoken/" target="_blank" rel="noopener noreferrer" style={{ color: '#0088cc', fontWeight: '600', textDecoration: 'none', fontSize: '18px' }}>LinkedIn</a>

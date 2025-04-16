@@ -137,7 +137,7 @@ function App() {
 }}>
       <div style={{
   backgroundColor: 'white',
-  padding: '20px',
+  padding: '2px',
   borderBottom: '1px solid #ccc',
   textAlign: 'center',
   position: 'relative',
@@ -179,34 +179,35 @@ function App() {
 </button>
 
         <div style={{ marginTop: '16px' }}>
-          <a href="/whitepaper.pdf" target="_blank" rel="noopener noreferrer" style={{ color: '#1f00c2', fontWeight: '600', fontSize: '14px', marginRight: '14px', textDecoration: 'none' }}>📄<u>Whitepaper</u></a>
-          <a href={`https://etherscan.io/0xDD9d0827Ee76Ae85762DD30976C3883bbC89A0D5/ {tokenAddress}`} target="_blank" rel="noopener noreferrer" style={{ color: '#1f00c2', fontWeight: '600', fontSize: '14px', textDecoration: 'none', marginRight: '14px' }}><u>Token Contract</u></a>
+          <a href="/whitepaper.pdf" target="_blank" rel="noopener noreferrer" style={{ color: '#1f00c2', fontWeight: '600', fontSize: '14px', marginRight: '12px', textDecoration: 'none' }}>📄<u>Whitepaper</u></a>
+          <a href={`https://etherscan.io/0xDD9d0827Ee76Ae85762DD30976C3883bbC89A0D5/ {tokenAddress}`} target="_blank" rel="noopener noreferrer" style={{ color: '#1f00c2', fontWeight: '600', fontSize: '14px', textDecoration: 'none', marginRight: '12px' }}><u>Token Contract</u></a>
           <a href={`https://etherscan.io/0x6C29ac5980da5B531b268462b8eD17e6edA31D94/ {presaleAddress}`} target="_blank" rel="noopener noreferrer" style={{ color: '#1f00c2', fontWeight: '600', fontSize: '14px', textDecoration: 'none' }}><u>Presale Contract</u></a>
 		</div> 
 		
 		<div style={{ textAlign: 'center', marginTop: '12px' }}>
-          <a href="mailto:developer@brainzytoken.com" style={{ fontSize: '15px', color: '#1f00c2',  textDecoration: 'none' }}>Contact:📫<u>developer@brainzytoken.com</u></a>
+          <a href="mailto:developer@brainzytoken.com" style={{ fontSize: '15px', color: '#1f00c2',  textDecoration: 'none' }}>Contact: 📫<u>developer@brainzytoken.com</u></a>
 		</div>
       </div>
 	  
 	  <div style={{ textAlign: 'center', marginTop: '10px' }}>
         <h3 style={{ fontSize: '22px', color: '#333', marginBottom: '1px' }}>Brainzy AI is the Evolution of DeFi and AI Governance</h3>
         <p style={{ fontSize: '16px', color: '#09292B', marginBottom: '1px' }}><i>'transparent, smart, efficient, and community-first'</i></p> 
-		<p style={{ fontSize: '17px', color: '#09292B', marginBottom: '12px' }}>If you believe tokens should evolve with intelligence, not just hype, BRANI is your new home.</p>		
+		<p style={{ fontSize: '16px', color: '#09292B', marginBottom: '12px' }}>If you believe tokens should evolve with intelligence, not just hype, BRANI is your new home.</p>		
 
      <div style={{ backgroundColor: '#8DA28E', padding: '8px 20px' }}>
   {/* Presale countdown and ETH info */}
 </div>
-      <div style={{ textAlign: 'center', marginTop: '20px' }}>
+      <div style={{ textAlign: 'center', marginTop: '15px' }}>
         <h2 style={{ fontSize: '22px', color: '#222' }}>📣 Presale Countdown</h2>
-        <p style={{ fontSize: '16px' }}>1 ETH = 100,000 BRANI · Max: 15 ETH · Min: 0.05 ETH</p>
+        <p style={{ fontSize: '16px', marginBottom: '1px' }}>1 ETH = 100,000 BRANI</p> · 
+		<p style={{ fontSize: '16px', marginTop: '1px' }}>Wallet Max./Min. = 15 ETH/.05 ETH</p>
         <p style={{ fontWeight: '600', fontSize: '16px', color: '#417ebf' }}>Total ETH Raised: {ethRaised} ETH</p>
         <p style={{ fontSize: '16px', marginBottom: '10px' }}>⏳ Countdown: {getCountdown()}</p>
 
         <div style={{ fontSize: '16px', color: '#333', marginTop: '20px' }}>
           {ethPrice ? (
             <p>
-              💰 1 ETH ≈ ${braniValue} USD → 100,000 BRANI ≈ ${braniValue100k} USD<br />
+              💰 100,000 BRANI ≈ ${ethPrice} USD<br />
               📉 1 BRANI ≈ ${(ethPrice / 100000).toFixed(6)} USD
             </p>
           ) : (
@@ -248,7 +249,7 @@ function App() {
         <h4 style={{ marginTop: '12px', fontSize: '16px', color: '#1a1a1a' }}>Ryan R. Putz</h4>
         <p style={{ fontSize: '14px', fontStyle: 'italic' }}>Creator & Developer</p>
         <p style={{ fontSize: '14px', color: '#444', marginTop: '6px' }}>
-          Licensed Attorney turned full-time Web3 and AI developer; building DeFi ecosystems that incorporate his passion for a future of decentralized, AI-powered finance.
+        Licensed Attorney turned full-time Web3 and AI developer, building DeFi ecosystems that incorporate his vision of a decentralized, AI-powered finance future.
         </p>
       </div>
 
@@ -267,7 +268,7 @@ function App() {
 }}>
        <a href="https://x.com/BrainzyAI" target="_blank" rel="noopener noreferrer" style={{ color: '#0088cc', fontWeight: '600', textDecoration: 'none', fontSize: '18px', marginRight: '20px' }}>X / Twitter</a>
        <a href="https://t.me/brainzyai" target="_blank" rel="noopener noreferrer" style={{ color: '#0088cc', fontWeight: '600', textDecoration: 'none', fontSize: '18px', marginRight: '20px' }}>Telegram</a>
-       <a href="https://www.linkedin.com/in/brainzytoken" target="_blank" rel="noopener noreferrer" style={{color: '#0088cc', fontWeight: '600', textDecoration: 'none', fontSize: '18px'}}>LinkedIn</a>
+       <a href="https://www.linkedin.com/in/brainzytoken" target="_blank" rel="noopener noreferrer" style={{color: '#0088cc', fontWeight: '600', textDecoration: 'none', fontSize: '18px', marginRight: '20px' }}>LinkedIn</a>
       </div>
      </div>
   

@@ -104,7 +104,7 @@ function App() {
   };
   
   const getCountdown = () => {
-    const remaining = presaleStartTime - now;
+    const remaining = presaleStartTime - 10;
     if (remaining <= 0) return 'Presale is now live!';
     const days = Math.floor(remaining / (24 * 3600));
     const hours = Math.floor((remaining % (24 * 3600)) / 3600);
@@ -241,7 +241,7 @@ function App() {
      <p style={{ fontSize: '16px', marginBottom: '1px' }}>1 ETH = 100,000 BRANI</p> · 
 	 <p style={{ fontSize: '16px', marginTop: '1px' }}>Wallet Max./Min. = 15 ETH/.05 ETH</p>
      <p style={{ fontWeight: '600', fontSize: '16px', color: '#417ebf' }}>Total ETH Raised: {ethRaised} ETH</p>
-     <p style={{ fontSize: '16px', marginBottom: '10px' }}>⏳ Countdown: {getCountdown()}</p>
+     <p style={{ fontSize: '16px', marginBottom: '10px' }}>⏳ Countdown: {getCountdown()} *On a TBD date prior to April 30, 2025</p>
 
       <div style={{ fontSize: '16px', color: '#333', marginTop: '20px' }}>
        {ethPrice ? (

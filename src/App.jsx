@@ -194,7 +194,7 @@ function App() {
     to guide the evolution of AI development through decentralized, community-led governance using a DAO model.
   </p>
   <img src="/brainzyai-icon-32x32.svg" alt="Brainzy AI Icon" style={{ width: '48px', height: '48px', marginTop: '10px', marginBottom: '0px', maxWidth: '100%'}}/>
-  <h2 style={{ fontSize: '24px', marginBottom: '15px', marginTop: '2px', color: '#222' }}>Where Holders Vote & AI Decides</h2>
+  <h2 style={{ fontSize: '24px', marginBottom: '15px', marginTop: '2px', color: '#222' }}>Token Holders Vote on Proposals & AI Decides</h2>
   <p style={{ fontSize: '16px', maxWidth: '800px', margin: '0 auto 15px', lineHeight: '1.6', color: '#444' }}>
     BRANI rewards participation, promotes transparency, and enables users to stake, create proposals, and vote on the 
 	proposals for AI to decide. A 20% token allocation has been reserved for the DAO Treasury. Token holders can 

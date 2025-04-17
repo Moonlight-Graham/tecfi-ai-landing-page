@@ -179,25 +179,60 @@ function App() {
 </button>
 
         <div style={{ marginTop: '16px' }}>
-          <a href="/whitepaper.pdf" target="_blank" rel="noopener noreferrer" style={{ color: '#1f00c2', fontWeight: '600', fontSize: '14px', marginRight: '12px', textDecoration: 'none' }}>📄<u>Whitepaper</u></a>
           <a href={`https://etherscan.io/0xDD9d0827Ee76Ae85762DD30976C3883bbC89A0D5/ {tokenAddress}`} target="_blank" rel="noopener noreferrer" style={{ color: '#1f00c2', fontWeight: '600', fontSize: '14px', textDecoration: 'none', marginRight: '12px' }}><u>Token Contract</u></a>
           <a href={`https://etherscan.io/0x6C29ac5980da5B531b268462b8eD17e6edA31D94/ {presaleAddress}`} target="_blank" rel="noopener noreferrer" style={{ color: '#1f00c2', fontWeight: '600', fontSize: '14px', textDecoration: 'none' }}><u>Presale Contract</u></a>
 		</div> 
 		
-		<div style={{ textAlign: 'center', marginTop: '12px' }}>
-          <a href="mailto:developer@brainzytoken.com" style={{ fontSize: '15px', color: '#1f00c2',  textDecoration: 'none' }}>Contact: 📫<u>developer@brainzytoken.com</u></a>
-		</div>
       </div>
-	  
-	  <div style={{ textAlign: 'center', marginTop: '10px' }}>
-        <h3 style={{ fontSize: '22px', color: '#333', marginBottom: '1px' }}>Brainzy AI is the Evolution of DeFi and AI Governance</h3>
-        <p style={{ fontSize: '16px', color: '#09292B', marginBottom: '1px' }}><i>'transparent, smart, efficient, and community-first'</i></p> 
-		<p style={{ fontSize: '16px', color: '#09292B', marginBottom: '12px' }}>If you believe tokens should evolve with intelligence, not just hype, BRANI is your new home.</p>		
-
-     <div style={{ backgroundColor: '#8DA28E', padding: '8px 20px' }}>
-  {/* Presale countdown and ETH info */}
+	  {/* About BRANI Section */}
+<div style={{ backgroundColor: '#f5faff', padding: '15px 15px', textAlign: 'center' }}>
+  <h2 style={{ fontSize: '28px', marginBottom: '15px', color: '#222' }}><img src="/brainzyai-icon-32x32.svg" alt="Brainzy AI Icon"/>About BRANI</h2>
+  <p style={{ fontSize: '16px', maxWidth: '800px', margin: '0 auto 15px', lineHeight: '1.6', color: '#444' }}>
+    <strong>BRANI (Brainzy AI)</strong> is a governance-driven DeFi token built on the Ethereum blockchain,
+    designed to merge the power of artificial intelligence with decentralized finance. BRANI empowers token holders
+    to guide the evolution of AI development through decentralized, community-led governance using a DAO model.
+  </p>
+  <h2 style={{ fontSize: '24px', marginBottom: '15px', color: '#222' }}><img src="/brainzyai-icon-32x32.svg" alt="Brainzy AI Icon"/>Where Holders Vote & AI Decides</h2>
+  <p style={{ fontSize: '16px', maxWidth: '800px', margin: '0 auto 15px', lineHeight: '1.6', color: '#444' }}>
+    BRANI rewards participation, promotes transparency, and enables users to stake, create proposals, and vote on 
+	the proposals for AI to decide. A 20% token allocation has been reserved for the DAO Treasury. Token holders 
+	can create proposals on the use of DAO Treasury tokens, and AI will decide the outcome based on a "token holder
+	best interest" algorithm. This ensures all token holders interests are considered. This approach removes the 
+	ability from "whales" and devs to manipulate the outcome in their own best interest.
+    </p>	
+	<p style={{ fontSize: '16px', maxWidth: '800px', margin: '0 auto', lineHeight: '1.6', color: '#444' }}>
+	BRANI is founded by <a href="https://www.linkedin.com/in/brainzytoken" target="_blank" rel="noopener noreferrer" style={{ color: '#1f00c2', textDecoration: 'none', fontWeight: '600' }}>Ryan R. Putz</a>,
+    a licensed attorney, and currently, a full-time Web3 developer focused on legal integrity, ethics, and innovation. 
+	Whether you're here for rewards, governance, or to support the responsible growth of decentralized AI, BRANI is 
+	your launchpad to a smarter, community-first finance future.
+    </p>
+	<p style={{ textAlign: 'center', fontSize: '18px', color: '222' }}>
+	Read the Brainzy AI Whitepaper here:</p><a href="/whitepaper.pdf" target="_blank" rel="noopener noreferrer" style={{ color: '#1f00c2', fontWeight: '600', fontSize: '18px', textDecoration: 'none' }}>📄<u>Whitepaper</u></a>
+    </div>
+	
+<div style={{ backgroundColor: '#8DA28E', padding: '8px 20px' }}>
+              {/* Team section or About BRANI */}
 </div>
-      <div style={{ textAlign: 'center', marginTop: '15px' }}>
+      <div style={{ backgroundColor: '#E5ECF2', padding: '15px 15px', textAlign: 'center' }}>
+        <h3 style={{ fontSize: '20px', marginBottom: '10px' }}>👤 Meet the Creator & Developer</h3>
+        <h4 style={{ marginTop: '10px', fontSize: '18px', color: '#1a1a1a' }}>Ryan R. Putz</h4>
+		<p style={{ fontSize: '16px', maxWidth: '800px', margin: '0 auto 15px', lineHeight: '1.6', color: '#444', marginTop: '2px', textAlign: 'justifyContent'  }}>
+        Ryan R. Putz is a licensed attorney turned full-time Web3 and AI developer. With a background in law and a passion for 
+		decentralized technologies, he brings a unique combination of legal expertise and technical innovation to the Brainzy AI 
+		project. As the sole founder and creator of Brainzy AI, Ryan is fully doxxed and publicly verifiable. Transparency, 
+		accountability, and compliance are foundational to this project. His mission? Build a secure, intelligent, and community-governed 
+		DeFi ecosystem where legal integrity and ethics meet technical innovation.
+        </p>
+		<a href="https://www.linkedin.com/in/brainzytoken" target="_blank" rel="noopener noreferrer" style={{color: '#1f00c2', fontWeight: '600', textDecoration: 'none', fontSize: '18px', }}><u>LinkedIn Profile</u></a>
+      </div>
+	<div style={{ textAlign: 'center', marginBottom: '10px' }}>
+          <a href="mailto:developer@brainzytoken.com" style={{ fontSize: '15px', color: '#1f00c2', textDecoration: 'none' }}>Contact: 📫<u>developer@brainzytoken.com</u></a>
+		</div>
+		
+<div style={{ backgroundColor: '#8DA28E', padding: '8px 20px' }}>
+         {/* Presale countdown and ETH info */}
+</div>
+      <div style={{ backgroundColor: '#C6D4D5', padding: '15px 15px', textAlign: 'center' }}>     
         <h2 style={{ fontSize: '22px', color: '#222' }}>📣 Presale Countdown</h2>
         <p style={{ fontSize: '16px', marginBottom: '1px' }}>1 ETH = 100,000 BRANI</p> · 
 		<p style={{ fontSize: '16px', marginTop: '1px' }}>Wallet Max./Min. = 15 ETH/.05 ETH</p>
@@ -240,18 +275,6 @@ function App() {
         )}
       </div>
 	  
-         <div style={{ backgroundColor: '#8DA28E', padding: '8px 20px' }}>
-              {/* Team section or About BRANI */}
-</div>
-      <div style={{ textAlign: 'center', marginTop: '25px' }}>
-        <h3 style={{ fontSize: '20px', marginBottom: '10px' }}>👤 Meet the Team</h3>
-        <img src="/ryan-putz.jpg" alt="Ryan R. Putz" style={{ width: '140px', height: '140px', borderRadius: '50%', objectFit: 'cover', boxShadow: '0 2px 10px rgba(0,0,0,0.1)' }} />
-        <h4 style={{ marginTop: '12px', fontSize: '16px', color: '#1a1a1a' }}>Ryan R. Putz</h4>
-        <p style={{ fontSize: '14px', fontStyle: 'italic' }}>Creator & Developer</p>
-        <p style={{ fontSize: '14px', color: '#444', marginTop: '6px' }}>
-        Licensed Attorney turned full-time Web3 and AI developer, building DeFi ecosystems that incorporate his vision of a decentralized, AI-powered finance future.
-        </p>
-      </div>
 
 <div style={{ backgroundColor: '#8DA28E', padding: '8px 20px' }}>
               {/* Social Media Links */}
@@ -268,11 +291,9 @@ function App() {
 }}>
        <a href="https://x.com/BrainzyAI" target="_blank" rel="noopener noreferrer" style={{ color: '#0088cc', fontWeight: '600', textDecoration: 'none', fontSize: '18px', marginRight: '20px' }}>X / Twitter</a>
        <a href="https://t.me/brainzyai" target="_blank" rel="noopener noreferrer" style={{ color: '#0088cc', fontWeight: '600', textDecoration: 'none', fontSize: '18px', marginRight: '20px' }}>Telegram</a>
-       <a href="https://www.linkedin.com/in/brainzytoken" target="_blank" rel="noopener noreferrer" style={{color: '#0088cc', fontWeight: '600', textDecoration: 'none', fontSize: '18px', marginRight: '20px' }}>LinkedIn</a>
       </div>
-     </div>
-  
-    </div>
+	 </div>
+	 
   );
 }
 

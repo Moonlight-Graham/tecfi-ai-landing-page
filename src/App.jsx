@@ -185,14 +185,16 @@ function App() {
 		
       </div>
 	  {/* About BRANI Section */}
-<div style={{ backgroundColor: '#f5faff', padding: '15px 15px', textAlign: 'center' }}>
-  <h2 style={{ fontSize: '28px', marginBottom: '15px', color: '#222' }}><img src="/brainzyai-icon-32x32.svg" alt="Brainzy AI Icon"/>About BRANI</h2>
+<div style={{ backgroundColor: '#f5faff', padding: '10px 10px', textAlign: 'center' }}>
+  <img src="/brainzyai-icon-32x32.svg" alt="Brainzy AI Icon" style={{ width: '48px', height: '48px', marginTop: '10px', marginBottom: '0px', maxWidth: '100%'}}/>
+  <h2 style={{ fontSize: '28px', marginBottom: '15px', marginTop: '2px', color: '#222' }}>About BRANI</h2>
   <p style={{ fontSize: '16px', maxWidth: '800px', margin: '0 auto 15px', lineHeight: '1.6', color: '#444' }}>
     <strong>BRANI (Brainzy AI)</strong> is a governance-driven DeFi token built on the Ethereum blockchain,
     designed to merge the power of artificial intelligence with decentralized finance. BRANI empowers token holders
     to guide the evolution of AI development through decentralized, community-led governance using a DAO model.
   </p>
-  <h2 style={{ fontSize: '24px', marginBottom: '15px', color: '#222' }}><img src="/brainzyai-icon-32x32.svg" alt="Brainzy AI Icon"/>Where Holders Vote & AI Decides</h2>
+  <img src="/brainzyai-icon-32x32.svg" alt="Brainzy AI Icon" style={{ width: '48px', height: '48px', marginTop: '10px', marginBottom: '0px', maxWidth: '100%'}}/>
+  <h2 style={{ fontSize: '24px', marginBottom: '15px', marginTop: '2px', color: '#222' }}>Where Holders Vote & AI Decides</h2>
   <p style={{ fontSize: '16px', maxWidth: '800px', margin: '0 auto 15px', lineHeight: '1.6', color: '#444' }}>
     BRANI rewards participation, promotes transparency, and enables users to stake, create proposals, and vote on 
 	the proposals for AI to decide. A 20% token allocation has been reserved for the DAO Treasury. Token holders 
@@ -210,41 +212,43 @@ function App() {
 	Read the Brainzy AI Whitepaper here:</p><a href="/whitepaper.pdf" target="_blank" rel="noopener noreferrer" style={{ color: '#1f00c2', fontWeight: '600', fontSize: '18px', textDecoration: 'none' }}>📄<u>Whitepaper</u></a>
     </div>
 	
-<div style={{ backgroundColor: '#8DA28E', padding: '8px 20px' }}>
-              {/* Team section or About BRANI */}
+<div style={{ backgroundColor: '#ACB0AC', padding: '1px 20px' }}>
+              {/* Meet the Creator and Developer Section */}
 </div>
       <div style={{ backgroundColor: '#E5ECF2', padding: '15px 15px', textAlign: 'center' }}>
-        <h3 style={{ fontSize: '20px', marginBottom: '10px' }}>👤 Meet the Creator & Developer</h3>
-        <h4 style={{ marginTop: '10px', fontSize: '18px', color: '#1a1a1a' }}>Ryan R. Putz</h4>
-		<p style={{ fontSize: '16px', maxWidth: '800px', margin: '0 auto 15px', lineHeight: '1.6', color: '#444', marginTop: '2px', textAlign: 'justifyContent'  }}>
-        Ryan R. Putz is a licensed attorney turned full-time Web3 and AI developer. With a background in law and a passion for 
-		decentralized technologies, he brings a unique combination of legal expertise and technical innovation to the Brainzy AI 
-		project. As the sole founder and creator of Brainzy AI, Ryan is fully doxxed and publicly verifiable. Transparency, 
-		accountability, and compliance are foundational to this project. His mission? Build a secure, intelligent, and community-governed 
-		DeFi ecosystem where legal integrity and ethics meet technical innovation.
-        </p>
+	  <img src="/brainzyai-icon-32x32.svg" alt="Brainzy AI Icon" style={{ width: '48px', height: '48px', marginTop: '10px', marginBottom: '0px', maxWidth: '100%'}}/>
+       <h3 style={{ fontSize: '20px', marginBottom: '10px' }}>👤 Meet the Creator & Developer</h3>
+       <h4 style={{ marginTop: '10px', fontSize: '18px', color: '#1a1a1a' }}>Ryan R. Putz</h4>
+	<p style={{ fontSize: '16px', maxWidth: '800px', margin: '0 auto 15px', lineHeight: '1.6', color: '#444', marginTop: '2px', textAlign: 'justifyContent'  }}>
+     Ryan R. Putz is a licensed attorney turned full-time Web3 and AI developer. With a background in law and a passion for 
+	 decentralized technologies, he brings a unique combination of legal expertise and technical innovation to the Brainzy AI 
+	 project. As the sole founder and creator of Brainzy AI, Ryan is fully doxxed and publicly verifiable. Transparency, 
+	 accountability, and compliance are foundational to this project. His mission? Build a secure, intelligent, and community-governed 
+	 DeFi ecosystem where legal integrity and ethics meet technical innovation.
+     </p>
 		<a href="https://www.linkedin.com/in/brainzytoken" target="_blank" rel="noopener noreferrer" style={{color: '#1f00c2', fontWeight: '600', textDecoration: 'none', fontSize: '18px', }}><u>LinkedIn Profile</u></a>
       </div>
 	<div style={{ textAlign: 'center', marginBottom: '10px' }}>
           <a href="mailto:developer@brainzytoken.com" style={{ fontSize: '15px', color: '#1f00c2', textDecoration: 'none' }}>Contact: 📫<u>developer@brainzytoken.com</u></a>
 		</div>
 		
-<div style={{ backgroundColor: '#8DA28E', padding: '8px 20px' }}>
+<div style={{ backgroundColor: '#ACB0AC', padding: '1px 20px' }}>
          {/* Presale countdown and ETH info */}
 </div>
-      <div style={{ backgroundColor: '#C6D4D5', padding: '15px 15px', textAlign: 'center' }}>     
-        <h2 style={{ fontSize: '22px', color: '#222' }}>📣 Presale Countdown</h2>
-        <p style={{ fontSize: '16px', marginBottom: '1px' }}>1 ETH = 100,000 BRANI</p> · 
-		<p style={{ fontSize: '16px', marginTop: '1px' }}>Wallet Max./Min. = 15 ETH/.05 ETH</p>
-        <p style={{ fontWeight: '600', fontSize: '16px', color: '#417ebf' }}>Total ETH Raised: {ethRaised} ETH</p>
-        <p style={{ fontSize: '16px', marginBottom: '10px' }}>⏳ Countdown: {getCountdown()}</p>
+      <div style={{ backgroundColor: '#CEDADB', padding: '15px 15px', textAlign: 'center' }}>
+      <img src="/brainzyai-icon-32x32.svg" alt="Brainzy AI Icon" style={{ width: '48px', height: '48px', marginTop: '10px', marginBottom: '0px', maxWidth: '100%'}}/> 
+       <h2 style={{ fontSize: '22px', color: '#222' }}>📣 Presale Countdown</h2>
+    <p style={{ fontSize: '16px', marginBottom: '1px' }}>1 ETH = 100,000 BRANI</p> · 
+	<p style={{ fontSize: '16px', marginTop: '1px' }}>Wallet Max./Min. = 15 ETH/.05 ETH</p>
+    <p style={{ fontWeight: '600', fontSize: '16px', color: '#417ebf' }}>Total ETH Raised: {ethRaised} ETH</p>
+    <p style={{ fontSize: '16px', marginBottom: '10px' }}>⏳ Countdown: {getCountdown()}</p>
 
-        <div style={{ fontSize: '16px', color: '#333', marginTop: '20px' }}>
-          {ethPrice ? (
-            <p>
-              💰 100,000 BRANI ≈ ${ethPrice} USD<br />
-              📉 1 BRANI ≈ ${(ethPrice / 100000).toFixed(6)} USD
-            </p>
+      <div style={{ fontSize: '16px', color: '#333', marginTop: '20px' }}>
+       {ethPrice ? (
+        <p>
+        💰 100,000 BRANI ≈ ${ethPrice} USD<br />
+        📉 1 BRANI ≈ ${(ethPrice / 100000).toFixed(6)} USD
+       </p>
           ) : (
             <p>Fetching ETH price...</p>
           )}
@@ -276,10 +280,11 @@ function App() {
       </div>
 	  
 
-<div style={{ backgroundColor: '#8DA28E', padding: '8px 20px' }}>
+<div style={{ backgroundColor: '#ACB0AC', padding: '1px 20px' }}>
               {/* Social Media Links */}
 </div>
 	  <div style={{
+  backgroundColor: '#F7FCFA',
   textAlign: 'center',
   marginTop: '25px',
   display: 'flex',
@@ -289,7 +294,7 @@ function App() {
   gap: '10px',
   flexWrap: 'wrap'
 }}>
-       <a href="https://x.com/BrainzyAI" target="_blank" rel="noopener noreferrer" style={{ color: '#0088cc', fontWeight: '600', textDecoration: 'none', fontSize: '18px', marginRight: '20px' }}>X / Twitter</a>
+	   <a href="https://x.com/BrainzyAI" target="_blank" rel="noopener noreferrer" style={{ color: '#0088cc', fontWeight: '600', textDecoration: 'none', fontSize: '18px', marginRight: '20px' }}>X / Twitter</a>
        <a href="https://t.me/brainzyai" target="_blank" rel="noopener noreferrer" style={{ color: '#0088cc', fontWeight: '600', textDecoration: 'none', fontSize: '18px', marginRight: '20px' }}>Telegram</a>
       </div>
 	 </div>

@@ -6,7 +6,8 @@ import presaleABI from './abi/PresaleContractABI.json';
 
 const tokenAddress = "0xDD9d0827Ee76Ae85762DD30976C3883bbC89A0D5";
 const presaleAddress = "0x6C29ac5980da5B531b268462b8eD17e6edA31D94";
-const presaleStartTime = 1744972800; // April 18, 2025 at 00:00 AM CST
+const stakingAddress = "0xF1A5df39FBDf23459ad1cb6D2633F857C2bAebfa";
+const presaleStartTime = 1745989200; // April 30, 2025 at 00:00 AM GMT
 
 function App() {
   const [account, setAccount] = useState(null);
@@ -104,8 +105,8 @@ function App() {
   };
   
   const getCountdown = () => {
-    const remaining = presaleStartTime - 10;
-    if (remaining <= 0) return 'Presale is now live!';
+    const remaining = presaleStartTime - 1745989200;
+    if (remaining <= 0) return 'null';
     const days = Math.floor(remaining / (24 * 3600));
     const hours = Math.floor((remaining % (24 * 3600)) / 3600);
     const minutes = Math.floor((remaining % 3600) / 60);
@@ -179,8 +180,9 @@ function App() {
 </button>
 
         <div style={{ marginTop: '16px' }}>
-          <a href={`https://etherscan.io/0xDD9d0827Ee76Ae85762DD30976C3883bbC89A0D5/ {tokenAddress}`} target="_blank" rel="noopener noreferrer" style={{ color: '#1f00c2', fontWeight: '600', fontSize: '14px', textDecoration: 'none', marginRight: '12px' }}><u>Token Contract</u></a>
-          <a href={`https://etherscan.io/0x6C29ac5980da5B531b268462b8eD17e6edA31D94/ {presaleAddress}`} target="_blank" rel="noopener noreferrer" style={{ color: '#1f00c2', fontWeight: '600', fontSize: '14px', textDecoration: 'none' }}><u>Presale Contract</u></a>
+          <a href={`https://etherscan.io/0xDD9d0827Ee76Ae85762DD30976C3883bbC89A0D5/ {tokenAddress}`} target="_blank" rel="noopener noreferrer" style={{ color: '#1f00c2', fontWeight: '600', fontSize: '14px', textDecoration: 'none', marginRight: '10px' }}><u>Token Contract</u></a>
+          <a href={`https://etherscan.io/0x6C29ac5980da5B531b268462b8eD17e6edA31D94/ {presaleAddress}`} target="_blank" rel="noopener noreferrer" style={{ color: '#1f00c2', fontWeight: '600', fontSize: '14px', textDecoration: 'none', marginRight: '10px' }}><u>Presale Contract</u></a>
+		  <a href={'https://etherscan.io/0xF1A5df39FBDf23459ad1cb6D2633F857C2bAebfa/ {stakingAddress}'} target="_blank" rel="noopener noreferrer" style={{ color: '#1f00c2', fontWeight: '600', fontSize: '14px', textDecoration: 'none' }}><u>Staking Contract</u></a>
 		</div> 
 		
       </div>

@@ -283,7 +283,8 @@ function App() {
   marginTop: '15px',
   color: '#222'
 }}>
-  ⏳ <strong>Presale Launch Date Coming Soon!!!</strong> 
+  ⏳ <strong>Presale Launch Countdown:</strong>
+  <br /><strong>{getCountdown()}</strong>
 </p>
   <p style={{ fontSize: '16px', marginBottom: '10px' }}>
   💰 1 ETH = 125,000 BRANI<br />
@@ -417,7 +418,7 @@ function App() {
   boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
 }}>
 
-  <h2 style={{ fontSize: '24px', color: '#1a1a1a' }}>Tokenomics</h2>
+  <h2 style={{ fontSize: '24px', color: '#1f00c2' }}>Tokenomics</h2>
   <p style={{ fontSize: '16px', maxWidth: '900px', margin: '0 auto', lineHeight: '1.6', color: '#444' }}> <strong>Total Supply = 500,000,000 BRANI</strong> <br />The $BRANI token is designed to be the cornerstone of the Brainzy AI ecosystem. Here’s the breakdown of how tokens are allocated and utilized:
   </p>
   <div style={{ marginTop: '20px', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '30px' }}>

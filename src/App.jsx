@@ -198,7 +198,7 @@ function App() {
         fontWeight: '600',
         fontSize: '14px',
         textDecoration: 'none',
-        marginRight: '10px'
+        marginRight: '8px'
       }}
     >
       <u>Token Contract</u>
@@ -212,7 +212,7 @@ function App() {
         fontWeight: '600',
         fontSize: '14px',
         textDecoration: 'none',
-        marginRight: '10px'
+        marginRight: '8px'
       }}
     >
       <u>Presale Contract</u>
@@ -406,6 +406,50 @@ function App() {
       <p>Your contribution has been received.</p>
     </div>
   )}
+</div>
+
+<div style={{
+  backgroundColor: '#f1f8fe',
+  padding: '30px',
+  textAlign: 'center',
+  borderRadius: '10px',
+  marginTop: '20px',
+  boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+}}>
+
+  <h2 style={{ fontSize: '24px', color: '#1a1a1a' }}>Tokenomics</h2>
+  
+  <p style={{ fontSize: '16px', maxWidth: '900px', margin: '0 auto', lineHeight: '1.6', color: '#444' }}>
+    The $BRANI token is designed to be the cornerstone of the Brainzy AI ecosystem. Here’s the breakdown of how tokens are allocated and utilized:
+  </p>
+
+  <div style={{ marginTop: '20px', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(125px, 1fr))', gap: '18px' }}>
+    <div style={{ backgroundColor: '#e6f7ff', padding: '20px', textAlign: 'center', borderRadius: '8px' }}>
+      <h4 style={{ fontSize: '20px', color: '#1f00c2' }}>(10%)</h4>
+      <p style={{ fontSize: '16px', color: '#444' }}>Airdrop</p>
+    </div>
+    <div style={{ backgroundColor: '#e6ffed', padding: '20px', textAlign: 'center', borderRadius: '8px' }}>
+      <h4 style={{ fontSize: '20px', color: '#1f00c2' }}>(20%)</h4>
+      <p style={{ fontSize: '16px', color: '#444' }}>DAO Treasury</p>
+    </div>
+    <div style={{ backgroundColor: '#f6f0ff', padding: '20px', textAlign: 'center', borderRadius: '8px' }}>
+      <h4 style={{ fontSize: '20px', color: '#1f00c2' }}>(30%)</h4>
+      <p style={{ fontSize: '16px', color: '#444' }}>Staking & Rewards</p>
+    </div>
+    <div style={{ backgroundColor: '#fff7e6', padding: '20px', textAlign: 'center', borderRadius: '8px' }}>
+      <h4 style={{ fontSize: '20px', color: '#1f00c2' }}>(15%)</h4>
+      <p style={{ fontSize: '16px', color: '#444' }}>Liquidity Pool</p>
+    </div>
+    <div style={{ backgroundColor: '#f3ffe6', padding: '20px', textAlign: 'center', borderRadius: '8px' }}>
+      <h4 style={{ fontSize: '20px', color: '#1f00c2' }}>(20%)</h4>
+      <p style={{ fontSize: '16px', color: '#444' }}>Marketing & Listings</p>
+    </div>
+    <div style={{ backgroundColor: '#e6f7e6', padding: '20px', textAlign: 'center', borderRadius: '8px' }}>
+      <h4 style={{ fontSize: '20px', color: '#1f00c2' }}>(5%)</h4>
+      <p style={{ fontSize: '16px', color: '#444' }}>Creator Rewards</p>
+    </div>
+  </div>
+
 </div>
 
       {/* ABOUT SECTION */}

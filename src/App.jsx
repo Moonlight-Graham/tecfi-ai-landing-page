@@ -420,7 +420,7 @@ function App() {
   <h2 style={{ fontSize: '24px', color: '#1a1a1a' }}>Tokenomics</h2>
   
   <p style={{ fontSize: '16px', maxWidth: '900px', margin: '0 auto', lineHeight: '1.6', color: '#444' }}>
-    The $BRANI token is designed to be the cornerstone of the Brainzy AI ecosystem. Here’s the breakdown of how tokens are allocated and utilized:
+    The $BRANI token is designed to be the cornerstone of the Brainzy AI ecosystem. The Total Supply of $BRANI is Five Hundred Million (500,000,000). Here’s the breakdown of how tokens are allocated and utilized:
   </p>
 
   <div style={{ marginTop: '20px', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(125px, 1fr))', gap: '18px' }}>

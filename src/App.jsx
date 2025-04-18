@@ -198,7 +198,7 @@ function App() {
         fontWeight: '600',
         fontSize: '14px',
         textDecoration: 'none',
-        marginRight: '8px'
+        marginRight: '7px'
       }}
     >
       <u>Token Contract</u>
@@ -212,7 +212,7 @@ function App() {
         fontWeight: '600',
         fontSize: '14px',
         textDecoration: 'none',
-        marginRight: '8px'
+        marginRight: '7px'
       }}
     >
       <u>Presale Contract</u>

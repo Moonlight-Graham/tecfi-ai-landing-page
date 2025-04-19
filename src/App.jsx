@@ -128,28 +128,11 @@ function App() {
 
   return (
     <>
-      <div className="App" style={{
-        minHeight: '.1vh',
-        padding: '0vw',
-        boxSizing: 'border-box',
-        backgroundColor: '#FFFFFF',
-        fontFamily: 'Segoe UI, sans-serif',
-      }}>
-        {/* You already had header, presale UI, contract links, wallet logic, and countdown here */}
-        {/* ... all that content ... */}
-      </div>
-<div style={{
-  backgroundColor: '#E0F0D0',
-  padding: '0px',
-  borderRadius: '0px',
-  maxWidth: '600px',
-  margin: '20px auto',
-  textAlign: 'center'
-}}>
+      
 {/* HEADER */}
 <div style={{
   backgroundColor: 'white',
-  padding: '0px',
+  padding: '10px',
   borderBottom: '.5px solid #ccc',
   textAlign: 'center',
   maxWidth: '100%',
@@ -157,48 +140,54 @@ function App() {
   margin: '0px',
   width: '100%'
 }}>
+  <p style={{ margin: '6px 0', color: '#222' }}>
+    The Official Governance dApp of Brainzy AI
+  </p>
+  
+  <h2 style={{
+    margin: '10px',
+    fontSize: window.innerWidth < 480 ? '18px' : '26px',
+    color: '#111'
+  }}>
+    Brainzy AI
+  </h2>
+  
+  <p style={{ margin: '2px', color: '#111', fontSize: '20px' }}>
+    <strong>($BRANI)</strong>
+  </p>
   <img
     src="/brainzyai-icon-32x32.svg"
     alt="Brainzy AI Icon"
     style={{
       width: '48px',
       height: '48px',
-      marginBottom: '10px'
+      marginTop: '6px',
+	  marginBottom: '0px'
     }}
   />
-  <h2 style={{
-    margin: 0,
-    fontSize: window.innerWidth < 480 ? '18px' : '28px',
-    color: '#111'
-  }}>
-    Brainzy AI ($BRANI)
-  </h2>
-
-  <p style={{ margin: '4px 0', color: '#666' }}>
-    The Official Governance dApp of Brainzy AI
-  </p>
 
   <p style={{
-    fontWeight: '600',
-    fontSize: '15px',
-    color: '#4E2635',
-    marginBottom: '14px'
+    fontWeight: '500',
+    fontSize: '15.5px',
+    color: '#9ea834',
+    marginTop: '6px',
+	marginBottom: '12px'
   }}>
     AI-Governed. DAO Powered. 50% Rewards.
   </p>
 
   {/* Contract Links */}
-  <div style={{ marginTop: '10px', marginBottom: '8px' }}>
+  <div style={{ marginTop: '10px', marginBottom: '4px' }}>
     <a
       href={`https://etherscan.io/address/${tokenAddress}`}
       target="_blank"
       rel="noopener noreferrer"
       style={{
-        color: '#1f00c2',
-        fontWeight: '600',
+        color: '#417ebf',
+        fontWeight: '500',
         fontSize: '14px',
         textDecoration: 'none',
-        marginRight: '7px'
+        marginRight: '8px'
       }}
     >
       <u>Token Contract</u>
@@ -208,11 +197,11 @@ function App() {
       target="_blank"
       rel="noopener noreferrer"
       style={{
-        color: '#1f00c2',
-        fontWeight: '600',
+        color: '#417ebf',
+        fontWeight: '500',
         fontSize: '14px',
         textDecoration: 'none',
-        marginRight: '7px'
+        marginRight: '8px'
       }}
     >
       <u>Presale Contract</u>
@@ -222,8 +211,8 @@ function App() {
       target="_blank"
       rel="noopener noreferrer"
       style={{
-        color: '#1f00c2',
-        fontWeight: '600',
+        color: '#417ebf',
+        fontWeight: '500',
         fontSize: '14px',
         textDecoration: 'none'
       }}
@@ -250,8 +239,8 @@ function App() {
     style={{
       display: 'inline-block',
       marginRight: '20px',
-      color: '#1f00c2',
-      fontWeight: '600',
+      color: '#417ebf',
+      fontWeight: '500',
       textDecoration: 'none',
       fontSize: '16px'
     }}
@@ -265,8 +254,8 @@ function App() {
     rel="noopener noreferrer"
     style={{
       display: 'inline-block',
-      color: '#1f00c2',
-      fontWeight: '600',
+      color: '#417ebf',
+      fontWeight: '500',
       textDecoration: 'none',
       fontSize: '16px'
     }}
@@ -274,7 +263,14 @@ function App() {
     💬 Telegram
   </a>
 </div>
-
+<div style={{
+  backgroundColor: '#D3E7E6',
+  padding: '20px 20px',
+  borderRadius: '5px',
+  maxWidth: '600px',
+  margin: '0px auto',
+  textAlign: 'center'
+}}>
   <h2>🎉 Brainzy AI Presale 🎉</h2>
 <p style={{
   textAlign: 'center',
@@ -479,6 +475,102 @@ function App() {
           </a>
         </p>
       </div>
+<div style={{
+  marginBottom: '20px',
+  textAlign: 'center'
+}}>
+  <h2 style={{
+    fontSize: '28px',
+    color: '#1f00c2',
+    marginBottom: '10px',
+    letterSpacing: '1px'
+  }}>
+    🗺️ $BRANI Roadmap
+  </h2>
+  <p style={{
+    fontSize: '16px',
+    color: '#444',
+    maxWidth: '700px',
+    margin: '0 auto'
+  }}>
+    Here’s what we’re building — step by step. A clear roadmap from launch to AI-powered governance, staking rewards, and global scale.
+  </p>
+</div>
+{/* ROADMAP SECTION */}
+<div style={{
+  backgroundColor: '#f5faff',
+  padding: '20px 20px',
+  marginTop: '30px',
+  borderTop: '2px solid #dbe6f1',
+  borderBottom: '2px solid #dbe6f1',
+  textAlign: 'left'
+}}>
+  <div style={{
+    display: 'grid',
+    gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
+    gap: '20px',
+    maxWidth: '1000px',
+    margin: '0 auto',
+    textAlign: 'left'
+  }}>
+    
+    {/* Phase 1 */}
+    <div style={{
+      backgroundColor: '#ffffff',
+      border: '1px solid #cce4f6',
+      borderRadius: '10px',
+      padding: '20px'
+    }}>
+      <h3 style={{ color: '#1f00c2' }}>📍 Q2 — Presale & Launch</h3>
+      <ul style={{ paddingLeft: '20px' }}>
+        <li>Website & Whitepaper Live✅</li>
+        <li>Smart Contract Verified✅</li>
+        <li>Telegram + Twitter Launch✅</li>
+        <li><strong>Presale Starts: April 30, 2025</strong></li>
+        <li>Token Claim Opens After Presale</li>
+		<li>DAO Governance Deployed</li>
+        <li>Proposal + Voting Enabled</li>
+        <li>Launch of DAO Treasury System</li>
+        <li>First Community Vote + AMA</li>
+      </ul>
+    </div>
+
+    {/* Phase 2 */}
+    <div style={{
+      backgroundColor: '#ffffff',
+      border: '1px solid #cce4f6',
+      borderRadius: '10px',
+      padding: '20px'
+    }}>
+      <h3 style={{ color: '#1f00c2' }}>📍 Q3 — Staking & Utility</h3>
+      <ul style={{ paddingLeft: '20px' }}>
+        <li>Open $BRANI Staking Pools</li>
+        <li>Rewards + Lock/Earn Functions</li>
+        <li>Community Leaderboard Launch</li>
+		<li>AI Voting Engine Deployed</li>
+        <li>Proposal Auto-Analysis by AI</li>
+        <li>Feedback + Data Integration</li>
+        <li>Algorithm Optimization</li>
+      </ul>
+    </div>
+
+    {/* Phase 3 */}
+    <div style={{
+      backgroundColor: '#ffffff',
+      border: '1px solid #cce4f6',
+      borderRadius: '10px',
+      padding: '20px'
+    }}>
+      <h3 style={{ color: '#1f00c2' }}>📍 Q4 — Scaling & Listings</h3>
+      <ul style={{ paddingLeft: '20px' }}>
+        <li>Apply to CoinGecko & CMC</li>
+        <li>Tier 2+ CEX Listings</li>
+        <li>Strategic Partnerships</li>
+        <li>Launch Grants & SDK for Builders</li>
+      </ul>
+    </div>
+  </div>
+</div>
 
       {/* MEET THE CREATOR SECTION */}
 <div style={{

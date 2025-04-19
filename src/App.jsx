@@ -3,6 +3,7 @@ import { ethers } from 'ethers';
 import Dashboard from './components/Dashboard';
 import tokenABI from './abi/BrainzyTokenABI.json';
 import presaleABI from './abi/PresaleContractABI.json';
+import { SocialIcon } from 'react-social-icons'
 
 // Smart contract addresses
 const tokenAddress = '0xDD9d0827Ee76Ae85762DD30976C3883bbC89A0D5';
@@ -132,7 +133,7 @@ function App() {
 {/* HEADER */}
 <div style={{
   backgroundColor: 'white',
-  padding: '10px',
+  padding: '5px',
   borderBottom: '.5px solid #ccc',
   textAlign: 'center',
   maxWidth: '100%',
@@ -146,8 +147,8 @@ function App() {
   
   <h2 style={{
     margin: '10px',
-    fontSize: window.innerWidth < 480 ? '18px' : '26px',
-    color: '#111'
+    fontSize: '24px',
+    color: '#417ebf'
   }}>
     Brainzy AI
   </h2>
@@ -171,13 +172,41 @@ function App() {
     fontSize: '15.5px',
     color: '#9ea834',
     marginTop: '6px',
-	marginBottom: '12px'
+	marginBottom: '16px'
   }}>
     AI-Governed. DAO Powered. 50% Rewards.
   </p>
 
+  <SocialIcon url="https://x.com/BrainzyAI"
+    style={{ height: 32, width: 32, alignment: 'center',  paddingRight: '20px' }}
+  />
+
+  <SocialIcon url="https://t.me/brainzyai"
+    style={{ height: 32, width: 32, alignment: 'center',  paddingRight: '30px' }}
+  />
+  
+  <SocialIcon url="https://linkedin.com/in/brainzytoken"
+    style={{ height: 32, width: 32, alignment: 'center', paddingLeft: '20px' }}
+  />
+</div>
   {/* Contract Links */}
-  <div style={{ marginTop: '10px', marginBottom: '4px' }}>
+  <div style={{
+  backgroundColor: 'white',
+  padding: '10px',
+  borderBottom: '.5px solid #ccc',
+  textAlign: 'center',
+  maxWidth: '100%',
+  wordWrap: 'break-word',
+  width: '100%'
+  }}>
+    <p style={{ fontWeight: '500',
+    fontSize: '15.5px',
+    color: '#111',
+    marginTop: '6px',
+	marginBottom: '10px'
+  }}>
+    Verified Contract Links:
+	</p>
     <a
       href={`https://etherscan.io/address/${tokenAddress}`}
       target="_blank"
@@ -220,58 +249,25 @@ function App() {
       <u>Staking Contract</u>
     </a>
   </div>
-</div>
-{/* SOCIAL BOX */}
-<div style={{
-  backgroundColor: '#CCD8E7',
-  padding: '0px',
-  textAlign: 'center',
-  border: '0px',
-  borderRadius: '0px',
-  margin: '0px auto',
-  maxWidth: '100%',
-  boxShadow: '0 2px 6px rgba(0,0,0,0.05)'
-}}>
-  <a
-    href="https://x.com/BrainzyAI"
-    target="_blank"
-    rel="noopener noreferrer"
-    style={{
-      display: 'inline-block',
-      marginRight: '20px',
-      color: '#417ebf',
-      fontWeight: '500',
-      textDecoration: 'none',
-      fontSize: '16px'
-    }}
-  >
-     X / Twitter
-  </a>
-
-  <a
-    href="https://t.me/brainzyai"
-    target="_blank"
-    rel="noopener noreferrer"
-    style={{
-      display: 'inline-block',
-      color: '#417ebf',
-      fontWeight: '500',
-      textDecoration: 'none',
-      fontSize: '16px'
-    }}
-  >
-    💬 Telegram
-  </a>
-</div>
+  
 <div style={{
   backgroundColor: '#D3E7E6',
   padding: '20px 20px',
   borderRadius: '5px',
-  maxWidth: '600px',
+  maxWidth: '100%',
   margin: '0px auto',
   textAlign: 'center'
 }}>
-  <h2>🎉 Brainzy AI Presale 🎉</h2>
+  <h2 style={{
+    fontWeight: '500',
+    fontSize: '22px',
+    color: '#9ea834',
+	textAlign: 'center',
+    marginTop: '10px',
+	marginBottom: '12px'
+  }}>
+  <strong>🎉 Brainzy AI Presale 🎉</strong>
+  </h2>
 <p style={{
   textAlign: 'center',
   fontSize: '16px',
@@ -410,11 +406,11 @@ function App() {
   padding: '30px',
   textAlign: 'center',
   borderRadius: '10px',
-  marginTop: '20px',
+  marginTop: '5px',
   boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
 }}>
 
-  <h2 style={{ fontSize: '24px', color: '#1f00c2' }}>Tokenomics</h2>
+  <h2 style={{ fontSize: '22px', color: '#417ebf' }}>Tokenomics</h2>
   <p style={{ fontSize: '16px', maxWidth: '900px', margin: '0 auto', lineHeight: '1.6', color: '#444' }}> <strong>Total Supply = 500,000,000 BRANI</strong> <br />The $BRANI token is designed to be the cornerstone of the Brainzy AI ecosystem. Here’s the breakdown of how tokens are allocated and utilized:
   </p>
   <div style={{ marginTop: '20px', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '30px' }}>
@@ -480,8 +476,8 @@ function App() {
   textAlign: 'center'
 }}>
   <h2 style={{
-    fontSize: '28px',
-    color: '#1f00c2',
+    fontSize: '24px',
+    color: '#417ebf',
     marginBottom: '10px',
     letterSpacing: '1px'
   }}>
@@ -606,24 +602,9 @@ function App() {
     Ryan is fully doxxed and publicly verifiable. His commitment to transparency and ethics sets BRANI apart.
   </p>
 
-  <a 
-    href="https://www.linkedin.com/in/brainzytoken" 
-    target="_blank" 
-    rel="noopener noreferrer"
-    style={{
-      display: 'inline-block',
-      marginTop: '10px',
-      color: '#1f00c2',
-      fontWeight: '600',
-      fontSize: '16px',
-      textDecoration: 'none',
-      border: '1px solid #1f00c2',
-      padding: '8px 16px',
-      borderRadius: '6px'
-    }}
-  >
-    🔗 LinkedIn Profile
-  </a>
+  <SocialIcon url="https://linkedin.com/in/brainzytoken"
+    style={{ height: 32, width: 32, alignment: 'center' }}
+  />
 </div>
 {/* Contact Footer */}
 <footer style={{

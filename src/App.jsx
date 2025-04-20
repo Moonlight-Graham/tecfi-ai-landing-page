@@ -215,12 +215,9 @@ function App() {
   />
 
   <SocialIcon url="https://t.me/brainzyai"
-    style={{ height: 32, width: 32, alignment: 'center',  paddingRight: '30px' }}
-  />
-  
-  <SocialIcon url="https://linkedin.com/in/brainzytoken"
     style={{ height: 32, width: 32, alignment: 'center', paddingLeft: '20px' }}
   />
+  
 </div>
   {/* Contract Links */}
   <div style={{
@@ -604,7 +601,7 @@ function App() {
         <li>Website & Whitepaper Live✅</li>
         <li>Smart Contract Verified✅</li>
         <li>Telegram + Twitter Launch✅</li>
-        <li><strong>Presale Starts: April 30, 2025</strong></li>
+        <li><strong>Presale Starts: May 1, 2025</strong></li>
         <li>Token Claim Opens After Presale</li>
 		<li>DAO Governance Deployed</li>
         <li>Proposal + Voting Enabled</li>
@@ -663,14 +660,26 @@ function App() {
     style={{ width: '48px', height: '48px', marginBottom: '15px' }} 
   />
 
-  <h2 style={{ fontSize: '24px', color: '222', marginBottom: '8px' }}>
-    👨‍💻 Meet the Creator & Developer
-  </h2>
-
-  <h3 style={{ fontSize: '20px', color: '#222', marginBottom: '8px' }}>
-    Ryan R. Putz
-  </h3>
-
+  <h2 style={{ fontSize: '24px', color: '222', marginBottom: '8px', textAlign: 'center' }}>
+    👨‍💻 Meet the Founder 
+	</h2>
+  <h3 style={{ fontSize: '22px', color: '222', marginBottom: '0px', textAlign: 'center' }}>
+        Ryan R. Putz
+    </h3>
+  <p style={{ fontSize: '18px', color: '444', textAlign: 'center', marginBottom: '14px', marginTop: '4px' }}>
+   Founder/Creator/Developer
+  </p>   
+  <SocialIcon url="https://linkedin.com/in/brainzytoken"
+    style={{ height: 32, width: 32, alignment: 'center', marginBottom: '14px' }}
+  />
+  <p>
+    📬 <a 
+      href="mailto:developer@brainzytoken.com" 
+      style={{ color: '#1f00c2', textDecoration: 'none', fontWeight: '500' }}
+    >
+      <u>developer@brainzytoken.com</u>
+    </a>
+  </p>
   <p style={{
     fontSize: '16px',
     maxWidth: '800px',
@@ -683,10 +692,6 @@ function App() {
     he brings legal expertise and technical innovation to the Brainzy AI project. As the sole founder of Brainzy AI, 
     Ryan is fully doxxed and publicly verifiable. His commitment to transparency and ethics sets BRANI apart.
   </p>
-
-  <SocialIcon url="https://linkedin.com/in/brainzytoken"
-    style={{ height: 32, width: 32, alignment: 'center' }}
-  />
 </div>
 {/* Airdrop Section */}
       <div className="section" style={{ backgroundColor: '#111827', color: '#fff', padding: '10px', marginTop: '5px' }}>

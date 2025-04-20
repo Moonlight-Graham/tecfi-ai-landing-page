@@ -8,9 +8,9 @@ import AirdropClaim from './components/AirdropClaim';
 
 // Smart contract addresses
 const tokenAddress = '0xDD9d0827Ee76Ae85762DD30976C3883bbC89A0D5';
-const presaleAddress = '0x6C29ac5980da5B531b268462b8eD17e6edA31D94';
+const presaleAddress = '0x93e0ce76D6CA06B6Bb6AEd1bd586F1Bc64dB623d';
 const stakingAddress = '0xF1A5df39FBDf23459ad1cb6D2633F857C2bAebfa';
-const presaleStartTime = 1745989200; // April 30, 2025 00:00 GMT
+const presaleStartTime = 1746057600; // May 1, 2025 00:00 GMT
 
 function App() {
   const [account, setAccount] = useState(null);
@@ -162,7 +162,7 @@ function App() {
     paddingLeft: '100%',
     animation: 'scrollBanner 30s linear infinite'
   }}>
-    🚀 Presale is Live Soon AND ONLY FOR 30 DAYS!  ·   Presale Starts April 30 and ends May 30!   ·   25% Discount for Presale Early Adopters!   ·   Follow on X and join Telegram for Updates
+    🚀 Presale Goes Live and Begins on May 1 and Ends on June 5!   ·   Presale price increases every 7 days! ·  Be an Early Adopter and Reap the Biggest Rewards!   ·   Follow on X and join Telegram for Updates!
   </div>
 
   <style>
@@ -314,8 +314,10 @@ function App() {
   ⏳ <strong>Presale Launch Countdown:</strong>
   <br /><strong>{getCountdown()}</strong>
 </p>
-<p style={{ fontSize: '15px', color: '#9ea834', fontWeight: '500' }}>
-  💸 25% Presale Discount – Buy Before Listing!
+<p style={{ fontSize: '15px', color: '#9ea834', fontWeight: '500', textAlign: 'center' }}>
+  💸 Price Increases Every Week for 5 Weeks.
+  <br />Early Adopters Reap the Biggest Rewards!
+  <br />Buy Before Listing!
 </p>
 {/* 💸 LIVE ETH PRICE TICKER */}
 {ethPrice && (
@@ -336,9 +338,10 @@ function App() {
   </div>
 )}
 
-  <p style={{ fontSize: '16px', marginBottom: '10px' }}>
-  💰 1 ETH = 125,000 BRANI<br />
-  🪙 1 BRANI ≈ ${ethPrice ? (ethPrice / 125000).toFixed(6) : '...'} USD
+  <p style={{ fontSize: '16px', marginBottom: '10px', textAlign: 'center' }}>
+    <strong>May 1 through May 7 (Week 1)</strong><br />
+  💰 1 ETH = 150,000 BRANI<br />
+  🪙 1 BRANI ≈ ${ethPrice ? (ethPrice / 150000).toFixed(6) : '...'} USD
 </p>
 
   {!account ? (
@@ -497,7 +500,7 @@ function App() {
 	  <u>Staking & Rewards - 30%</u><br />
 	  <span style={{ color: '#9ea834', fontSize: '16px' }}>150,000,000 BRANI</span>
 	  </h4>
-      <p style={{ fontSize: '16px', color: '#444' }}>The Staking & Rewards Tokens are allocated in two parts: (1) 100,000,000 tokens dedicated to token holders who <strong>Stake</strong> their tokens and earn the 50% APY rewards; and (2) 50,000,000 tokens to <strong>Rewards</strong>, which will be used to reward Presale token holders and early adopters of BRANI.</p>
+      <p style={{ fontSize: '16px', color: '#444' }}>The Staking & Rewards Tokens are allocated in three parts: (1) 100,000,000 tokens dedicated to token holders who <strong>Stake</strong> their tokens and earn the 50% APY rewards; (2) 25,000,000 tokens allocated to the Presale to reward token holders and early adopters of BRANI; and (3) 25,000,000 tokens for future <strong>Rewards</strong>, which will be allocated in accordance with DAO processes and token holder proposals that are decided by AI.</p>
     </div>
     <div style={{ backgroundColor: '#fff7e6', padding: '20px', textAlign: 'justify', borderRadius: '10px' }}>
       <h4 style={{ fontWeight: '500', fontSize: '20px', color: '#417ebf', textAlign: 'center' }}>
@@ -511,7 +514,7 @@ function App() {
 	  <u>Marketing & Listings - 20%</u><br />
 	  <span style={{ color: '#9ea834', fontSize: '16px' }}>100,000,000 BRANI</span>
 	  </h4>
-      <p style={{ fontSize: '16px', color: '#444' }}>15,000,000 of these tokens have been allocated to the Presale of BRANI to ensure the liquidity pool is properly funded.  The remaining tokens will be used to build partnerships with social media content creators as well as listings with exchanges to ensure the BRANI ecosystem continues to flourish and grow.</p>
+      <p style={{ fontSize: '16px', color: '#444' }}>25,000,000 of these tokens have been allocated to the Presale of BRANI to ensure the liquidity pool is properly funded.  The remaining tokens will be used to build partnerships with social media content creators as well as listings with exchanges to ensure the BRANI ecosystem continues to flourish and grow.</p>
     </div>
     <div style={{ backgroundColor: '#e6f7e6', padding: '20px', textAlign: 'justify', borderRadius: '10px' }}>
       <h4 style={{ fontWeight: '500', fontSize: '20px', color: '#417ebf', textAlign: 'center' }}>

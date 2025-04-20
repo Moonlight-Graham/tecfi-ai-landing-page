@@ -483,7 +483,7 @@ function App() {
   <u>Airdrop - 10%</u><br />
   <span style={{ color: '#9ea834', fontSize: '16px' }}>50,000,000 BRANI</span>
 </h4>
-      <p style={{ fontSize: '16px', color: '#444' }}>Targeting approximately 500,000 wallets and allocating 100 BRANI tokens per wallet (approx. $1.50 USD).</p>   
+      <p style={{ fontSize: '16px', color: '#444' }}>Approximately 500 BRANI tokens per wallet are available to claim for 100,000 eligible wallets.</p>   
 	</div>
     <div style={{ backgroundColor: '#e6ffed', padding: '20px', textAlign: 'justify', borderRadius: '10px' }}>
       <h4 style={{ fontWeight: '500', fontSize: '20px', color: '#417ebf', textAlign: 'center' }}>
@@ -497,7 +497,7 @@ function App() {
 	  <u>Staking & Rewards - 30%</u><br />
 	  <span style={{ color: '#9ea834', fontSize: '16px' }}>150,000,000 BRANI</span>
 	  </h4>
-      <p style={{ fontSize: '16px', color: '#444' }}>The Staking & Rewards Tokens are allocated in two parts: (1) 100,000,000 tokens dedicated to token holders who <strong>Stake</strong> their tokens and earn the 50% APY rewards; and (2) 50,000,000 tokens to <strong>Rewards</strong>, which like the DAO Treasury, the use of the Rewards tokens is dependent on token holder proposals and AI decisions.</p>
+      <p style={{ fontSize: '16px', color: '#444' }}>The Staking & Rewards Tokens are allocated in two parts: (1) 100,000,000 tokens dedicated to token holders who <strong>Stake</strong> their tokens and earn the 50% APY rewards; and (2) 50,000,000 tokens to <strong>Rewards</strong>, which will be used to reward Presale token holders and early adopters of BRANI.</p>
     </div>
     <div style={{ backgroundColor: '#fff7e6', padding: '20px', textAlign: 'justify', borderRadius: '10px' }}>
       <h4 style={{ fontWeight: '500', fontSize: '20px', color: '#417ebf', textAlign: 'center' }}>

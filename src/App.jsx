@@ -282,10 +282,7 @@ function App() {
       <u>Staking Contract</u>
     </a>
   </div>
- {/* Airdrop Section */}
-      <div className="section" style={{ backgroundColor: '#111827', color: '#fff', padding: '10px', marginTop: '5px' }}>
-        <AirdropClaim />
-      </div>
+ 
 <div style={{
   backgroundColor: '#E6FBFD',
   padding: '20px 20px',
@@ -691,7 +688,10 @@ function App() {
     style={{ height: 32, width: 32, alignment: 'center' }}
   />
 </div>
-
+{/* Airdrop Section */}
+      <div className="section" style={{ backgroundColor: '#111827', color: '#fff', padding: '10px', marginTop: '5px' }}>
+        <AirdropClaim />
+      </div>
 {/* Contact Footer */}
 <footer style={{
   backgroundColor: '#f7f9fc',

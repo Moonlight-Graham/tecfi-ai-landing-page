@@ -4,6 +4,7 @@ import Dashboard from './components/Dashboard';
 import tokenABI from './abi/BrainzyTokenABI.json';
 import presaleABI from './abi/PresaleContractABI.json';
 import { SocialIcon } from 'react-social-icons'
+import AirdropClaim from './components/AirdropClaim';
 
 // Smart contract addresses
 const tokenAddress = '0xDD9d0827Ee76Ae85762DD30976C3883bbC89A0D5';
@@ -125,6 +126,8 @@ function App() {
       clearInterval(priceInterval);
       clearInterval(timeInterval);
     };
+	const [walletAddress, setWalletAddress] = useState('');
+    const validateWalletAddress = (addr) => ethers.utils.isAddress(addr);
   }, []);
 
   return (
@@ -279,7 +282,10 @@ function App() {
       <u>Staking Contract</u>
     </a>
   </div>
- 
+ {/* Airdrop Section */}
+      <div className="section" style={{ backgroundColor: '#111827', color: '#fff', padding: '10px', marginTop: '5px' }}>
+        <AirdropClaim />
+      </div>
 <div style={{
   backgroundColor: '#E6FBFD',
   padding: '20px 20px',
@@ -682,6 +688,7 @@ function App() {
     style={{ height: 32, width: 32, alignment: 'center' }}
   />
 </div>
+
 {/* Contact Footer */}
 <footer style={{
   backgroundColor: '#f7f9fc',

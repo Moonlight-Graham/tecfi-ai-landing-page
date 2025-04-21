@@ -180,57 +180,50 @@ function App() {
   <img src="/brainzyai-icon-32x32.png" alt="Brainzy Icon" width={32} height={32} />
   <h2 style={{
     margin: '10px',
-    fontSize: '24px',
+    fontSize: '25px',
     color: '#222'
   }}>
     <strong>Brainzy AI</strong>
   </h2>
-    <p style={{ margin: '2px', color: '#111', fontSize: '20px' }}>
-    <strong>($BRANI)</strong>
-  </p>
   <p style={{
     fontWeight: '500',
     fontSize: '16px',
     color: '#9ea834',
     marginTop: '12px',
-	marginBottom: '12px'
+	marginBottom: '14px'
   }}>
     AI-Governed. DAO Powered. 50% Rewards.
-  </p>
+    </p> 
   
 </div>
-<div style={{
-  backgroundColor: '#F0EEED',
-  padding: '10px',
-  borderBottom: '.5px solid #ccc',
-  textAlign: 'center',
-  maxWidth: '100%',
-  wordWrap: 'break-word',
-  width: '100%'
-  }}>
-  
-<SocialIcon url="https://x.com/BrainzyAI"
-    style={{ height: 32, width: 32, alignment: 'center',  paddingRight: '20px' }}
-  />
 
+<div style={{
+  backgroundColor: '#1f2937',
+  padding: '25px',
+  borderRadius: '12px',
+  textAlign: 'center',
+  color: '#fff',
+  marginTop: '5px'
+}}>
+<SocialIcon url="https://x.com/BrainzyAI"
+    style={{ height: 32, width: 32, alignment: 'center',  paddingRight: '20px' }} /> 
 <SocialIcon url="https://t.me/brainzyai"
-    style={{ height: 32, width: 32, alignment: 'center', paddingLeft: '20px' }}
-  />
-  {/* Contract Links */}
-    <p style={{ fontWeight: '500',
-    fontSize: '15.5px',
-    color: '#111',
-    marginTop: '14px',
-	marginBottom: '8px'
+    style={{ height: 32, width: 32, alignment: 'center', paddingLeft: '20px' }} />
+{/* Contract Links */}
+    <h3 style={{
+    fontSize: '17px',
+    fontWeight: '500',
+    marginBottom: '10px'
   }}>
-    Verified Contract Links:
-	</p>
+    📄 Verified Contract Links
+  </h3>
+  
     <a
       href={`https://etherscan.io/address/${tokenAddress}`}
       target="_blank"
       rel="noopener noreferrer"
       style={{
-        color: '#417ebf',
+        color: '#80A6DC',
         fontWeight: '500',
         fontSize: '14px',
         textDecoration: 'none',
@@ -244,7 +237,7 @@ function App() {
       target="_blank"
       rel="noopener noreferrer"
       style={{
-        color: '#417ebf',
+        color: '#80A6DC',
         fontWeight: '500',
         fontSize: '14px',
         textDecoration: 'none',
@@ -258,7 +251,7 @@ function App() {
       target="_blank"
       rel="noopener noreferrer"
       style={{
-        color: '#417ebf',
+        color: '#80A6DC',
         fontWeight: '500',
         fontSize: '14px',
         textDecoration: 'none'
@@ -269,62 +262,63 @@ function App() {
   </div>
  
 <div style={{
-  backgroundColor: '#E6FBFD',
+  backgroundColor: '#0f172a',
+  color: '#fff',
   padding: '20px 20px',
-  borderRadius: '5px',
-  maxWidth: '100%',
-  margin: '0px auto',
-  textAlign: 'center'
+  borderRadius: '12px',
+  marginTop: '8px',
+  boxShadow: '0 8px 24px rgba(0, 0, 0, 0.3)',
+  textAlign: 'center',
+  maxWidth: '700px',
+  margin: '40px auto'
 }}>
   <h2 style={{
-    fontWeight: '500',
-    fontSize: '22px',
-    color: '222',
-	textAlign: 'center',
-    marginTop: '10px',
-	marginBottom: '12px'
+    fontSize: '28px',
+    fontWeight: '700',
+    color: '#38bdf8',
+    marginBottom: '12px'
   }}>
-  <strong>🎉 Brainzy AI Presale 🎉</strong>
+    🚀 Brainzy AI Presale 🚀
   </h2>
-<p style={{
-  textAlign: 'center',
-  fontSize: '16px',
-  fontWeight: '600',
-  marginTop: '15px',
-  color: '#222'
-}}>
-  ⏳ <strong>Presale Launch Countdown:</strong>
-  <br /><strong>{getCountdown()}</strong>
-</p>
-<p style={{ fontSize: '15px', color: '#9ea834', fontWeight: '500', textAlign: 'center' }}>
-  💸 Price Increases Every Week for 5 Weeks.
-  <br />Early Adopters Reap the Biggest Rewards!
-  <br />Buy Before Listing!
-</p>
-{/* 💸 LIVE ETH PRICE TICKER */}
-{ethPrice && (
-  <div style={{
-    backgroundColor: '#f5f5f5',
-    border: '1px solid #ddd',
-    padding: '10px 15px',
-    borderRadius: '8px',
-    textAlign: 'center',
-    margin: '20px auto',
-    maxWidth: '300px',
-    fontSize: '14px',
-    fontWeight: '500',
-    color: '#333',
-    boxShadow: '0 2px 4px rgba(0,0,0,0.05)'
-  }}>
-    🟢 Live ETH Price: <strong>${ethPrice.toFixed(2)}</strong> USD
-  </div>
-)}
 
-  <p style={{ fontSize: '16px', marginBottom: '10px', textAlign: 'center' }}>
-    <strong>May 1 through May 7 (Week 1)</strong><br />
-  💰 1 ETH = 150,000 BRANI<br />
-  🪙 1 BRANI ≈ ${ethPrice ? (ethPrice / 150000).toFixed(6) : '...'} USD
-</p>
+  <p style={{
+    fontSize: '16.5px',
+    fontWeight: '500',
+    marginBottom: '20px',
+    color: '#d1d5db'
+  }}>
+    🎯 Presale Launch Countdown:<br />
+    <strong style={{ fontSize: '18px', color: '#facc15' }}>{getCountdown()}</strong>
+  </p>
+
+  <p style={{
+    fontSize: '15px',
+    fontWeight: '500',
+    color: '#f472b6',
+    marginBottom: '16px'
+  }}>
+    🥇 Price Increases Weekly · 5 Phases<br />
+       Early Supporters Get the Best Rate!
+  </p>
+
+  {ethPrice && (
+    <div style={{
+      backgroundColor: '#1e293b',
+      border: '1px solid #334155',
+      borderRadius: '8px',
+      padding: '12px 20px',
+      fontSize: '16px',
+      fontWeight: '500',
+      marginBottom: '10px'
+    }}>
+      🟢 Live ETH Price: ${ethPrice.toFixed(2)} USD
+    </div>
+  )}
+
+  <p style={{ fontSize: '15px', color: '#cbd5e1', marginBottom: '12px' }}>
+    💹 1 ETH = 150,000 BRANI (Week 1)<br />
+    1 BRANI ≈ ${ethPrice ? (ethPrice / 150000).toFixed(6) : '...'} USD
+  </p>
 
   {!account ? (
     <button
@@ -441,6 +435,33 @@ function App() {
   )}
 </div>
 
+      {/* ABOUT SECTION */}
+      <div style={{ backgroundColor: '#f5faff', padding: '30px', textAlign: 'center', marginTop: '4px' }}>
+        <img 
+          src="/brainzyai-icon-32x32.svg"  
+          alt="Brainzy AI Icon" 
+          style={{ width: '48px', height: '48px', marginTop: '10px', marginBottom: '10px', maxWidth: '100%' }} 
+        />
+        <h2 style={{ fontSize: '26px', marginBottom: '15px', color: '#222' }}>About Brainzy AI</h2>
+        <p style={{ fontSize: '16px', maxWidth: '800px', margin: '0 auto 15px', lineHeight: '1.6', color: '#444', textAlign: 'justify' }}>
+          <strong>Brainzy AI ($BRANI)</strong> is a governance-driven DeFi token built on Ethereum.  It is designed to merge the power of Artificial Intelligence ("AI") with Decentralized Finance ("DeFi").  BRANI empowers token holders to guide the evolution of AI development through transparent, off-chain DAO processes. 
+        </p>
+        <img 
+          src="/brainzyai-icon-32x32.svg" 
+          alt="Brainzy AI Icon" 
+          style={{ width: '48px', height: '48px', marginTop: '20px', marginBottom: '10px', maxWidth: '100%' }} 
+        />
+        <h2 style={{ fontSize: '24px', marginBottom: '15px', color: '#222' }}>Holders Vote, AI Decides</h2>
+        <p style={{ fontSize: '16px', maxWidth: '800px', margin: '0 auto 15px', lineHeight: '1.6', color: '#444', textAlign: 'justify' }}>
+          BRANI rewards participation and transparency. Twenty Percent (20%) of the token supply goes to a DAO Treasury locked in a Safe Wallet. Token holders get to create proposals and vote on which proposals should be submitted to AI for decision. AI decides based on a "Token Holder Best Interest" algorithm, and AI provides a reasoning statment for the decision. This "Best Interest" algorithm will continually get stronger and refined as AI is able to collect and analyze the data from the results of prior implemented decisions. This is what truly makes BRANI unique, token holders are able to help shape the future of the Brainzy AI ecosystem and AI DeFi.
+        </p>
+		<p style={{ fontSize: '18px', marginTop: '20px', color: '#1f00c2' }}>
+          <a href="/whitepaper.pdf" target="_blank" rel="noopener noreferrer" style={{ color: '#1f00c2', fontWeight: '600', textDecoration: 'none' }}>
+            📄 <u>Read the Whitepaper</u>
+          </a>
+        </p>
+       
+      </div>
 <div style={{
   backgroundColor: '#f1f8fe',
   padding: '30px',
@@ -508,36 +529,6 @@ function App() {
   </div>
 
 </div>
-
-      {/* ABOUT SECTION */}
-      <div style={{ backgroundColor: '#f5faff', padding: '30px', textAlign: 'center', marginTop: '4px' }}>
-        <img 
-          src="/brainzyai-icon-32x32.svg"  
-          alt="Brainzy AI Icon" 
-          style={{ width: '48px', height: '48px', marginTop: '10px', marginBottom: '10px', maxWidth: '100%' }} 
-        />
-        <h2 style={{ fontSize: '26px', marginBottom: '15px', color: '#222' }}>About Brainzy AI</h2>
-        <p style={{ fontSize: '16px', maxWidth: '800px', margin: '0 auto 15px', lineHeight: '1.6', color: '#444', textAlign: 'justify' }}>
-          <strong>Brainzy AI ($BRANI)</strong> is a governance-driven DeFi token built on Ethereum.  It is designed to merge the power of Artificial Intelligence ("AI") with Decentralized Finance ("DeFi").  BRANI empowers token holders to guide the evolution of AI development through transparent, off-chain DAO processes. 
-        </p>
-        <img 
-          src="/brainzyai-icon-32x32.svg" 
-          alt="Brainzy AI Icon" 
-          style={{ width: '48px', height: '48px', marginTop: '20px', marginBottom: '10px', maxWidth: '100%' }} 
-        />
-        <h2 style={{ fontSize: '24px', marginBottom: '15px', color: '#222' }}>Holders Vote, AI Decides</h2>
-        <p style={{ fontSize: '16px', maxWidth: '800px', margin: '0 auto 15px', lineHeight: '1.6', color: '#444', textAlign: 'justify' }}>
-          BRANI rewards participation and transparency. Twenty Percent (20%) of the token supply goes to a DAO Treasury locked in a Safe Wallet. Token holders get to create proposals and vote on which proposals should be submitted to AI for decision. AI decides based on a "Token Holder Best Interest" algorithm, and AI provides a reasoning statment for the decision. This "Best Interest" algorithm will continually get stronger and refined as AI is able to collect and analyze the data from the results of prior implemented decisions. This is what truly makes BRANI unique, token holders truly get to help shape the future of the Brainzy AI ecosystem and AI DeFi.
-        </p>
-        <p style={{ fontSize: '16px', maxWidth: '800px', margin: '0 auto', lineHeight: '1.6', color: '#444' }}>
-          BRANI is founded by <a href="https://www.linkedin.com/in/brainzytoken" target="_blank" rel="noopener noreferrer" style={{ color: '#1f00c2', fontWeight: '600', textDecoration: 'none' }}>Ryan R. Putz</a>, a licensed attorney and Web3 developer.
-        </p>
-        <p style={{ fontSize: '18px', marginTop: '20px', color: '#1f00c2' }}>
-          <a href="/whitepaper.pdf" target="_blank" rel="noopener noreferrer" style={{ color: '#1f00c2', fontWeight: '600', textDecoration: 'none' }}>
-            📄 <u>Read the Whitepaper</u>
-          </a>
-        </p>
-      </div>
 <div style={{
   marginBottom: '20px',
   textAlign: 'center'

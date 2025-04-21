@@ -141,7 +141,7 @@ function App() {
   textAlign: 'center',
   maxWidth: '100%',
   wordWrap: 'break-word',
-  margin: '0px',
+  margin: '5px',
   width: '100%'
 }}>
 {/* 🔥 PRESALE BANNER (scrolling) */}
@@ -173,7 +173,7 @@ function App() {
       }
     `}
   </style>
-</div>
+</div><br />
  
   <p style={{ margin: '6px 8px', color: '#222' }}>
     The Official Governance dApp of Brainzy AI
@@ -230,12 +230,12 @@ function App() {
   backgroundColor: '#0f172a',
   color: '#fff',
   padding: '10px 20px',
-  borderRadius: '12px',
+  borderRadius: '0px',
   marginTop: '0px',
   boxShadow: '0 8px 24px rgba(0, 0, 0, 0.3)',
   textAlign: 'center',
   maxWidth: '700px',
-  margin: '40px auto'
+  margin: '20px auto'
 }}>
   <h2 style={{
     fontSize: '28px',

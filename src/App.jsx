@@ -146,13 +146,13 @@ function App() {
 }}>
 {/* 🔥 PRESALE BANNER (scrolling) */}
 <div style={{
-  backgroundColor: '#4287A9',
+  backgroundColor: '#15203A',
   color: 'white',
   padding: '8px 0',
   overflow: 'hidden',
   whiteSpace: 'nowrap',
-  fontSize: '15px',
-  fontWeight: '550',
+  fontSize: '15.5px',
+  fontWeight: '500',
   borderTopLeftRadius: '12px',
   borderTopRightRadius: '12px',
   position: 'relative'
@@ -174,99 +174,64 @@ function App() {
     `}
   </style>
 </div>
-  <p style={{ margin: '6px 0', color: '#222' }}>
+ 
+  <p style={{ margin: '6px 8px', color: '#222' }}>
     The Official Governance dApp of Brainzy AI
   </p>
-  <img src="/brainzyai-icon-32x32.png" alt="Brainzy Icon" width={32} height={32} />
   <h2 style={{
     margin: '10px',
-    fontSize: '25px',
+    fontSize: '26px',
     color: '#222'
   }}>
-    <strong>Brainzy AI</strong>
-  </h2>
+    <strong>Brainzy AI</strong></h2>
+	
+<img src="/brainzyai-icon-32x32.png" alt="Brainzy Icon" width={32} height={32} />
   <p style={{
     fontWeight: '500',
     fontSize: '16px',
     color: '#9ea834',
     marginTop: '12px',
-	marginBottom: '14px'
+	marginBottom: '12px'
   }}>
     AI-Governed. DAO Powered. 50% Rewards.
     </p> 
-  
+
+</div>
+{/* SOCIAL LINKS SECTION */}
+<div style={{
+  backgroundColor: '#0f172a',
+  padding: '10px 0',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  borderBottom: '2px solid #1e293b',
+  gap: '40px'
+}}>
+  <SocialIcon url="https://x.com/BrainzyAI"
+    style={{
+      height: 36,
+      width: 36,
+      borderRadius: '50%',
+      backgroundColor: '#1d4ed8',
+      boxShadow: '0 0 6px #38bdf8'
+    }} />
+    
+  <SocialIcon url="https://t.me/brainzyai"
+    style={{
+      height: 36,
+      width: 36,
+      borderRadius: '50%',
+      backgroundColor: '#0ea5e9',
+      boxShadow: '0 0 6px #7dd3fc'
+    }} />
 </div>
 
 <div style={{
-  backgroundColor: '#1f2937',
-  padding: '25px',
-  borderRadius: '12px',
-  textAlign: 'center',
-  color: '#fff',
-  marginTop: '5px'
-}}>
-<SocialIcon url="https://x.com/BrainzyAI"
-    style={{ height: 32, width: 32, alignment: 'center',  paddingRight: '20px' }} /> 
-<SocialIcon url="https://t.me/brainzyai"
-    style={{ height: 32, width: 32, alignment: 'center', paddingLeft: '20px' }} />
-{/* Contract Links */}
-    <h3 style={{
-    fontSize: '17px',
-    fontWeight: '500',
-    marginBottom: '10px'
-  }}>
-    📄 Verified Contract Links
-  </h3>
-  
-    <a
-      href={`https://etherscan.io/address/${tokenAddress}`}
-      target="_blank"
-      rel="noopener noreferrer"
-      style={{
-        color: '#80A6DC',
-        fontWeight: '500',
-        fontSize: '14px',
-        textDecoration: 'none',
-        marginRight: '7px'
-      }}
-    >
-      <u>Token Contract</u>
-    </a>
-    <a
-      href={`https://etherscan.io/address/${presaleAddress}`}
-      target="_blank"
-      rel="noopener noreferrer"
-      style={{
-        color: '#80A6DC',
-        fontWeight: '500',
-        fontSize: '14px',
-        textDecoration: 'none',
-        marginRight: '7px'
-      }}
-    >
-      <u>Presale Contract</u>
-    </a>
-    <a
-      href={`https://etherscan.io/address/${stakingAddress}`}
-      target="_blank"
-      rel="noopener noreferrer"
-      style={{
-        color: '#80A6DC',
-        fontWeight: '500',
-        fontSize: '14px',
-        textDecoration: 'none'
-      }}
-    >
-      <u>Staking Contract</u>
-    </a>
-  </div>
- 
-<div style={{
   backgroundColor: '#0f172a',
   color: '#fff',
-  padding: '20px 20px',
+  padding: '10px 20px',
   borderRadius: '12px',
-  marginTop: '8px',
+  marginTop: '0px',
   boxShadow: '0 8px 24px rgba(0, 0, 0, 0.3)',
   textAlign: 'center',
   maxWidth: '700px',
@@ -326,6 +291,7 @@ function App() {
       style={{
         padding: '10px 25px',
         fontSize: '16px',
+		fontWeight: '500',
         backgroundColor: '#417ebf',
         color: 'white',
         border: 'none',
@@ -339,12 +305,10 @@ function App() {
     </button>
   ) : (
     <>
-	<div style={{ marginTop: '15px', color: '#333' }}>
-        <p><strong>Connected:</strong> {account}</p>
-        <p><strong>Your Balance:</strong> {tokenBalance} {symbol}</p>
-      </div>
-      <p><strong>Connected:</strong> {account}</p>
-      <p><strong>Your Balance:</strong> {tokenBalance} {symbol}</p>
+	<div style={{ marginTop: '15px', color: '#EDF4D8' }}>
+      <p>Connected: {account}</p>
+	  </div>
+      <p>Your Balance: {tokenBalance} {symbol}</p>
 
       <input
         type="number"
@@ -434,7 +398,47 @@ function App() {
     </div>
   )}
 </div>
+{/* LIVE STATS SECTION */}
+<div style={{
+  backgroundColor: '#FAFBFC',
+  border: '1px solid #ddd',
+  borderRadius: '10px',
+  padding: '20px',
+  maxWidth: '600px',
+  margin: '30px auto',
+  textAlign: 'center',
+  boxShadow: '0 2px 8px rgba(0,0,0,0.05)'
+}}>
+  <h3 style={{ marginBottom: '10px', color: '#222' }}>📈 Live Presale Stats</h3>
+  
+  <p style={{ fontSize: '16px', marginBottom: '8px' }}>
+    <strong>Total ETH Raised:</strong> {parseFloat(ethRaised).toFixed(2)} ETH
+  </p>
+  <p style={{ fontSize: '16px', marginBottom: '8px' }}>
+    <strong>BRANI Tokens Sold:</strong> {(parseFloat(ethRaised) * 150000).toLocaleString()} BRANI
+  </p>
+  <p style={{ fontSize: '16px', marginBottom: '12px' }}>
+    <strong>Presale Target:</strong> 325 ETH
+  </p>
 
+  {/* Progress Bar */}
+  <div style={{
+    background: '#e0e0e0',
+    borderRadius: '50px',
+    overflow: 'hidden',
+    height: '16px',
+    width: '100%',
+    maxWidth: '400px',
+    margin: '0 auto'
+  }}>
+    <div style={{
+      width: `${Math.min((parseFloat(ethRaised) / 100) * 100, 100)}%`,
+      background: '#4caf50',
+      height: '100%',
+      transition: 'width 0.5s ease'
+    }}></div>
+  </div>
+</div>
       {/* ABOUT SECTION */}
       <div style={{ backgroundColor: '#f5faff', padding: '30px', textAlign: 'center', marginTop: '4px' }}>
         <img 
@@ -467,13 +471,13 @@ function App() {
   padding: '30px',
   textAlign: 'center',
   borderRadius: '10px',
-  marginTop: '5px',
+  marginTop: '10px',
   boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
 }}>
 
   <h2 style={{
     fontWeight: '500',
-    fontSize: '22px',
+    fontSize: '24px',
     color: '222',
 	textAlign: 'center',
     marginTop: '10px',
@@ -673,9 +677,71 @@ function App() {
   </p>
 </div>
 {/* Airdrop Section */}
-      <div className="section" style={{ backgroundColor: '#111827', color: '#fff', padding: '10px', marginTop: '5px' }}>
+      <div className="section" style={{ backgroundColor: '#111827', color: '#fff', padding: '20px', marginTop: '20px', marginBottom: '20px' }}>
         <AirdropClaim />
       </div>
+
+{/* Contract Links */}
+<div style={{
+  backgroundColor: '#0f172a',
+  padding: '15px 60px',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  borderBottom: '2px solid #1e293b',
+  gap: '40px'
+}}>
+  <h3 style={{
+    color: '#E2EAF4',
+	fontWeight: '500',
+	fontSize: '14.5px',
+    marginBottom: '10px',
+  }}>
+    📄 Verified Contract Links:
+	</h3>
+ 
+    <a
+      href={`https://etherscan.io/address/${tokenAddress}`}
+      target="_blank"
+      rel="noopener noreferrer"
+      style={{
+        color: '#80A6DC',
+        fontWeight: '500',
+        fontSize: '14.5px',
+        textDecoration: 'none',
+        marginRight: '7px'
+      }}
+    >
+      <u>Token Contract</u>
+    </a>
+    <a
+      href={`https://etherscan.io/address/${presaleAddress}`}
+      target="_blank"
+      rel="noopener noreferrer"
+      style={{
+        color: '#80A6DC',
+        fontWeight: '500',
+        fontSize: '14.5px',
+        textDecoration: 'none',
+        marginRight: '7px'
+      }}
+    >
+      <u>Presale Contract</u>
+    </a>
+    <a
+      href={`https://etherscan.io/address/${stakingAddress}`}
+      target="_blank"
+      rel="noopener noreferrer"
+      style={{
+        color: '#80A6DC',
+        fontWeight: '500',
+        fontSize: '14.5px',
+        textDecoration: 'none'
+      }}
+    >
+      <u>Staking Contract</u>
+    </a>
+   </div>
 {/* Contact Footer */}
 <footer style={{
   backgroundColor: '#f7f9fc',
@@ -684,7 +750,7 @@ function App() {
   fontSize: '14px',
   color: '#555',
   borderTop: '1px solid #e0e0e0',
-  marginTop: '40px'
+  marginTop: '10px'
 }}>
   <p>
     Built with ❤️ by <strong>Ryan R. Putz</strong> · All Rights Reserved © {new Date().getFullYear()}

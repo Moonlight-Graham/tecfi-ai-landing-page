@@ -177,51 +177,30 @@ function App() {
   <p style={{ margin: '6px 0', color: '#222' }}>
     The Official Governance dApp of Brainzy AI
   </p>
-  
+  <img src="/brainzyai-icon-32x32.png" alt="Brainzy Icon" width={32} height={32} />
   <h2 style={{
     margin: '10px',
     fontSize: '24px',
     color: '#222'
   }}>
-    Brainzy AI
+    <strong>Brainzy AI</strong>
   </h2>
-  
-  <p style={{ margin: '2px', color: '#111', fontSize: '20px' }}>
+    <p style={{ margin: '2px', color: '#111', fontSize: '20px' }}>
     <strong>($BRANI)</strong>
   </p>
-  <img
-    src="/brainzyai-icon-32x32.svg"
-    alt="Brainzy AI Icon"
-    style={{
-      width: '48px',
-      height: '48px',
-      marginTop: '6px',
-	  marginBottom: '0px'
-    }}
-  />
-
   <p style={{
     fontWeight: '500',
-    fontSize: '15.5px',
+    fontSize: '16px',
     color: '#9ea834',
-    marginTop: '6px',
-	marginBottom: '16px'
+    marginTop: '12px',
+	marginBottom: '12px'
   }}>
     AI-Governed. DAO Powered. 50% Rewards.
   </p>
-
-  <SocialIcon url="https://x.com/BrainzyAI"
-    style={{ height: 32, width: 32, alignment: 'center',  paddingRight: '20px' }}
-  />
-
-  <SocialIcon url="https://t.me/brainzyai"
-    style={{ height: 32, width: 32, alignment: 'center', paddingLeft: '20px' }}
-  />
   
 </div>
-  {/* Contract Links */}
-  <div style={{
-  backgroundColor: '#F8FBE8',
+<div style={{
+  backgroundColor: '#F0EEED',
   padding: '10px',
   borderBottom: '.5px solid #ccc',
   textAlign: 'center',
@@ -229,11 +208,20 @@ function App() {
   wordWrap: 'break-word',
   width: '100%'
   }}>
+  
+<SocialIcon url="https://x.com/BrainzyAI"
+    style={{ height: 32, width: 32, alignment: 'center',  paddingRight: '20px' }}
+  />
+
+<SocialIcon url="https://t.me/brainzyai"
+    style={{ height: 32, width: 32, alignment: 'center', paddingLeft: '20px' }}
+  />
+  {/* Contract Links */}
     <p style={{ fontWeight: '500',
     fontSize: '15.5px',
     color: '#111',
-    marginTop: '6px',
-	marginBottom: '10px'
+    marginTop: '14px',
+	marginBottom: '8px'
   }}>
     Verified Contract Links:
 	</p>

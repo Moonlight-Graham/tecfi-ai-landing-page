@@ -106,7 +106,21 @@ export default function AirdropClaim() {
       )}
 
       {!wallet ? (
-        <button onClick={connectWallet}>🔗 Connect Wallet</button>
+        <button onClick={connectWallet}
+		style={{
+          padding: '10px 25px',
+          fontSize: '15px',
+		  fontWeight: '550',
+          backgroundColor: 'white',
+          color: '#273C6D',
+          border: 'none',
+          borderRadius: '12px',
+          marginTop: '6px',
+          marginBottom: '6px',
+		  cursor: 'pointer'
+      }}
+    >
+		🔗 Connect Wallet</button>
       ) : (
         <button onClick={claimTokens} disabled={loading || !isLive || isEnded}>
           {loading ? 'Claiming...' : !isLive ? 'Not Yet Available' : 'Claim My Airdrop'}

@@ -243,12 +243,12 @@ function App() {
 {/* SOCIAL LINKS SECTION */}
 <div style={{
   backgroundColor: '#0f172a',
-  padding: '8px 0',
+  padding: '7px 0',
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
   borderBottom: '0px solid #1e293b',
-  gap: '20px'
+  gap: '30px'
 }}>
   <SocialIcon url="https://x.com/BrainzyAI"
     style={{
@@ -285,7 +285,7 @@ function App() {
     color: '#38bdf8',
     marginBottom: '12px'
   }}>
-    🚀 Brainzy AI Presale 🚀
+    🚀 Brainzy AI Presale 
   </h2>
 
   <p style={{

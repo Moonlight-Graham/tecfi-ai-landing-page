@@ -135,18 +135,18 @@ function App() {
       
 {/* HEADER */}
 <div style={{
-  backgroundColor: 'white',
-  padding: '5px',
+  backgroundColor: '#F3EFFC',
+  padding: '0px',
   borderBottom: '.5px solid #ccc',
   textAlign: 'center',
   maxWidth: '100%',
   wordWrap: 'break-word',
-  margin: '5px',
+  margin: '0px',
   width: '100%'
 }}>
 {/* 🔥 PRESALE BANNER (scrolling) */}
 <div style={{
-  backgroundColor: '#15203A',
+  backgroundColor: '#252D42',
   color: 'white',
   padding: '8px 0',
   overflow: 'hidden',
@@ -199,7 +199,7 @@ function App() {
 </div>
 {/* SOCIAL LINKS SECTION */}
 <div style={{
-  backgroundColor: '#0f172a',
+  backgroundColor: '#252D42',
   padding: '10px 0',
   display: 'flex',
   justifyContent: 'center',
@@ -227,7 +227,7 @@ function App() {
 </div>
 
 <div style={{
-  backgroundColor: '#0f172a',
+  backgroundColor: '#252D42',
   color: '#fff',
   padding: '10px 20px',
   borderRadius: '0px',
@@ -677,7 +677,7 @@ function App() {
   </p>
 </div>
 {/* Airdrop Section */}
-      <div className="section" style={{ backgroundColor: '#111827', color: '#fff', padding: '20px', marginTop: '20px', marginBottom: '20px' }}>
+      <div className="section" style={{ backgroundColor: '#252D42', color: '#fff', padding: '20px', marginTop: '20px', marginBottom: '20px' }}>
         <AirdropClaim />
       </div>
 

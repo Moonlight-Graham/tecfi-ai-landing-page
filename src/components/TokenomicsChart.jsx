@@ -2,18 +2,18 @@ import React from 'react';
 import { PieChart, Pie, Cell, Legend, Tooltip } from 'recharts';
 
 const data = [
-  { name: 'StakingRewards', value: 30 },
-  { name: 'DAO.Treasury', value: 25 }, 
+  { name: 'Staking & Rewards', value: 30 },
+  { name: 'DAO Treasury', value: 25 }, 
   { name: 'Airdrop', value: 10 },
-  { name: 'Marketing&Listings', value: 20 },
-  { name: 'CreatorRewards', value: 5 },
-  { name: 'LiquidityPool', value: 15 }
+  { name: 'Marketing & Listings', value: 20 },
+  { name: 'Creator Rewards', value: 5 },
+  { name: 'Liquidity Pool', value: 15 }
 ];
 
 const COLORS = ['#07C71E', '#0D66F6', '#EFB112', '#7A0BA6', '#EA1818', '#7A7B7B'];
 
 const renderCustomLabel = ({ name, value }) => {
-  return `${name} (${value}%)`;
+  return `${name} ${value}%`;
 };
 
 export default function TokenomicsChart() {

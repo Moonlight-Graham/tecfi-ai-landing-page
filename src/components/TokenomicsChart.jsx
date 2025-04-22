@@ -18,15 +18,15 @@ const renderCustomLabel = ({ name, value }) => {
 
 export default function TokenomicsChart() {
   return (
-    <div style={{ textAlign: 'center', padding: '2rem', background: '#f1f5f9' }}>
+    <div style={{ textAlign: 'center', padding: '2rem', background: '#f1f5f9', textSize: '12px' }}>
       <h2 style={{ fontWeight: '600', marginBottom: '10px' }}>📊 Tokenomics</h2>
-      <PieChart width={450} height={360}>
+      <PieChart width={440} height={360}>
         <Pie
           data={data}
           cx="50%"
           cy="50%"
           label={renderCustomLabel}
-          outerRadius={65}
+          outerRadius={35}
           fill="#8884d8"
           dataKey="value"
         >

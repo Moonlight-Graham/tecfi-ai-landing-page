@@ -513,7 +513,7 @@ function App() {
        
       </div>
 	  {/* TokenomicsChart Section */}
-	 <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', padding: '10px' }}>
+	 <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', padding: '20px' }}>
     <TokenomicsChart />
 	</div>
       

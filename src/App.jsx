@@ -459,7 +459,7 @@ function App() {
     <strong>BRANI Tokens Sold:</strong> {(parseFloat(ethRaised) * 150000).toLocaleString()} BRANI
   </p>
   <p style={{ fontSize: '16px', marginBottom: '12px' }}>
-    <strong>Presale Target:</strong> 325 ETH
+    <strong>Presale Target:</strong> 350 ETH
   </p>
 
   {/* Progress Bar */}
@@ -484,7 +484,7 @@ function App() {
       <div className="section" style={{ backgroundColor: '#3B496A', color: '#fff', padding: '20px', marginTop: '20px', marginBottom: '20px' }}>
         <AirdropClaim />
       </div>
-
+	  
       {/* ABOUT SECTION */}
       <div style={{ backgroundColor: '#f5faff', padding: '30px', textAlign: 'center', marginTop: '4px' }}>
         <img 

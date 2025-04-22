@@ -136,7 +136,7 @@ function App() {
 {/* HEADER */}
 <div style={{
   backgroundColor: 'white',
-  padding: '0px',
+  padding: '5px 0px',
   borderBottom: '.5px solid #ccc',
   textAlign: 'center',
   maxWidth: '100%',
@@ -146,7 +146,7 @@ function App() {
 }}>
 {/* 🔥 PRESALE BANNER (scrolling) */}
 <div style={{
-  backgroundColor: '#3B496A',
+  backgroundColor: '#0f172a',
   color: 'white',
   padding: '8px 0',
   overflow: 'hidden',
@@ -194,29 +194,18 @@ function App() {
 	marginBottom: '12px'
   }}>
     AI-Governed. DAO Powered. 50% Rewards.
-    </p> 
-
-</div>
-{/* Contract Links */}
-<div style={{
-  backgroundColor: '#0f172a',
-  padding: '20px',
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-  borderBottom: '2px solid #1e293b',
-  gap: '7px'
-}}> 
+    </p>  
     <a
       href={`https://etherscan.io/address/${tokenAddress}`}
       target="_blank"
       rel="noopener noreferrer"
       style={{
-        color: '#80A6DC',
+        color: '#273C6D',
         fontWeight: '500',
         fontSize: '14px',
         textDecoration: 'none',
-        marginRight: '7px'
+		align: 'center',
+		marginRight: '6.5px'
       }}
     >
       <u>Token Contract</u>
@@ -226,11 +215,12 @@ function App() {
       target="_blank"
       rel="noopener noreferrer"
       style={{
-        color: '#80A6DC',
+        color: '#273C6D',
         fontWeight: '500',
         fontSize: '14px',
         textDecoration: 'none',
-        marginRight: '7px'
+		align: 'center',
+		marginRight: '6.5px'
       }}
     >
       <u>Presale Contract</u>
@@ -240,19 +230,20 @@ function App() {
       target="_blank"
       rel="noopener noreferrer"
       style={{
-        color: '#80A6DC',
+        color: '#273C6D',
         fontWeight: '500',
         fontSize: '14px',
-        textDecoration: 'none'
+        textDecoration: 'none',
+		align: 'center'
       }}
     >
       <u>Staking Contract</u>
     </a>
-   </div>
+</div>
 {/* SOCIAL LINKS SECTION */}
 <div style={{
-  backgroundColor: 'white',
-  padding: '5px 0',
+  backgroundColor: '#0f172a',
+  padding: '8px 0',
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
@@ -261,8 +252,8 @@ function App() {
 }}>
   <SocialIcon url="https://x.com/BrainzyAI"
     style={{
-      height: 36,
-      width: 36,
+      height: 30,
+      width: 30,
       borderRadius: '50%',
       backgroundColor: '#1d4ed8',
       boxShadow: '0 0 6px #38bdf8'
@@ -270,8 +261,8 @@ function App() {
     
   <SocialIcon url="https://t.me/brainzyai"
     style={{
-      height: 36,
-      width: 36,
+      height: 30,
+      width: 30,
       borderRadius: '50%',
       backgroundColor: '#0ea5e9',
       boxShadow: '0 0 6px #7dd3fc'
@@ -489,6 +480,11 @@ function App() {
     }}></div>
   </div>
 </div>
+{/* Airdrop Section */}
+      <div className="section" style={{ backgroundColor: '#3B496A', color: '#fff', padding: '20px', marginTop: '20px', marginBottom: '20px' }}>
+        <AirdropClaim />
+      </div>
+
       {/* ABOUT SECTION */}
       <div style={{ backgroundColor: '#f5faff', padding: '30px', textAlign: 'center', marginTop: '4px' }}>
         <img 
@@ -726,10 +722,6 @@ function App() {
     Ryan is fully doxxed and publicly verifiable. His commitment to transparency and ethics sets BRANI apart.
   </p>
 </div>
-{/* Airdrop Section */}
-      <div className="section" style={{ backgroundColor: '#3B496A', color: '#fff', padding: '20px', marginTop: '20px', marginBottom: '20px' }}>
-        <AirdropClaim />
-      </div>
 
 {/* Contact Footer */}
 <footer style={{

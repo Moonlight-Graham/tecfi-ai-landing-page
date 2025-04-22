@@ -244,7 +244,7 @@ function App() {
 
 {/* SOCIAL LINKS SECTION */}
 <div style={{
-  backgroundColor: '#0f172a',
+  backgroundColor: '#ffffff',
   padding: '5px 0px',
   display: 'flex',
   justifyContent: 'center',
@@ -275,10 +275,11 @@ function App() {
  padding: '20px',
  textAlign: 'center',
  backgroundColor: '#0f172a',
- color: '#fff',
  borderRadius: '12px',
- maxWidth: '600px',
- margin: '1rem auto',
+ maxWidth: '900px',
+ marginTop: '20px',
+ marginBottom: '20px',
+ margin: '2rem auto',
  boxShadow: '0 0 10px #22d3ee55'
 }}>
   <h2 style={{

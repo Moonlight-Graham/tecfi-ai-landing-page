@@ -317,7 +317,7 @@ function App() {
       backgroundColor: '#EFF4F2',
       border: '1px solid #334155',
       borderRadius: '8px',
-      padding: '12px 20px',
+      padding: '8px 20px',
       fontSize: '16px',
       fontWeight: '500',
       marginBottom: '10px'
@@ -504,7 +504,7 @@ function App() {
           alt="Brainzy AI Icon" 
           style={{ width: '48px', height: '48px', marginTop: '20px', marginBottom: '10px', maxWidth: '100%' }} 
         />
-        <h2 style={{ fontSize: '24px', marginBottom: '15px', color: '#222' }}>Holders Vote, AI Decides</h2>
+        <h2 style={{ fontSize: '24px', marginBottom: '15px', color: '#222' }}>Holders Vote & AI Decides</h2>
         <p style={{ fontSize: '16px', maxWidth: '800px', margin: '0 auto 15px', lineHeight: '1.6', color: '#444', textAlign: 'justify' }}>
           BRANI rewards participation and transparency. Twenty Percent (20%) of the token supply goes to a DAO Treasury locked in a Safe Wallet. Token holders get to create proposals and vote on which proposals should be submitted to AI for decision. AI decides based on a "Token Holder Best Interest" algorithm, and AI provides a reasoning statment for the decision. This "Best Interest" algorithm will continually get stronger and refined as AI is able to collect and analyze the data from the results of prior implemented decisions. This is what truly makes BRANI unique, token holders are able to help shape the future of the Brainzy AI ecosystem and AI DeFi.
         </p>

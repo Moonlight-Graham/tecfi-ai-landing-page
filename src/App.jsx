@@ -199,13 +199,13 @@ function App() {
 </div>
 {/* SOCIAL LINKS SECTION */}
 <div style={{
-  backgroundColor: '#3B496A',
+  backgroundColor: '##F3EFFC',
   padding: '5px 0',
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
   borderBottom: '0px solid #1e293b',
-  gap: '40px'
+  gap: '35px'
 }}>
   <SocialIcon url="https://x.com/BrainzyAI"
     style={{
@@ -236,7 +236,7 @@ function App() {
   border: '1px solid #ddd',
   boxShadow: '0 8px 24px rgba(0, 0, 0, 0.3)',
   textAlign: 'center',
-  maxWidth: '400px',
+  maxWidth: '380px',
   margin: '20px auto'
 }}>
   <h2 style={{
@@ -245,7 +245,7 @@ function App() {
     color: '#38bdf8',
     marginBottom: '12px'
   }}>
-    🚀 Brainzy AI Presale 🚀
+    🚀 Brainzy AI Presale
   </h2>
 
   <p style={{
@@ -406,7 +406,7 @@ function App() {
   border: '1px solid #ddd',
   borderRadius: '12px',
   padding: '20px',
-  maxWidth: '400px',
+  maxWidth: '380px',
   margin: '20px auto',
   textAlign: 'center',
   boxShadow: '0 2px 8px rgba(0,0,0,0.05)'
@@ -430,7 +430,7 @@ function App() {
     overflow: 'hidden',
     height: '16px',
     width: '100%',
-    maxWidth: '380px',
+    maxWidth: '365px',
     margin: '20px auto'
   }}>
     <div style={{
@@ -691,7 +691,7 @@ function App() {
   justifyContent: 'center',
   alignItems: 'center',
   borderBottom: '2px solid #1e293b',
-  gap: '20px'
+  gap: '30px'
 }}>
   <h3 style={{
     color: '#E2EAF4',

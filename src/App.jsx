@@ -241,10 +241,11 @@ function App() {
       <u>Staking Contract</u>
     </a>
 </div>
+
 {/* SOCIAL LINKS SECTION */}
 <div style={{
   backgroundColor: '#0f172a',
-  padding: '7px 0',
+  padding: '5px 0px',
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
@@ -270,14 +271,14 @@ function App() {
     }} />
 </div>
 
-<div style={{
+<div className="section" style={{
  padding: '20px',
  textAlign: 'center',
  backgroundColor: '#0f172a',
  color: '#fff',
- borderRadius: '1rem',
+ borderRadius: '12px',
  maxWidth: '600px',
- margin: '2rem auto',
+ margin: '1rem auto',
  boxShadow: '0 0 10px #22d3ee55'
 }}>
   <h2 style={{

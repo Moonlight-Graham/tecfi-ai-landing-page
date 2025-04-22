@@ -275,8 +275,9 @@ function App() {
  padding: '20px',
  textAlign: 'center',
  backgroundColor: '#0f172a',
+ color: 'fff',
  borderRadius: '12px',
- maxWidth: '900px',
+ maxWidth: '750px',
  marginTop: '20px',
  marginBottom: '20px',
  margin: '2rem auto',
@@ -313,7 +314,7 @@ function App() {
 
   {ethPrice && (
     <div style={{
-      backgroundColor: '#1e293b',
+      backgroundColor: '#EFF4F2',
       border: '1px solid #334155',
       borderRadius: '8px',
       padding: '12px 20px',

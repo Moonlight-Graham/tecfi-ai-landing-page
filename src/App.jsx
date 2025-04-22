@@ -135,7 +135,7 @@ function App() {
       
 {/* HEADER */}
 <div style={{
-  backgroundColor: '#F3EFFC',
+  backgroundColor: 'white',
   padding: '0px',
   borderBottom: '.5px solid #ccc',
   textAlign: 'center',
@@ -197,15 +197,67 @@ function App() {
     </p> 
 
 </div>
+{/* Contract Links */}
+<div style={{
+  backgroundColor: '#0f172a',
+  padding: '20px',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  borderBottom: '2px solid #1e293b',
+  gap: '7px'
+}}> 
+    <a
+      href={`https://etherscan.io/address/${tokenAddress}`}
+      target="_blank"
+      rel="noopener noreferrer"
+      style={{
+        color: '#80A6DC',
+        fontWeight: '500',
+        fontSize: '14px',
+        textDecoration: 'none',
+        marginRight: '7px'
+      }}
+    >
+      <u>Token Contract</u>
+    </a>
+    <a
+      href={`https://etherscan.io/address/${presaleAddress}`}
+      target="_blank"
+      rel="noopener noreferrer"
+      style={{
+        color: '#80A6DC',
+        fontWeight: '500',
+        fontSize: '14px',
+        textDecoration: 'none',
+        marginRight: '7px'
+      }}
+    >
+      <u>Presale Contract</u>
+    </a>
+    <a
+      href={`https://etherscan.io/address/${stakingAddress}`}
+      target="_blank"
+      rel="noopener noreferrer"
+      style={{
+        color: '#80A6DC',
+        fontWeight: '500',
+        fontSize: '14px',
+        textDecoration: 'none'
+      }}
+    >
+      <u>Staking Contract</u>
+    </a>
+   </div>
 {/* SOCIAL LINKS SECTION */}
 <div style={{
-  backgroundColor: '##F3EFFC',
+  backgroundColor: 'white',
   padding: '5px 0',
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
   borderBottom: '0px solid #1e293b',
-  gap: '35px'
+  gap: '20px'
 }}>
   <SocialIcon url="https://x.com/BrainzyAI"
     style={{
@@ -227,17 +279,14 @@ function App() {
 </div>
 
 <div style={{
-  backgroundColor: '#3B496A',
-  color: '#FFF',
-  padding: '20px',
-  marginTop: '20px',
-  marginBottom: '20px',
-  borderRadius: '12px',
-  border: '1px solid #ddd',
-  boxShadow: '0 8px 24px rgba(0, 0, 0, 0.3)',
-  textAlign: 'center',
-  maxWidth: '380px',
-  margin: '20px auto'
+ padding: '20px',
+ textAlign: 'center',
+ backgroundColor: '#0f172a',
+ color: '#fff',
+ borderRadius: '1rem',
+ maxWidth: '600px',
+ margin: '2rem auto',
+ boxShadow: '0 0 10px #22d3ee55'
 }}>
   <h2 style={{
     fontSize: '28px',
@@ -245,7 +294,7 @@ function App() {
     color: '#38bdf8',
     marginBottom: '12px'
   }}>
-    🚀 Brainzy AI Presale
+    🚀 Brainzy AI Presale 🚀
   </h2>
 
   <p style={{
@@ -402,14 +451,13 @@ function App() {
 </div>
 {/* LIVE STATS SECTION */}
 <div style={{
-  backgroundColor: '#FAFBFC',
-  border: '1px solid #ddd',
-  borderRadius: '12px',
   padding: '20px',
-  maxWidth: '380px',
-  margin: '20px auto',
   textAlign: 'center',
-  boxShadow: '0 2px 8px rgba(0,0,0,0.05)'
+  backgroundColor: '#FAFBFC',
+  borderRadius: '1rem',
+  maxWidth: '600px',
+  margin: '2rem auto',
+  boxShadow: '0 0 10px #22d3ee55'
 }}>
   <h3 style={{ marginBottom: '10px', color: '#222' }}>📈 Live Presale Stats</h3>
   
@@ -683,67 +731,6 @@ function App() {
         <AirdropClaim />
       </div>
 
-{/* Contract Links */}
-<div style={{
-  backgroundColor: '#0f172a',
-  padding: '20px',
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-  borderBottom: '2px solid #1e293b',
-  gap: '30px'
-}}>
-  <h3 style={{
-    color: '#E2EAF4',
-	fontWeight: '500',
-	fontSize: '14.5px',
-    marginBottom: '10px',
-  }}>
-    📄 Verified Contract Links:
-	</h3>
- 
-    <a
-      href={`https://etherscan.io/address/${tokenAddress}`}
-      target="_blank"
-      rel="noopener noreferrer"
-      style={{
-        color: '#80A6DC',
-        fontWeight: '500',
-        fontSize: '14.5px',
-        textDecoration: 'none',
-        marginRight: '7px'
-      }}
-    >
-      <u>Token Contract</u>
-    </a>
-    <a
-      href={`https://etherscan.io/address/${presaleAddress}`}
-      target="_blank"
-      rel="noopener noreferrer"
-      style={{
-        color: '#80A6DC',
-        fontWeight: '500',
-        fontSize: '14.5px',
-        textDecoration: 'none',
-        marginRight: '7px'
-      }}
-    >
-      <u>Presale Contract</u>
-    </a>
-    <a
-      href={`https://etherscan.io/address/${stakingAddress}`}
-      target="_blank"
-      rel="noopener noreferrer"
-      style={{
-        color: '#80A6DC',
-        fontWeight: '500',
-        fontSize: '14.5px',
-        textDecoration: 'none'
-      }}
-    >
-      <u>Staking Contract</u>
-    </a>
-   </div>
 {/* Contact Footer */}
 <footer style={{
   backgroundColor: '#f7f9fc',

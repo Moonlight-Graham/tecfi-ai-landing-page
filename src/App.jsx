@@ -579,7 +579,7 @@ function App() {
     </div>
 
     <div style={{ backgroundColor: '#e6f7e6', padding: '16px', borderRadius: '10px' }}>
-      <h4 style={{ color: '#EA1818', marginBottom: '8px' }}>Creator Rewards</h4>
+      <h4 style={{ color: '#4A4331', marginBottom: '8px' }}>Creator Rewards</h4>
       <p style={{ fontSize: '14px', color: '#333' }}>A modest 5% allocation ensures fairness, avoiding common 'dev dump' patterns.</p>
     </div>
   </div>

@@ -10,23 +10,23 @@ const data = [
   { name: 'Liquidity Pool', value: 15 }
 ];
 
-const COLORS = ['#07C71E', '#0D66F6', '#EFB112', '#7A0BA6', '#EA1818', '#7A7B7B'];
+const COLORS = ['#07C71E', '#0D66F6', '#EFB112', '#7A0BA6', '#4A4331', '#7A7B7B'];
 
 const renderCustomLabel = ({ name, value }) => {
-  return `${name} ${value}%`;
+  return `(${value}%)`;
 };
 
 export default function TokenomicsChart() {
   return (
     <div style={{ textAlign: 'center', padding: '2rem', background: '#f1f5f9', textSize: '12px' }}>
       <h2 style={{ fontWeight: '600', marginBottom: '10px' }}>📊 Tokenomics</h2>
-      <PieChart width={440} height={360}>
+      <PieChart width={400} height={360}>
         <Pie
           data={data}
           cx="50%"
           cy="50%"
           label={renderCustomLabel}
-          outerRadius={45}
+          outerRadius={75}
           fill="#8884d8"
           dataKey="value"
         >

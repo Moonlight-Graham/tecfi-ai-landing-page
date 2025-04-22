@@ -228,13 +228,15 @@ function App() {
 
 <div style={{
   backgroundColor: '#3B496A',
-  color: '#fff',
-  padding: '10px 20px',
-  borderRadius: '0px',
-  marginTop: '0px',
+  color: '#FFF',
+  padding: '20px',
+  marginTop: '20px',
+  marginBottom: '20px',
+  borderRadius: '12px',
+  border: '1px solid #ddd',
   boxShadow: '0 8px 24px rgba(0, 0, 0, 0.3)',
   textAlign: 'center',
-  maxWidth: '700px',
+  maxWidth: '400px',
   margin: '20px auto'
 }}>
   <h2 style={{
@@ -402,10 +404,10 @@ function App() {
 <div style={{
   backgroundColor: '#FAFBFC',
   border: '1px solid #ddd',
-  borderRadius: '10px',
+  borderRadius: '12px',
   padding: '20px',
-  maxWidth: '600px',
-  margin: '30px auto',
+  maxWidth: '400px',
+  margin: '20px auto',
   textAlign: 'center',
   boxShadow: '0 2px 8px rgba(0,0,0,0.05)'
 }}>
@@ -428,8 +430,8 @@ function App() {
     overflow: 'hidden',
     height: '16px',
     width: '100%',
-    maxWidth: '400px',
-    margin: '0 auto'
+    maxWidth: '380px',
+    margin: '20px auto'
   }}>
     <div style={{
       width: `${Math.min((parseFloat(ethRaised) / 100) * 100, 100)}%`,
@@ -644,7 +646,7 @@ function App() {
   />
 
   <h2 style={{ fontSize: '24px', color: '222', marginBottom: '8px', textAlign: 'center' }}>
-    👨‍💻 Meet the Founder 
+    👨‍💻 Meet the Founder 👨‍💻
 	</h2>
   <h3 style={{ fontSize: '22px', color: '222', marginBottom: '0px', textAlign: 'center' }}>
         Ryan R. Putz
@@ -684,12 +686,12 @@ function App() {
 {/* Contract Links */}
 <div style={{
   backgroundColor: '#0f172a',
-  padding: '15px 60px',
+  padding: '20px',
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
   borderBottom: '2px solid #1e293b',
-  gap: '40px'
+  gap: '20px'
 }}>
   <h3 style={{
     color: '#E2EAF4',

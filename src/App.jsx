@@ -5,12 +5,13 @@ import tokenABI from './abi/BrainzyTokenABI.json';
 import presaleABI from './abi/PresaleContractABI.json';
 import { SocialIcon } from 'react-social-icons'
 import AirdropClaim from './components/AirdropClaim';
+import TokenomicsChart from './components/TokenomicsChart';
 
 // Smart contract addresses
 const tokenAddress = '0xDD9d0827Ee76Ae85762DD30976C3883bbC89A0D5';
 const presaleAddress = '0x93e0ce76D6CA06B6Bb6AEd1bd586F1Bc64dB623d';
 const stakingAddress = '0xF1A5df39FBDf23459ad1cb6D2633F857C2bAebfa';
-const presaleStartTime = 1746057600; // May 1, 2025 00:00 GMT
+const presaleStartTime = 1746057600;
 
 function App() {
   const [account, setAccount] = useState(null);
@@ -135,35 +136,30 @@ function App() {
       
 {/* HEADER */}
 <div style={{
-  backgroundColor: 'white',
-  padding: '5px 0px',
-  borderBottom: '.5px solid #ccc',
+  backgroundColor: '#ffffff',
+  padding: '20px 0',
+  borderBottom: '1px solid #ddd',
   textAlign: 'center',
-  maxWidth: '100%',
-  wordWrap: 'break-word',
-  margin: '0px',
-  width: '100%'
+  boxShadow: '0 2px 6px rgba(0,0,0,0.05)',
 }}>
-{/* 🔥 PRESALE BANNER (scrolling) */}
-<div style={{
-  backgroundColor: '#0f172a',
-  color: 'white',
-  padding: '8px 0',
-  overflow: 'hidden',
-  whiteSpace: 'nowrap',
-  fontSize: '15.5px',
-  fontWeight: '500',
-  borderTopLeftRadius: '0px',
-  borderTopRightRadius: '0px',
-  position: 'relative'
-}}>
+{/* 🔥 PRESALE BANNER */}
   <div style={{
-    display: 'inline-block',
-    paddingLeft: '100%',
-    animation: 'scrollBanner 30s linear infinite'
+    backgroundColor: '#0f172a',
+    color: '#fff',
+    padding: '10px 0',
+    fontSize: '15px',
+    fontWeight: '500',
+    overflow: 'hidden',
+    position: 'relative',
+    whiteSpace: 'nowrap',
   }}>
-    🚀 Presale Goes Live and Begins on May 1 and Ends on June 5!   ·   Presale price increases every 7 days! ·  Be an Early Adopter and Reap the Biggest Rewards!   ·   Follow on X and join Telegram for Updates!
-  </div>
+    <div style={{
+      display: 'inline-block',
+      paddingLeft: '100%',
+      animation: 'scrollBanner 30s linear infinite'
+    }}>
+      🚀 Presale Goes Live May 1 · Price increases weekly · Ends June 5 · Follow us on X and join Telegram!
+    </div>
 
   <style>
     {`
@@ -173,28 +169,33 @@ function App() {
       }
     `}
   </style>
-</div><br />
+</div>
  
-  <p style={{ margin: '6px 8px', color: '#222' }}>
-    The Official Governance dApp of Brainzy AI
-  </p>
-  <h2 style={{
-    margin: '10px',
-    fontSize: '26px',
-    color: '#222'
-  }}>
-    <strong>Brainzy AI</strong></h2>
-	
-<img src="/brainzyai-icon-32x32.png" alt="Brainzy Icon" width={32} height={32} />
-  <p style={{
-    fontWeight: '500',
-    fontSize: '16px',
-    color: '#9ea834',
-    marginTop: '12px',
-	marginBottom: '12px'
-  }}>
-    AI-Governed. DAO Powered. 50% Rewards.
-    </p>  
+  <div style={{ marginTop: '20px' }}>
+    <img src="/brainzyai-icon-32x32.png" alt="Brainzy Icon" width={40} height={40} />
+    <h2 style={{
+      margin: '8px 0 4px 0',
+      fontSize: '28px',
+      color: '#111',
+      fontWeight: '600'
+    }}>Brainzy AI</h2>
+    <p style={{
+      fontSize: '16px',
+      color: '#666',
+      margin: '0 0 6px 0',
+    }}>
+      The Official Governance dApp of Brainzy AI
+    </p>
+	<p style={{
+      fontWeight: '500',
+      fontSize: '15px',
+      color: '#9ea834',
+      marginTop: '4px'
+    }}>
+      AI-Governed. DAO Powered. 50% Rewards.
+    </p>
+  </div>
+  
     <a
       href={`https://etherscan.io/address/${tokenAddress}`}
       target="_blank"
@@ -484,8 +485,7 @@ function App() {
       <div className="section" style={{ backgroundColor: '#3B496A', color: '#fff', padding: '20px', marginTop: '20px', marginBottom: '20px' }}>
         <AirdropClaim />
       </div>
-	  
-      {/* ABOUT SECTION */}
+	  {/* ABOUT SECTION */}
       <div style={{ backgroundColor: '#f5faff', padding: '30px', textAlign: 'center', marginTop: '4px' }}>
         <img 
           src="/brainzyai-icon-32x32.svg"  
@@ -512,74 +512,81 @@ function App() {
         </p>
        
       </div>
+	  {/* TokenomicsChart Section */}
+	 <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', padding: '20px' }}>
+    <TokenomicsChart />
+	</div>
+      
 <div style={{
   backgroundColor: '#f1f8fe',
   padding: '30px',
-  textAlign: 'center',
   borderRadius: '10px',
-  marginTop: '10px',
-  boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+  marginTop: '20px',
+  textAlign: 'center',
+  maxWidth: '1100px',
+  marginLeft: 'auto',
+  marginRight: 'auto',
+  boxShadow: '0 4px 8px rgba(0, 0, 0, 0.05)',
 }}>
-
   <h2 style={{
-    fontWeight: '500',
+    fontWeight: '600',
     fontSize: '24px',
-    color: '222',
-	textAlign: 'center',
-    marginTop: '10px',
-	marginBottom: '12px'
+    color: '#111',
+    marginBottom: '20px'
   }}>
-  <strong>Tokenomics</strong>
+    Token Utility & Distribution
   </h2>
-  <p style={{ fontWeight: '500', fontSize: '16px', maxWidth: '900px', margin: '0 auto', lineHeight: '1.6', color: '#444' }}> <strong>Total Supply = 500,000,000 BRANI</strong> <br />The $BRANI token is designed to be the cornerstone of the Brainzy AI ecosystem. Here’s the breakdown of how tokens are allocated and utilized:
+  <p style={{
+    fontSize: '16px',
+    color: '#444',
+    marginBottom: '24px',
+    maxWidth: '900px',
+    marginLeft: 'auto',
+    marginRight: 'auto'
+  }}>
+    <strong>Total Supply:</strong> 500,000,000 BRANI<br />
+    Each category below represents a key component of Brainzy AI’s token economy and utility:
   </p>
-  <div style={{ marginTop: '20px', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '30px' }}>
-    <div style={{ backgroundColor: '#e6f7ff', padding: '20px', textAlign: 'justify', borderRadius: '10px' }}>
-      <h4 style={{ fontWeight: '500', fontSize: '20px', color: '#417ebf', textAlign: 'center' }}>
-  <u>Airdrop - 10%</u><br />
-  <span style={{ color: '#9ea834', fontSize: '16px' }}>50,000,000 BRANI</span>
-</h4>
-      <p style={{ fontSize: '16px', color: '#444' }}>Approximately 500 BRANI tokens per wallet are available to claim for 100,000 eligible wallets.</p>   
-	</div>
-    <div style={{ backgroundColor: '#e6ffed', padding: '20px', textAlign: 'justify', borderRadius: '10px' }}>
-      <h4 style={{ fontWeight: '500', fontSize: '20px', color: '#417ebf', textAlign: 'center' }}>
-	  <u>DAO Treasury - 20%</u><br />
-	  <span style={{ color: '#9ea834', fontSize: '16px' }}>100,000,000 BRANI</span>
-	  </h4>
-      <p style={{ fontSize: '16px', color: '#444' }}>The DAO Treasury tokens are allocated to a Safe wallet that requires two signers to exchange these tokens. The BRANI Creator is currently the only signatory. Once the token is launched, AI will decide which token holder wallet will act as the second signatory on the DAO Treasury. At that time, the use of the DAO Treasury is dependent on token holder proposals and AI decisions.</p>
+
+  <div style={{
+    display: 'grid',
+    gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+    gap: '20px',
+  }}>
+    <div style={{ backgroundColor: '#e6f7ff', padding: '16px', borderRadius: '10px' }}>
+      <h4 style={{ color: '#417ebf', marginBottom: '8px' }}>Airdrop</h4>
+      <p style={{ fontSize: '14px', color: '#333' }}>500 BRANI tokens per wallet are available to claim for up to 100,000 wallets.</p>
     </div>
-	<div style={{ backgroundColor: '#f6f0ff', padding: '20px', textAlign: 'justify', borderRadius: '10px' }}>
-      <h4 style={{ fontWeight: '500', fontSize: '20px', color: '#417ebf', textAlign: 'center' }}>
-	  <u>Staking & Rewards - 30%</u><br />
-	  <span style={{ color: '#9ea834', fontSize: '16px' }}>150,000,000 BRANI</span>
-	  </h4>
-      <p style={{ fontSize: '16px', color: '#444' }}>The Staking & Rewards Tokens are allocated in three parts: (1) 100,000,000 tokens dedicated to token holders who <strong>Stake</strong> their tokens and earn the 50% APY rewards; (2) 25,000,000 tokens allocated to the Presale to reward token holders and early adopters of BRANI; and (3) 25,000,000 tokens for future <strong>Rewards</strong>, which will be allocated in accordance with DAO processes and token holder proposals that are decided by AI.</p>
+
+    <div style={{ backgroundColor: '#f6f0ff', padding: '16px', borderRadius: '10px' }}>
+      <h4 style={{ color: '#7A0BA6', marginBottom: '8px' }}>Staking & Rewards</h4>
+      <p style={{ fontSize: '14px', color: '#333' }}>Split into staking incentives, presale rewards, and future DAO-based rewards.</p>
     </div>
-    <div style={{ backgroundColor: '#fff7e6', padding: '20px', textAlign: 'justify', borderRadius: '10px' }}>
-      <h4 style={{ fontWeight: '500', fontSize: '20px', color: '#417ebf', textAlign: 'center' }}>
-	  <u>Liquidity Pool - 15%</u><br />
-	  <span style={{ color: '#9ea834', fontSize: '16px' }}>75,000,000 BRANI</span>
-	  </h4>
-      <p style={{ fontSize: '16px', color: '#444' }}>The Liquidity Pool will be locked once adequately funded at an anticpated listing price that is 25% greater than the Presale price.</p>
+
+    <div style={{ backgroundColor: '#fff7e6', padding: '16px', borderRadius: '10px' }}>
+      <h4 style={{ color: '#EFB112', marginBottom: '8px' }}>Liquidity Pool</h4>
+      <p style={{ fontSize: '14px', color: '#333' }}>Locked when anticipated listing price objective of (100,000 BRANI = 1 ETH) is achieved.</p>
     </div>
-    <div style={{ backgroundColor: '#f3ffe6', padding: '20px', textAlign: 'justify', borderRadius: '10px' }}>
-      <h4 style={{ fontWeight: '500', fontSize: '20px', color: '#417ebf', textAlign: 'center' }}>
-	  <u>Marketing & Listings - 20%</u><br />
-	  <span style={{ color: '#9ea834', fontSize: '16px' }}>100,000,000 BRANI</span>
-	  </h4>
-      <p style={{ fontSize: '16px', color: '#444' }}>25,000,000 of these tokens have been allocated to the Presale of BRANI to ensure the liquidity pool is properly funded.  The remaining tokens will be used to build partnerships with social media content creators as well as listings with exchanges to ensure the BRANI ecosystem continues to flourish and grow.</p>
+
+    <div style={{ backgroundColor: '#e6ffed', padding: '16px', borderRadius: '10px' }}>
+      <h4 style={{ color: '#07C71E', marginBottom: '8px' }}>Marketing & Listings</h4>
+      <p style={{ fontSize: '14px', color: '#333' }}>Used to fund influencer partnerships and exchange listings post-launch.</p>
     </div>
-    <div style={{ backgroundColor: '#e6f7e6', padding: '20px', textAlign: 'justify', borderRadius: '10px' }}>
-      <h4 style={{ fontWeight: '500', fontSize: '20px', color: '#417ebf', textAlign: 'center' }}>
-	  <u>Creator Rewards - 5%</u><br />
-	  <span style={{ color: '#9ea834', fontSize: '16px' }}>25,000,000 BRANI</span>
-	  </h4>
-      <p style={{ fontSize: '16px', color: '#444' }}>The average percentage of token supply reserved by creators for their own rewards varies, but on average is in the range of 10% - 30%. The 5% of BRANI allocated to Creator Rewards was done intentionally to ensure a "Fair Launch" and prevent the "Rug Pulling" and "Pump and Dump" that occurs in so many crypto coins today.</p>
+
+    <div style={{ backgroundColor: '#f3ffe6', padding: '16px', borderRadius: '10px' }}>
+      <h4 style={{ color: '#EA1818', marginBottom: '8px' }}>DAO Treasury</h4>
+      <p style={{ fontSize: '14px', color: '#333' }}>Held in a multisig wallet, controlled by token holders via AI-powered proposals.</p>
+    </div>
+
+    <div style={{ backgroundColor: '#e6f7e6', padding: '16px', borderRadius: '10px' }}>
+      <h4 style={{ color: '#7A7B7B', marginBottom: '8px' }}>Creator Rewards</h4>
+      <p style={{ fontSize: '14px', color: '#333' }}>A modest 5% allocation ensures fairness, avoiding common 'dev dump' patterns.</p>
     </div>
   </div>
-
+  
 </div>
 <div style={{
+  marginTop: '10px',
   marginBottom: '20px',
   textAlign: 'center'
 }}>

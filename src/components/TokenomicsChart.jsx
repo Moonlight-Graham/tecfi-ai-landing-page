@@ -2,12 +2,12 @@ import React from 'react';
 import { PieChart, Pie, Cell, Legend, Tooltip } from 'recharts';
 
 const data = [
-  { name: 'Staking & Rewards', value: 30 },
-  { name: 'DAO Treasury', value: 25 }, 
+  { name: 'StakingRewards', value: 30 },
+  { name: 'DAO.Treasury', value: 25 }, 
   { name: 'Airdrop', value: 10 },
-  { name: 'Marketing & Listings', value: 20 },
-  { name: 'Creator Rewards', value: 5 },
-  { name: 'Liquidity Pool', value: 15 }
+  { name: 'Marketing&Listings', value: 20 },
+  { name: 'CreatorRewards', value: 5 },
+  { name: 'LiquidityPool', value: 15 }
 ];
 
 const COLORS = ['#07C71E', '#0D66F6', '#EFB112', '#7A0BA6', '#EA1818', '#7A7B7B'];
@@ -26,7 +26,7 @@ export default function TokenomicsChart() {
           cx="50%"
           cy="50%"
           label={renderCustomLabel}
-          outerRadius={35}
+          outerRadius={45}
           fill="#8884d8"
           dataKey="value"
         >

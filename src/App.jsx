@@ -554,32 +554,32 @@ function App() {
     gap: '20px',
   }}>
     <div style={{ backgroundColor: '#e6f7ff', padding: '16px', borderRadius: '10px' }}>
-      <h4 style={{ color: '#417ebf', marginBottom: '8px' }}>Airdrop</h4>
+      <h4 style={{ color: '#EFB112', marginBottom: '8px' }}>Airdrop</h4>
       <p style={{ fontSize: '14px', color: '#333' }}>500 BRANI tokens per wallet are available to claim for up to 100,000 wallets.</p>
     </div>
 
     <div style={{ backgroundColor: '#f6f0ff', padding: '16px', borderRadius: '10px' }}>
-      <h4 style={{ color: '#7A0BA6', marginBottom: '8px' }}>Staking & Rewards</h4>
+      <h4 style={{ color: '#07C71E', marginBottom: '8px' }}>Staking & Rewards</h4>
       <p style={{ fontSize: '14px', color: '#333' }}>Split into staking incentives, presale rewards, and future DAO-based rewards.</p>
     </div>
 
     <div style={{ backgroundColor: '#fff7e6', padding: '16px', borderRadius: '10px' }}>
-      <h4 style={{ color: '#EFB112', marginBottom: '8px' }}>Liquidity Pool</h4>
+      <h4 style={{ color: '#7A7B7B', marginBottom: '8px' }}>Liquidity Pool</h4>
       <p style={{ fontSize: '14px', color: '#333' }}>Locked when anticipated listing price objective of (100,000 BRANI = 1 ETH) is achieved.</p>
     </div>
 
     <div style={{ backgroundColor: '#e6ffed', padding: '16px', borderRadius: '10px' }}>
-      <h4 style={{ color: '#07C71E', marginBottom: '8px' }}>Marketing & Listings</h4>
+      <h4 style={{ color: '#7A0BA6', marginBottom: '8px' }}>Marketing & Listings</h4>
       <p style={{ fontSize: '14px', color: '#333' }}>Used to fund influencer partnerships and exchange listings post-launch.</p>
     </div>
 
     <div style={{ backgroundColor: '#f3ffe6', padding: '16px', borderRadius: '10px' }}>
-      <h4 style={{ color: '#EA1818', marginBottom: '8px' }}>DAO Treasury</h4>
+      <h4 style={{ color: '#0D66F6', marginBottom: '8px' }}>DAO Treasury</h4>
       <p style={{ fontSize: '14px', color: '#333' }}>Held in a multisig wallet, controlled by token holders via AI-powered proposals.</p>
     </div>
 
     <div style={{ backgroundColor: '#e6f7e6', padding: '16px', borderRadius: '10px' }}>
-      <h4 style={{ color: '#7A7B7B', marginBottom: '8px' }}>Creator Rewards</h4>
+      <h4 style={{ color: '#EA1818', marginBottom: '8px' }}>Creator Rewards</h4>
       <p style={{ fontSize: '14px', color: '#333' }}>A modest 5% allocation ensures fairness, avoiding common 'dev dump' patterns.</p>
     </div>
   </div>

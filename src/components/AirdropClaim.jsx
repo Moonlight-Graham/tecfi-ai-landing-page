@@ -96,6 +96,7 @@ export default function AirdropClaim() {
     }}>
       <h2>🎁 BRANI Airdrop</h2>
       <p>Claim 500 BRANI per wallet<br />(Available: April 25 – May 30)</p>
+	  <p>Supply will be limited on this Airdrop.</p>
 
       {countdown && !isLive && (
         <p style={{ color: '#facc15', fontWeight: '550' }}>⏳ Airdrop opens in: {countdown}</p>

@@ -146,15 +146,15 @@ function App() {
 }}>
 {/* 🔥 PRESALE BANNER (scrolling) */}
 <div style={{
-  backgroundColor: '#252D42',
+  backgroundColor: '#3B496A',
   color: 'white',
   padding: '8px 0',
   overflow: 'hidden',
   whiteSpace: 'nowrap',
   fontSize: '15.5px',
   fontWeight: '500',
-  borderTopLeftRadius: '12px',
-  borderTopRightRadius: '12px',
+  borderTopLeftRadius: '0px',
+  borderTopRightRadius: '0px',
   position: 'relative'
 }}>
   <div style={{
@@ -199,12 +199,12 @@ function App() {
 </div>
 {/* SOCIAL LINKS SECTION */}
 <div style={{
-  backgroundColor: '#252D42',
-  padding: '10px 0',
+  backgroundColor: '#3B496A',
+  padding: '5px 0',
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
-  borderBottom: '2px solid #1e293b',
+  borderBottom: '0px solid #1e293b',
   gap: '40px'
 }}>
   <SocialIcon url="https://x.com/BrainzyAI"
@@ -227,7 +227,7 @@ function App() {
 </div>
 
 <div style={{
-  backgroundColor: '#252D42',
+  backgroundColor: '#3B496A',
   color: '#fff',
   padding: '10px 20px',
   borderRadius: '0px',
@@ -677,7 +677,7 @@ function App() {
   </p>
 </div>
 {/* Airdrop Section */}
-      <div className="section" style={{ backgroundColor: '#252D42', color: '#fff', padding: '20px', marginTop: '20px', marginBottom: '20px' }}>
+      <div className="section" style={{ backgroundColor: '#3B496A', color: '#fff', padding: '20px', marginTop: '20px', marginBottom: '20px' }}>
         <AirdropClaim />
       </div>
 

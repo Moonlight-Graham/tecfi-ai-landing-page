@@ -136,7 +136,7 @@ function App() {
       
 {/* HEADER */}
 <div style={{
-  backgroundColor: '#FBFAFA',
+  backgroundColor: 'white',
   padding: '20px 0',
   borderBottom: '1px solid #ddd',
   textAlign: 'center',

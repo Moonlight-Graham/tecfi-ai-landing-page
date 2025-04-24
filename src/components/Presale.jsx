@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { ethers } from 'ethers';
-import tokenABI from './abi/BrainzyTokenABI.json';
-import presaleABI from './abi/PresaleContractABI.json';
+import tokenABI from './abi/XynapzCoinABI.json';
+import presaleABI from './abi/XynapzPresaleABI.json';
 
-const tokenAddress = '0xDD9d0827Ee76Ae85762DD30976C3883bbC89A0D5';
-const presaleAddress = '0x93e0ce76D6CA06B6Bb6AEd1bd586F1Bc64dB623d';
-const presaleStartTime = 1746057600;
+const tokenAddress = '0x72608ECBDfd2516F6Fe1d9341A9019C4305E0BA8';
+const presaleAddress = '0x1D8Ba8577C3012f614695393fcfDa7C308622939';
+const presaleStartTime = 1746464400;
 
 const [account, setAccount] = useState(null);
   const [tokenBalance, setTokenBalance] = useState(null);

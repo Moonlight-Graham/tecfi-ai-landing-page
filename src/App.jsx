@@ -1,16 +1,16 @@
 import { useState, useEffect } from 'react';
 import { ethers } from 'ethers';
 import Dashboard from './components/Dashboard';
-import tokenABI from './abi/VerdictTokenABI.json';
-import presaleABI from './abi/VerdictPresaleABI.json';
+import tokenABI from './abi/XynapzCoinABI.json';
+import presaleABI from './abi/XynapzPresaleABI.json';
 import { SocialIcon } from 'react-social-icons'
 import AirdropClaim from './components/AirdropClaim';
 import TokenomicsChart from './components/TokenomicsChart';
 
 // Smart contract addresses
-const tokenAddress = '0x61e22f2715Dbb98Ca09277F0FD08ab46a313563d';
-const presaleAddress = '0xd30B473b70B25EF84BD04c8Be81BeCA2fB7Fe89D';
-const stakingAddress = '0x412356f03D7d966c76871b757Fa45A6182d8E1B4';
+const tokenAddress = '0x72608ECBDfd2516F6Fe1d9341A9019C4305E0BA8';
+const presaleAddress = '0x1D8Ba8577C3012f614695393fcfDa7C308622939';
+const stakingAddress = '0xe003e6c6f2B9F36cAF30FF6985Ee3f52A0F1a8e1';
 const presaleStartTime = 1746464400;
 
 function App() {
@@ -174,20 +174,20 @@ function App() {
 	  fontSize: '16px',
       color: '#666',
       margin: '0 0 6px 6px',
-    }}>The Official Governance dApp of Verdict Token</p>
+    }}>The Official Governance dApp of Xynapz Coin</p>
 	<h2 style={{
-      margin: '8px 4px 4px 0',
+      margin: '8px 4px 4px 4px',
       fontSize: '28px',
-      color: '#38bdf8',
+      color: '222',
       fontWeight: '600'
-    }}>Verdict Token</h2>
+    }}>Xynapz Coin</h2>
     <p style={{
       fontSize: '18px',
-      color: '#661068',
+      color: '#38bdf8',
       margin: '0 0 6px 0',
-    }}>Where Holders Vote & AI Issues Verdict</p>
+    }}>Holders Vote & AI Decides</p>
 	<div style={{ marginTop: '15px', marginBottom: '10' }}>
-    <img src="/brainzyai-icon-32x32.png" alt="Brainzy Icon" width={48} height={48} />
+    <img src="/brainzyai-icon-32x32.svg" alt="Brainzy Icon" width={48} height={48} />
 	<p style={{
       fontWeight: '500',
       fontSize: '15px',
@@ -207,7 +207,7 @@ function App() {
   borderBottom: '0px solid #1e293b',
   gap: '30px'
 }}>
-  <SocialIcon url="https://x.com/VerdictToken"
+  <SocialIcon url="https://x.com/"
     style={{
       height: 30,
       width: 30,
@@ -216,7 +216,7 @@ function App() {
       boxShadow: '0 0 6px #38bdf8'
     }} />
     
-  <SocialIcon url="https://t.me/verdicttoken"
+  <SocialIcon url="https://t.me/"
     style={{
       height: 30,
       width: 30,
@@ -244,7 +244,7 @@ function App() {
     color: '#38bdf8',
     marginBottom: '12px'
   }}>
-    🚀 Verdict Token Presale 
+    🚀 Xynapz Coin Presale 
   </h2>
 
   <p style={{
@@ -282,8 +282,8 @@ function App() {
   )}
 
   <p style={{ fontSize: '15px', color: '#cbd5e1', marginBottom: '12px' }}>
-    💹 1 ETH = 150,000 VDTO (Week 1)<br />
-    1 VDTO ≈ ${ethPrice ? (ethPrice / 150000).toFixed(6) : '...'} USD
+    💹 1 ETH = 150,000 XNAPZ (Week 1)<br />
+    1 XNAPZ ≈ ${ethPrice ? (ethPrice / 150000).toFixed(6) : '...'} USD
   </p>
 
   {!account ? (
@@ -325,7 +325,7 @@ function App() {
       />
 	  {contributionAmount && !isNaN(contributionAmount) && (
   <p style={{ fontSize: '15px', marginTop: '5px', color: '#333' }}>
-    💸 You’ll receive: <strong>{(parseFloat(contributionAmount) * 150000).toLocaleString()}</strong> VDTO
+    💸 You’ll receive: <strong>{(parseFloat(contributionAmount) * 150000).toLocaleString()}</strong> XNAPZ
   </p>
 )}
 
@@ -345,7 +345,7 @@ function App() {
 		  cursor: 'pointer'
         }}
       >
-        {contributing ? '⏳ Processing...' : '💸 Buy $VDTO'}
+        {contributing ? '⏳ Processing...' : '💸 Buy $XNAPZ'}
       </button>
 
       <br />
@@ -363,7 +363,7 @@ function App() {
 		  cursor: 'pointer'
         }}
       >
-        🎁 Claim $VDTO (after presale ends)
+        🎁 Claim $XNAPZ (after presale ends)
       </button>
 
       <br />
@@ -415,7 +415,7 @@ function App() {
     <strong>Total ETH Raised:</strong> {parseFloat(ethRaised).toFixed(2)} ETH
   </p>
   <p style={{ fontSize: '16px', marginBottom: '8px' }}>
-    <strong>VDTO Tokens Sold:</strong> {(parseFloat(ethRaised) * 150000).toLocaleString()} VDTO
+    <strong>XNAPZ Tokens Sold:</strong> {(parseFloat(ethRaised) * 150000).toLocaleString()} XNAPZ
   </p>
   <p style={{ fontSize: '16px', marginBottom: '12px' }}>
     <strong>Presale Target:</strong> 350 ETH
@@ -450,18 +450,18 @@ function App() {
           alt="Brainzy AI Icon" 
           style={{ width: '48px', height: '48px', marginTop: '10px', marginBottom: '10px', maxWidth: '100%' }} 
         />
-        <h2 style={{ fontSize: '26px', marginBottom: '15px', color: '#222' }}>About Verdict Token</h2>
+        <h2 style={{ fontSize: '26px', marginBottom: '15px', color: '#222' }}>About Xynapz Coin</h2>
         <p style={{ fontSize: '16px', maxWidth: '800px', margin: '0 auto 15px', lineHeight: '1.6', color: '#444', textAlign: 'justify' }}>
-          <strong>Verdict Token ($VDTO)</strong> is a governance-driven DeFi token built on Ethereum.  It is designed to merge the power of Artificial Intelligence ("AI") with Decentralized Finance ("DeFi").  VDTO empowers token holders to guide the evolution of AI development through transparent, off-chain DAO processes. 
+          <strong>Xynapz Coin ($XNAPZ)</strong> is a governance-driven DeFi token built on Ethereum.  It is designed to merge the power of Artificial Intelligence ("AI") with Decentralized Finance ("DeFi").  XNAPZ empowers token holders to guide the evolution of AI development through transparent, off-chain DAO processes. 
         </p>
         <img 
           src="/brainzyai-icon-32x32.svg" 
           alt="Brainzy AI Icon" 
           style={{ width: '48px', height: '48px', marginTop: '20px', marginBottom: '10px', maxWidth: '100%' }} 
         />
-        <h2 style={{ fontSize: '24px', marginBottom: '15px', color: '#222' }}>Holders Vote & Verdict by AI</h2>
+        <h2 style={{ fontSize: '24px', marginBottom: '15px', color: '#222' }}>Holders Vote & AI Decides</h2>
         <p style={{ fontSize: '16px', maxWidth: '800px', margin: '0 auto 15px', lineHeight: '1.6', color: '#444', textAlign: 'justify' }}>
-          VDTO rewards participation and transparency. Twenty Percent (20%) of the token supply goes to a DAO Treasury locked in a Safe Wallet. Token holders get to create proposals and vote on which proposals should be submitted to AI for decision. AI decides based on a "Token Holder Best Interest" algorithm, and AI provides a reasoning statment for the decision. This "Best Interest" algorithm will continually get stronger and refined as AI is able to collect and analyze the data from the results of prior implemented decisions. This is what truly makes VDTO unique, token holders are able to help shape the future of the Verdict Token ecosystem and AI DeFi.
+          XNAPZ rewards participation and transparency. Twenty Percent (20%) of the token supply goes to a DAO Treasury locked in a Safe Wallet. Token holders get to create proposals and vote on which proposals should be submitted to AI for decision. AI decides based on a "Token Holder Best Interest" algorithm, and AI provides a reasoning statment for the decision. This "Best Interest" algorithm will continually get stronger and refined as AI is able to collect and analyze the data from the results of prior implemented decisions. This is what truly makes XNAPZ unique, token holders are able to help shape the future of the Xynapz Coin ecosystem and AI DeFi.
         </p>
 		<p style={{ fontSize: '18px', marginTop: '20px', color: '#1f00c2' }}>
           <a href="/whitepaper.pdf" target="_blank" rel="noopener noreferrer" style={{ color: '#1f00c2', fontWeight: '600', textDecoration: 'none' }}>
@@ -502,8 +502,8 @@ function App() {
     marginLeft: 'auto',
     marginRight: 'auto'
   }}>
-    <strong>Total Supply:</strong> 500,000,000 VDTO<br />
-    Each category below represents a key component of Verdict Token’s token economy and utility:
+    <strong>Total Supply:</strong> 500,000,000 XNAPZ<br />
+    Each category below represents a key component of Xynapz Coin’s token economy and utility:
   </p>
 
   <div style={{
@@ -513,7 +513,7 @@ function App() {
   }}>
     <div style={{ backgroundColor: '#e6f7ff', padding: '16px', borderRadius: '10px' }}>
       <h4 style={{ color: '#EFB112', marginBottom: '8px' }}>Airdrop</h4>
-      <p style={{ fontSize: '14px', color: '#333' }}>500 VDTO tokens per wallet are available to claim for up to 100,000 wallets.</p>
+      <p style={{ fontSize: '14px', color: '#333' }}>500 XNAPZ tokens per wallet are available to claim for up to 100,000 wallets.</p>
     </div>
 
     <div style={{ backgroundColor: '#f6f0ff', padding: '16px', borderRadius: '10px' }}>
@@ -523,7 +523,7 @@ function App() {
 
     <div style={{ backgroundColor: '#fff7e6', padding: '16px', borderRadius: '10px' }}>
       <h4 style={{ color: '#7A7B7B', marginBottom: '8px' }}>Liquidity Pool</h4>
-      <p style={{ fontSize: '14px', color: '#333' }}>Locked when anticipated listing price objective of (100,000 VDTO = 1 ETH) is achieved.</p>
+      <p style={{ fontSize: '14px', color: '#333' }}>Locked when anticipated listing price objective of (100,000 XNAPZ = 1 ETH) is achieved.</p>
     </div>
 
     <div style={{ backgroundColor: '#e6ffed', padding: '16px', borderRadius: '10px' }}>
@@ -554,7 +554,7 @@ function App() {
     marginBottom: '10px',
     letterSpacing: '1px'
   }}>
-    🗺️ $VDTO Roadmap
+    🗺️ $XNAPZ Roadmap
   </h2>
   <p style={{
     fontSize: '16px',
@@ -595,7 +595,7 @@ function App() {
         <li>Website & Whitepaper Live✅</li>
         <li>Smart Contract Verified✅</li>
         <li>Telegram + Twitter Launch✅</li>
-        <li><strong>Presale Starts: May 1, 2025</strong></li>
+        <li><strong>Presale Starts: May 5, 2025</strong></li>
         <li>Token Claim Opens After Presale</li>
 		<li>DAO Governance Deployed</li>
         <li>Proposal + Voting Enabled</li>
@@ -613,7 +613,7 @@ function App() {
     }}>
       <h3 style={{ color: '#417ebf' }}>📍 Q3 — Staking & Utility</h3>
       <ul style={{ paddingLeft: '20px' }}>
-        <li>Open $VDTO Staking Pools</li>
+        <li>Open $XNAPZ Staking Pools</li>
         <li>Rewards + Lock/Earn Functions</li>
         <li>Community Leaderboard Launch</li>
 		<li>AI Voting Engine Deployed</li>
@@ -668,7 +668,7 @@ function App() {
   />
   <p>
     📬 <a 
-      href="mailto:developer@verdicttoken.com" 
+      href="mailto:developer@xynapzcoin.com" 
       style={{ color: '#1f00c2', textDecoration: 'none', fontWeight: '500' }}
     >
       <u>developer@verdicttoken.com</u>
@@ -683,8 +683,8 @@ function App() {
     textAlign: 'justify'
   }}>
     Ryan is a licensed attorney turned full-time Web3 and AI developer. With a background in law and a passion for DeFi, 
-    he brings legal expertise and technical innovation to the Verdict Token project. As the sole founder of Verdict Token, 
-    Ryan is fully doxxed and publicly verifiable. His commitment to transparency and ethics sets VDTO apart.
+    he brings legal expertise and technical innovation to the Verdict Token project. As the sole founder of Xynapz Coin, 
+    Ryan is fully doxxed and publicly verifiable. His commitment to transparency and ethics sets XNAPZ apart.
   </p>
 </div>
 
@@ -703,10 +703,10 @@ function App() {
   </p>
   <p>
     📬 <a 
-      href="mailto:developer@verdicttoken.com" 
+      href="mailto:developer@xynapzcoin.com" 
       style={{ color: '#1f00c2', textDecoration: 'none', fontWeight: '500' }}
     >
-      <u>developer@verdicttoken.com</u>
+      <u>developer@xynapzcoin.com</u>
     </a>
   </p>
 </footer>

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { ethers } from 'ethers';
 
-const AIRDROP_CONTRACT = '0x52F05409130d915D2731Ae1c772205aF3fF3C9B5';
+const AIRDROP_CONTRACT = '0x7aed42003CD5Ac4E400D63aC36Eb39c56560A1A1';
 
 const AIRDROP_ABI = [
   'function claim() public',
@@ -9,8 +9,8 @@ const AIRDROP_ABI = [
 ];
 
 // Fixed start and end times (in seconds)
-const AIRDROP_START = 1745773200 * 1000; // April 27, 2025 17:00 GMT
-const AIRDROP_END = 1747760400 * 1000;   // May 20, 2025 17:00 GMT
+const AIRDROP_START = 1745791200 * 1000; // April 27, 2025 
+const AIRDROP_END = 1747771200 * 1000;   // May 20, 2025 
 
 export default function AirdropClaim() {
   const [status, setStatus] = useState('');
@@ -40,11 +40,11 @@ export default function AirdropClaim() {
 
       const alreadyClaimed = await contract.claimed(wallet);
       if (alreadyClaimed) {
-        setStatus('❌ You’ve already claimed your VDTO.');
+        setStatus('❌ You’ve already claimed your XNAPZ.');
       } else {
         const tx = await contract.claim();
         await tx.wait();
-        setStatus('✅ Successfully claimed 500 VDTO!');
+        setStatus('✅ Successfully claimed 500 XNAPZ!');
       }
     } catch (err) {
       console.error(err);
@@ -94,8 +94,8 @@ export default function AirdropClaim() {
       margin: '2rem auto',
       boxShadow: '0 0 10px #22d3ee55'
     }}>
-      <h2>🎁 VDTO Airdrop</h2>
-      <p>Claim 500 VDTO per wallet<br />(Available: April 27 – May 20)</p>
+      <h2>🎁 XNAPZ Airdrop</h2>
+      <p>Claim 500 XNAPZ per wallet<br />(Available: April 27 – May 20)</p>
 	  <p>Only 50% of Airdrop Supply is available this Airdrop.</p>
 
       {countdown && !isLive && (

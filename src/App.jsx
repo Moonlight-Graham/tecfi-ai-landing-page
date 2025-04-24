@@ -404,7 +404,7 @@ function App() {
 <div style={{
   padding: '20px',
   textAlign: 'center',
-  backgroundColor: '#FAFBFC',
+  backgroundColor: '#F8E5FD',
   borderRadius: '1rem',
   maxWidth: '600px',
   margin: '2rem auto',
@@ -710,6 +710,7 @@ function App() {
       <u>developer@xynapzcoin.com</u>
     </a>
   </p>
+  <img src="/xnapz-icon-32x32.svg" alt="XNAPZ Icon" width={32} height={32} />
 </footer>
      </div>
     </>

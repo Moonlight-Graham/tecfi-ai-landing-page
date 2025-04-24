@@ -17,7 +17,7 @@ const WalletCard = ({ account, tokenBalance, onDisconnect }) => {
     >
       <div>
         <p><strong>Wallet:</strong> {account}</p>
-        <p><strong>Balance:</strong> {tokenBalance} TECFI</p>
+        <p><strong>Balance:</strong> {tokenBalance} XNAPZ</p>
       </div>
       <button
         onClick={onDisconnect}

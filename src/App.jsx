@@ -684,7 +684,7 @@ function App() {
     textAlign: 'justify'
   }}>
     Ryan is a licensed attorney turned full-time Web3 and AI developer. With a background in law and a passion for DeFi, 
-    he brings legal expertise and technical innovation to the Verdict Token project. As the sole founder of Xynapz Coin, 
+    he brings legal expertise and technical innovation to the Xynapz Coin project. As the sole founder of Xynapz Coin, 
     Ryan is fully doxxed and publicly verifiable. His commitment to transparency and ethics sets XNAPZ apart.
   </p>
 </div>

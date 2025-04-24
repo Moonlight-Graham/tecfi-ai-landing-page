@@ -208,7 +208,7 @@ function App() {
   borderBottom: '0px solid #1e293b',
   gap: '30px'
 }}>
-  <SocialIcon url="https://x.com/"
+  <SocialIcon url="https://x.com/xynapzcoin"
     style={{
       height: 30,
       width: 30,
@@ -447,8 +447,8 @@ function App() {
 	  {/* ABOUT SECTION */}
       <div style={{ backgroundColor: '#f5faff', padding: '30px', textAlign: 'center', marginTop: '4px' }}>
         <img 
-          src="/brainzyai-icon-32x32.svg"  
-          alt="Brainzy AI Icon" 
+          src="/xnapz-icon-32x32.svg"  
+          alt="XNAPZ Icon" 
           style={{ width: '48px', height: '48px', marginTop: '10px', marginBottom: '10px', maxWidth: '100%' }} 
         />
         <h2 style={{ fontSize: '26px', marginBottom: '15px', color: '#222' }}>About Xynapz Coin</h2>
@@ -456,8 +456,8 @@ function App() {
           <strong>Xynapz Coin ($XNAPZ)</strong> is a governance-driven DeFi token built on Ethereum.  It is designed to merge the power of Artificial Intelligence ("AI") with Decentralized Finance ("DeFi").  XNAPZ empowers token holders to guide the evolution of AI development through transparent, off-chain DAO processes. 
         </p>
         <img 
-          src="/brainzyai-icon-32x32.svg" 
-          alt="Brainzy AI Icon" 
+          src="/xnapz-icon-32x32.svg" 
+          alt="XNAPZ Icon" 
           style={{ width: '48px', height: '48px', marginTop: '20px', marginBottom: '10px', maxWidth: '100%' }} 
         />
         <h2 style={{ fontSize: '24px', marginBottom: '15px', color: '#222' }}>Holders Vote & AI Decides</h2>
@@ -650,8 +650,8 @@ function App() {
   marginTop: '20px'
 }}>
   <img 
-    src="/brainzyai-icon-32x32.svg" 
-    alt="Brainzy AI Icon" 
+    src="/xnapz-icon-32x32.svg" 
+    alt="XNAPZ Icon" 
     style={{ width: '48px', height: '48px', marginBottom: '15px' }} 
   />
 

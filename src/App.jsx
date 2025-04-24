@@ -1,17 +1,17 @@
 import { useState, useEffect } from 'react';
 import { ethers } from 'ethers';
 import Dashboard from './components/Dashboard';
-import tokenABI from './abi/BrainzyTokenABI.json';
-import presaleABI from './abi/PresaleContractABI.json';
+import tokenABI from './abi/VerdictTokenABI.json';
+import presaleABI from './abi/VerdictPresaleABI.json';
 import { SocialIcon } from 'react-social-icons'
 import AirdropClaim from './components/AirdropClaim';
 import TokenomicsChart from './components/TokenomicsChart';
 
 // Smart contract addresses
-const tokenAddress = '0xDD9d0827Ee76Ae85762DD30976C3883bbC89A0D5';
-const presaleAddress = '0x93e0ce76D6CA06B6Bb6AEd1bd586F1Bc64dB623d';
-const stakingAddress = '0xF1A5df39FBDf23459ad1cb6D2633F857C2bAebfa';
-const presaleStartTime = 1746057600;
+const tokenAddress = '0x61e22f2715Dbb98Ca09277F0FD08ab46a313563d';
+const presaleAddress = '0xd30B473b70B25EF84BD04c8Be81BeCA2fB7Fe89D';
+const stakingAddress = '0x412356f03D7d966c76871b757Fa45A6182d8E1B4';
+const presaleStartTime = 1746464400;
 
 function App() {
   const [account, setAccount] = useState(null);
@@ -136,7 +136,7 @@ function App() {
       
 {/* HEADER */}
 <div style={{
-  backgroundColor: '#ffffff',
+  backgroundColor: '#FBFAFA',
   padding: '20px 0',
   borderBottom: '1px solid #ddd',
   textAlign: 'center',
@@ -146,7 +146,7 @@ function App() {
   <div style={{
     backgroundColor: '#0f172a',
     color: '#fff',
-    padding: '10px 0',
+    padding: '10px',
     fontSize: '15px',
     fontWeight: '500',
     overflow: 'hidden',
@@ -158,9 +158,8 @@ function App() {
       paddingLeft: '100%',
       animation: 'scrollBanner 30s linear infinite'
     }}>
-      🚀 Presale Goes Live May 1 · Price increases weekly · Ends June 5 · Follow us on X and join Telegram!
+      🚀 Presale Goes Live May 5 · Price increases weekly · Ends June 10 · Follow us on X and join Telegram!
     </div>
-
   <style>
     {`
       @keyframes scrollBanner {
@@ -170,78 +169,34 @@ function App() {
     `}
   </style>
 </div>
- 
-  <div style={{ marginTop: '20px' }}>
-    <img src="/brainzyai-icon-32x32.png" alt="Brainzy Icon" width={40} height={40} />
-    <h2 style={{
-      margin: '8px 0 4px 0',
-      fontSize: '28px',
-      color: '#111',
-      fontWeight: '600'
-    }}>Brainzy AI</h2>
     <p style={{
-      fontSize: '16px',
+      borderTop: '4px',
+	  fontSize: '16px',
       color: '#666',
+      margin: '0 0 6px 6px',
+    }}>The Official Governance dApp of Verdict Token</p>
+	<h2 style={{
+      margin: '8px 4px 4px 0',
+      fontSize: '28px',
+      color: '#38bdf8',
+      fontWeight: '600'
+    }}>Verdict Token</h2>
+    <p style={{
+      fontSize: '18px',
+      color: '#661068',
       margin: '0 0 6px 0',
-    }}>
-      The Official Governance dApp of Brainzy AI
-    </p>
+    }}>Where Holders Vote & AI Issues Verdict</p>
+	<div style={{ marginTop: '15px', marginBottom: '10' }}>
+    <img src="/brainzyai-icon-32x32.png" alt="Brainzy Icon" width={48} height={48} />
 	<p style={{
       fontWeight: '500',
       fontSize: '15px',
       color: '#9ea834',
-      marginTop: '4px'
-    }}>
-      AI-Governed. DAO Powered. 50% Rewards.
-    </p>
-  </div>
-  
-    <a
-      href={`https://etherscan.io/address/${tokenAddress}`}
-      target="_blank"
-      rel="noopener noreferrer"
-      style={{
-        color: '#273C6D',
-        fontWeight: '500',
-        fontSize: '14px',
-        textDecoration: 'none',
-		align: 'center',
-		marginRight: '6.5px'
-      }}
-    >
-      <u>Token Contract</u>
-    </a>
-    <a
-      href={`https://etherscan.io/address/${presaleAddress}`}
-      target="_blank"
-      rel="noopener noreferrer"
-      style={{
-        color: '#273C6D',
-        fontWeight: '500',
-        fontSize: '14px',
-        textDecoration: 'none',
-		align: 'center',
-		marginRight: '6.5px'
-      }}
-    >
-      <u>Presale Contract</u>
-    </a>
-    <a
-      href={`https://etherscan.io/address/${stakingAddress}`}
-      target="_blank"
-      rel="noopener noreferrer"
-      style={{
-        color: '#273C6D',
-        fontWeight: '500',
-        fontSize: '14px',
-        textDecoration: 'none',
-		align: 'center'
-      }}
-    >
-      <u>Staking Contract</u>
-    </a>
+      marginTop: '4px',
+	  marginBottom: '6px',
+    }}>AI-Governed. DAO Powered. 50% Rewards.</p>
+    
 </div>
-
 {/* SOCIAL LINKS SECTION */}
 <div style={{
   backgroundColor: '#ffffff',
@@ -252,7 +207,7 @@ function App() {
   borderBottom: '0px solid #1e293b',
   gap: '30px'
 }}>
-  <SocialIcon url="https://x.com/BrainzyAI"
+  <SocialIcon url="https://x.com/VerdictToken"
     style={{
       height: 30,
       width: 30,
@@ -261,7 +216,7 @@ function App() {
       boxShadow: '0 0 6px #38bdf8'
     }} />
     
-  <SocialIcon url="https://t.me/brainzyai"
+  <SocialIcon url="https://t.me/verdicttoken"
     style={{
       height: 30,
       width: 30,
@@ -289,7 +244,7 @@ function App() {
     color: '#38bdf8',
     marginBottom: '12px'
   }}>
-    🚀 Brainzy AI Presale 
+    🚀 Verdict Token Presale 
   </h2>
 
   <p style={{
@@ -327,8 +282,8 @@ function App() {
   )}
 
   <p style={{ fontSize: '15px', color: '#cbd5e1', marginBottom: '12px' }}>
-    💹 1 ETH = 150,000 BRANI (Week 1)<br />
-    1 BRANI ≈ ${ethPrice ? (ethPrice / 150000).toFixed(6) : '...'} USD
+    💹 1 ETH = 150,000 VDTO (Week 1)<br />
+    1 VDTO ≈ ${ethPrice ? (ethPrice / 150000).toFixed(6) : '...'} USD
   </p>
 
   {!account ? (
@@ -390,7 +345,7 @@ function App() {
 		  cursor: 'pointer'
         }}
       >
-        {contributing ? '⏳ Processing...' : '💸 Buy $BRANI'}
+        {contributing ? '⏳ Processing...' : '💸 Buy $VDTO'}
       </button>
 
       <br />
@@ -408,7 +363,7 @@ function App() {
 		  cursor: 'pointer'
         }}
       >
-        🎁 Claim $BRANI (after presale ends)
+        🎁 Claim $VDTO (after presale ends)
       </button>
 
       <br />
@@ -460,7 +415,7 @@ function App() {
     <strong>Total ETH Raised:</strong> {parseFloat(ethRaised).toFixed(2)} ETH
   </p>
   <p style={{ fontSize: '16px', marginBottom: '8px' }}>
-    <strong>BRANI Tokens Sold:</strong> {(parseFloat(ethRaised) * 150000).toLocaleString()} BRANI
+    <strong>VDTO Tokens Sold:</strong> {(parseFloat(ethRaised) * 150000).toLocaleString()} VDTO
   </p>
   <p style={{ fontSize: '16px', marginBottom: '12px' }}>
     <strong>Presale Target:</strong> 350 ETH
@@ -495,18 +450,18 @@ function App() {
           alt="Brainzy AI Icon" 
           style={{ width: '48px', height: '48px', marginTop: '10px', marginBottom: '10px', maxWidth: '100%' }} 
         />
-        <h2 style={{ fontSize: '26px', marginBottom: '15px', color: '#222' }}>About Brainzy AI</h2>
+        <h2 style={{ fontSize: '26px', marginBottom: '15px', color: '#222' }}>About Verdict Token</h2>
         <p style={{ fontSize: '16px', maxWidth: '800px', margin: '0 auto 15px', lineHeight: '1.6', color: '#444', textAlign: 'justify' }}>
-          <strong>Brainzy AI ($BRANI)</strong> is a governance-driven DeFi token built on Ethereum.  It is designed to merge the power of Artificial Intelligence ("AI") with Decentralized Finance ("DeFi").  BRANI empowers token holders to guide the evolution of AI development through transparent, off-chain DAO processes. 
+          <strong>Verdict Token ($VDTO)</strong> is a governance-driven DeFi token built on Ethereum.  It is designed to merge the power of Artificial Intelligence ("AI") with Decentralized Finance ("DeFi").  VDTO empowers token holders to guide the evolution of AI development through transparent, off-chain DAO processes. 
         </p>
         <img 
           src="/brainzyai-icon-32x32.svg" 
           alt="Brainzy AI Icon" 
           style={{ width: '48px', height: '48px', marginTop: '20px', marginBottom: '10px', maxWidth: '100%' }} 
         />
-        <h2 style={{ fontSize: '24px', marginBottom: '15px', color: '#222' }}>Holders Vote & AI Decides</h2>
+        <h2 style={{ fontSize: '24px', marginBottom: '15px', color: '#222' }}>Holders Vote & Verdict by AI</h2>
         <p style={{ fontSize: '16px', maxWidth: '800px', margin: '0 auto 15px', lineHeight: '1.6', color: '#444', textAlign: 'justify' }}>
-          BRANI rewards participation and transparency. Twenty Percent (20%) of the token supply goes to a DAO Treasury locked in a Safe Wallet. Token holders get to create proposals and vote on which proposals should be submitted to AI for decision. AI decides based on a "Token Holder Best Interest" algorithm, and AI provides a reasoning statment for the decision. This "Best Interest" algorithm will continually get stronger and refined as AI is able to collect and analyze the data from the results of prior implemented decisions. This is what truly makes BRANI unique, token holders are able to help shape the future of the Brainzy AI ecosystem and AI DeFi.
+          VDTO rewards participation and transparency. Twenty Percent (20%) of the token supply goes to a DAO Treasury locked in a Safe Wallet. Token holders get to create proposals and vote on which proposals should be submitted to AI for decision. AI decides based on a "Token Holder Best Interest" algorithm, and AI provides a reasoning statment for the decision. This "Best Interest" algorithm will continually get stronger and refined as AI is able to collect and analyze the data from the results of prior implemented decisions. This is what truly makes VDTO unique, token holders are able to help shape the future of the Verdict Token ecosystem and AI DeFi.
         </p>
 		<p style={{ fontSize: '18px', marginTop: '20px', color: '#1f00c2' }}>
           <a href="/whitepaper.pdf" target="_blank" rel="noopener noreferrer" style={{ color: '#1f00c2', fontWeight: '600', textDecoration: 'none' }}>
@@ -547,8 +502,8 @@ function App() {
     marginLeft: 'auto',
     marginRight: 'auto'
   }}>
-    <strong>Total Supply:</strong> 500,000,000 BRANI<br />
-    Each category below represents a key component of Brainzy AI’s token economy and utility:
+    <strong>Total Supply:</strong> 500,000,000 VDTO<br />
+    Each category below represents a key component of Verdict Token’s token economy and utility:
   </p>
 
   <div style={{
@@ -558,7 +513,7 @@ function App() {
   }}>
     <div style={{ backgroundColor: '#e6f7ff', padding: '16px', borderRadius: '10px' }}>
       <h4 style={{ color: '#EFB112', marginBottom: '8px' }}>Airdrop</h4>
-      <p style={{ fontSize: '14px', color: '#333' }}>500 BRANI tokens per wallet are available to claim for up to 100,000 wallets.</p>
+      <p style={{ fontSize: '14px', color: '#333' }}>500 VDTO tokens per wallet are available to claim for up to 100,000 wallets.</p>
     </div>
 
     <div style={{ backgroundColor: '#f6f0ff', padding: '16px', borderRadius: '10px' }}>
@@ -568,7 +523,7 @@ function App() {
 
     <div style={{ backgroundColor: '#fff7e6', padding: '16px', borderRadius: '10px' }}>
       <h4 style={{ color: '#7A7B7B', marginBottom: '8px' }}>Liquidity Pool</h4>
-      <p style={{ fontSize: '14px', color: '#333' }}>Locked when anticipated listing price objective of (100,000 BRANI = 1 ETH) is achieved.</p>
+      <p style={{ fontSize: '14px', color: '#333' }}>Locked when anticipated listing price objective of (100,000 VDTO = 1 ETH) is achieved.</p>
     </div>
 
     <div style={{ backgroundColor: '#e6ffed', padding: '16px', borderRadius: '10px' }}>
@@ -599,7 +554,7 @@ function App() {
     marginBottom: '10px',
     letterSpacing: '1px'
   }}>
-    🗺️ $BRANI Roadmap
+    🗺️ $VDTO Roadmap
   </h2>
   <p style={{
     fontSize: '16px',
@@ -658,7 +613,7 @@ function App() {
     }}>
       <h3 style={{ color: '#417ebf' }}>📍 Q3 — Staking & Utility</h3>
       <ul style={{ paddingLeft: '20px' }}>
-        <li>Open $BRANI Staking Pools</li>
+        <li>Open $VDTO Staking Pools</li>
         <li>Rewards + Lock/Earn Functions</li>
         <li>Community Leaderboard Launch</li>
 		<li>AI Voting Engine Deployed</li>
@@ -708,15 +663,15 @@ function App() {
   <p style={{ fontSize: '18px', color: '444', textAlign: 'center', marginBottom: '14px', marginTop: '4px' }}>
    Founder/Creator/Developer
   </p>   
-  <SocialIcon url="https://linkedin.com/in/brainzytoken"
+  <SocialIcon url="https://www.linkedin.com/in/verdicttoken/"
     style={{ height: 32, width: 32, alignment: 'center', marginBottom: '14px' }}
   />
   <p>
     📬 <a 
-      href="mailto:developer@brainzytoken.com" 
+      href="mailto:developer@verdicttoken.com" 
       style={{ color: '#1f00c2', textDecoration: 'none', fontWeight: '500' }}
     >
-      <u>developer@brainzytoken.com</u>
+      <u>developer@verdicttoken.com</u>
     </a>
   </p>
   <p style={{
@@ -728,8 +683,8 @@ function App() {
     textAlign: 'justify'
   }}>
     Ryan is a licensed attorney turned full-time Web3 and AI developer. With a background in law and a passion for DeFi, 
-    he brings legal expertise and technical innovation to the Brainzy AI project. As the sole founder of Brainzy AI, 
-    Ryan is fully doxxed and publicly verifiable. His commitment to transparency and ethics sets BRANI apart.
+    he brings legal expertise and technical innovation to the Verdict Token project. As the sole founder of Verdict Token, 
+    Ryan is fully doxxed and publicly verifiable. His commitment to transparency and ethics sets VDTO apart.
   </p>
 </div>
 
@@ -748,15 +703,14 @@ function App() {
   </p>
   <p>
     📬 <a 
-      href="mailto:developer@brainzytoken.com" 
+      href="mailto:developer@verdicttoken.com" 
       style={{ color: '#1f00c2', textDecoration: 'none', fontWeight: '500' }}
     >
-      <u>developer@brainzytoken.com</u>
+      <u>developer@verdicttoken.com</u>
     </a>
   </p>
 </footer>
-      <div style={{ textAlign: 'center', margin: '10px 0 20px' }}>
-      </div>
+     </div>
     </>
   );
 }

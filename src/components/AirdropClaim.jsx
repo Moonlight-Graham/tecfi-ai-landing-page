@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { ethers } from 'ethers';
 
-const AIRDROP_CONTRACT = '0xb8977b6342856353d047e2f54330fd04c2dfd28c';
+const AIRDROP_CONTRACT = '0x52F05409130d915D2731Ae1c772205aF3fF3C9B5';
 
 const AIRDROP_ABI = [
   'function claim() public',
@@ -9,8 +9,8 @@ const AIRDROP_ABI = [
 ];
 
 // Fixed start and end times (in seconds)
-const AIRDROP_START = 1745616000 * 1000; // April 25, 2025 00:00 GMT
-const AIRDROP_END = 1748656800 * 1000;   // May 30, 2025 00:00 GMT
+const AIRDROP_START = 1745773200 * 1000; // April 27, 2025 17:00 GMT
+const AIRDROP_END = 1747760400 * 1000;   // May 20, 2025 17:00 GMT
 
 export default function AirdropClaim() {
   const [status, setStatus] = useState('');
@@ -40,11 +40,11 @@ export default function AirdropClaim() {
 
       const alreadyClaimed = await contract.claimed(wallet);
       if (alreadyClaimed) {
-        setStatus('❌ You’ve already claimed your BRANI.');
+        setStatus('❌ You’ve already claimed your VDTO.');
       } else {
         const tx = await contract.claim();
         await tx.wait();
-        setStatus('✅ Successfully claimed 500 BRANI!');
+        setStatus('✅ Successfully claimed 500 VDTO!');
       }
     } catch (err) {
       console.error(err);
@@ -94,9 +94,9 @@ export default function AirdropClaim() {
       margin: '2rem auto',
       boxShadow: '0 0 10px #22d3ee55'
     }}>
-      <h2>🎁 BRANI Airdrop</h2>
-      <p>Claim 500 BRANI per wallet<br />(Available: April 25 – May 30)</p>
-	  <p>Supply will be limited on this Airdrop.</p>
+      <h2>🎁 VDTO Airdrop</h2>
+      <p>Claim 500 VDTO per wallet<br />(Available: April 27 – May 20)</p>
+	  <p>Only 50% of Airdrop Supply is available this Airdrop.</p>
 
       {countdown && !isLive && (
         <p style={{ color: '#facc15', fontWeight: '550' }}>⏳ Airdrop opens in: {countdown}</p>

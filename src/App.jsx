@@ -663,7 +663,7 @@ function App() {
   <p style={{ fontSize: '18px', color: '444', textAlign: 'center', marginBottom: '14px', marginTop: '4px' }}>
    Founder/Creator/Developer
   </p>   
-  <SocialIcon url="https://www.linkedin.com/in/verdicttoken/"
+  <SocialIcon url="https://www.linkedin.com/in/xynapzcoin/"
     style={{ height: 32, width: 32, alignment: 'center', marginBottom: '14px' }}
   />
   <p>
@@ -671,7 +671,7 @@ function App() {
       href="mailto:developer@xynapzcoin.com" 
       style={{ color: '#1f00c2', textDecoration: 'none', fontWeight: '500' }}
     >
-      <u>developer@verdicttoken.com</u>
+      <u>developer@xynapzcoin.com</u>
     </a>
   </p>
   <p style={{

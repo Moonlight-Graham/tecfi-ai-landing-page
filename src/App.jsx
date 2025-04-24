@@ -158,7 +158,7 @@ function App() {
       paddingLeft: '100%',
       animation: 'scrollBanner 30s linear infinite'
     }}>
-      🚀 Presale Goes Live May 5 · Price increases weekly · Ends June 10 · Follow us on X and join Telegram!
+      🚀 Presale Goes Live May 5 · Price increases weekly · Ends June 9 · Follow us on X and join Telegram!
     </div>
   <style>
     {`

@@ -216,7 +216,7 @@ function App() {
       boxShadow: '0 0 6px #38bdf8'
     }} />
     
-  <SocialIcon url="https://t.me/"
+  <SocialIcon url="https://t.me/xynapzcoin"
     style={{
       height: 30,
       width: 30,

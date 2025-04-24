@@ -325,7 +325,7 @@ function App() {
       />
 	  {contributionAmount && !isNaN(contributionAmount) && (
   <p style={{ fontSize: '15px', marginTop: '5px', color: '#333' }}>
-    💸 You’ll receive: <strong>{(parseFloat(contributionAmount) * 125000).toLocaleString()}</strong> BRANI
+    💸 You’ll receive: <strong>{(parseFloat(contributionAmount) * 150000).toLocaleString()}</strong> VDTO
   </p>
 )}
 

@@ -201,12 +201,13 @@ function App() {
 {/* SOCIAL LINKS SECTION */}
 <div style={{
   backgroundColor: '#ffffff',
-  padding: '5px 0px',
+  padding: '10px 0px',
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
-  borderBottom: '0px solid #1e293b',
-  gap: '30px'
+  borderTop: '1px solid #1e293b',
+  borderBottom: '1px solid #1e293b',
+  gap: '40px'
 }}>
   <SocialIcon url="https://x.com/xynapzcoin"
     style={{

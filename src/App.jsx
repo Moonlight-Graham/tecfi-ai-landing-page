@@ -178,20 +178,21 @@ function App() {
 	<h2 style={{
       margin: '8px 4px 4px 4px',
       fontSize: '28px',
-      color: '222',
+      color: '#5dabf0',
       fontWeight: '600'
     }}>Xynapz Coin</h2>
     <p style={{
       fontSize: '18px',
-      color: '#38bdf8',
+	  fontWeight: '600',
+      color: '#b873c4',
       margin: '0 0 6px 0',
     }}>Holders Vote & AI Decides</p>
 	<div style={{ marginTop: '15px', marginBottom: '10' }}>
-    <img src="/brainzyai-icon-32x32.svg" alt="Brainzy Icon" width={48} height={48} />
+    <img src="/xnapz-icon-32x32.svg" alt="XNAPZ Icon" width={48} height={48} />
 	<p style={{
       fontWeight: '500',
       fontSize: '15px',
-      color: '#9ea834',
+      color: '#699419',
       marginTop: '4px',
 	  marginBottom: '6px',
     }}>AI-Governed. DAO Powered. 50% Rewards.</p>

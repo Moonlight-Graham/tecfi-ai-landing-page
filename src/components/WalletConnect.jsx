@@ -15,7 +15,7 @@ const WalletConnect = () => {
 
   return (
     <div style={{ textAlign: 'center', marginTop: '100px' }}>
-      <h1>🚀 Welcome to TecFi AI DApp</h1>
+      <h1>🚀 Welcome to Xynapz Coin dApp</h1>
       {active ? (
         <p>✅ Connected: {account}</p>
       ) : (

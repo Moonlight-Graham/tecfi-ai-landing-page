@@ -227,7 +227,63 @@ function App() {
       boxShadow: '0 0 6px #7dd3fc'
     }} />
 </div>
-
+{/* Contract Links */}
+<div style={{
+  backgroundColor: 'white',
+  padding: '10px',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  borderBottom: 'none',
+  gap: '40px'
+}}>
+<h3 style={{
+    color: '#222',
+	fontWeight: '500',
+	fontSize: '14.5px',
+    marginBottom: '4px',
+  }}>
+    📄 Verified Contract Links:
+    </h3>
+</div><a href={`https://etherscan.io/address/${tokenAddress}`}
+      target="_blank"
+      rel="noopener noreferrer"
+      style={{
+        color: '#273C6D',
+        fontWeight: '500',
+        fontSize: '14px',
+        textDecoration: 'none',
+		align: 'center',
+		marginRight: '6.5px'
+      }}
+    >
+      <u>Token Contract</u></a>
+	  <a href={`https://etherscan.io/address/${presaleAddress}`}
+      target="_blank"
+      rel="noopener noreferrer"
+      style={{
+        color: '#273C6D',
+        fontWeight: '500',
+        fontSize: '14px',
+        textDecoration: 'none',
+		align: 'center',
+		marginRight: '6.5px'
+      }}
+    >
+      <u>Presale Contract</u></a>
+	  <a
+      href={`https://etherscan.io/address/${stakingAddress}`}
+      target="_blank"
+      rel="noopener noreferrer"
+      style={{
+        color: '#273C6D',
+        fontWeight: '500',
+        fontSize: '14px',
+        textDecoration: 'none',
+		align: 'center'
+      }}
+    >
+      <u>Staking Contract</u></a>
 <div className="section" style={{
  padding: '20px',
  textAlign: 'center',

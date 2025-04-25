@@ -302,7 +302,7 @@ function App() {
     color: '#38bdf8',
     marginBottom: '12px'
   }}>
-    🚀 Xynapz Coin Presale 
+    🚀 $XNAPZ Presale 
   </h2>
 
   <p style={{

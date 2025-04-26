@@ -27,35 +27,36 @@ function App() {
   const [ethPrice, setEthPrice] = useState(null);
 
   const connectWallet = async () => {
-    if (window.ethereum) {
-      try {
-        setLoading(true);
-        const provider = new ethers.providers.Web3Provider(window.ethereum);
-        const accounts = await provider.send('eth_requestAccounts', []);
-        setAccount(accounts[0]);
+  if (window.ethereum) {
+    try {
+      setLoading(true);
 
-        const signer = provider.getSigner();
-        const tokenContract = new ethers.Contract(tokenAddress, tokenABI, signer);
-        const presaleInstance = new ethers.Contract(presaleAddress, presaleABI, signer);
+      const provider = new ethers.BrowserProvider(window.ethereum);
+      const signer = await provider.getSigner();
+      const address = await signer.getAddress();
+      setAccount(address);
 
-        const balance = await tokenContract.balanceOf(accounts[0]);
-        const tokenSymbol = await tokenContract.symbol();
+      const tokenContract = new ethers.Contract(tokenAddress, tokenABI, signer);
+      const presaleInstance = new ethers.Contract(presaleAddress, presaleABI, signer);
 
-        setTokenBalance(ethers.utils.formatUnits(balance, 6));
-        setSymbol(tokenSymbol);
-        setPresaleContract(presaleInstance);
+      const balance = await tokenContract.balanceOf(address);
+      const tokenSymbol = await tokenContract.symbol();
 
-        const raised = await provider.getBalance(presaleAddress);
-        setEthRaised(ethers.utils.formatEther(raised));
-      } catch (error) {
-        console.error("Error during wallet connection:", error);
-        alert("Error connecting wallet: " + error.message);
-      }
-      setLoading(false);
-    } else {
-      alert("Please install MetaMask to use this dApp.");
+      setTokenBalance(ethers.formatUnits(balance, 6)); // Adjust decimals if needed
+      setSymbol(tokenSymbol);
+      setPresaleContract(presaleInstance);
+
+      const raised = await provider.getBalance(presaleAddress);
+      setEthRaised(ethers.formatEther(raised));
+    } catch (error) {
+      console.error("Error during wallet connection:", error);
+      alert("Error connecting wallet: " + error.message);
     }
-  };
+    setLoading(false);
+  } else {
+    alert("Please install MetaMask to use this dApp.");
+  }
+};
 
   const disconnectWallet = () => {
     setAccount(null);

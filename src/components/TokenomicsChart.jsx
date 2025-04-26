@@ -3,7 +3,7 @@ import { PieChart, Pie, Cell, Legend, Tooltip } from 'recharts';
 
 const data = [
   { name: 'Staking & Rewards', value: 30 },
-  { name: 'DAO Treasury', value: 25 }, 
+  { name: 'DAO Treasury', value: 20 }, 
   { name: 'Airdrop', value: 10 },
   { name: 'Marketing & Listings', value: 20 },
   { name: 'Creator Rewards', value: 5 },

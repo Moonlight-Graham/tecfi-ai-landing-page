@@ -21,14 +21,20 @@ export default function AirdropClaim() {
   const [isEnded, setIsEnded] = useState(false);
 
   const connectWallet = async () => {
-    if (!window.ethereum) return alert('MetaMask is required');
-    try {
-      const [account] = await window.ethereum.request({ method: 'eth_requestAccounts' });
-      setWallet(account);
-    } catch (err) {
-      setStatus('Wallet connection failed');
-    }
-  };
+  if (!window.ethereum) {
+    alert('MetaMask is required');
+    return;
+  }
+
+  try {
+    const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+    setWallet(accounts[0]);
+    setStatus('✅ Wallet connected');
+  } catch (err) {
+    console.error(err);
+    setStatus('❌ Wallet connection failed');
+  }
+};
 
   const claimTokens = async () => {
     setLoading(true);

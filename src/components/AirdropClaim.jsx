@@ -1,14 +1,14 @@
 import { useState, useEffect } from 'react';
 import { ethers } from 'ethers';
-import Toast from './Toast';
+import Toast from './Toast'; // << NEW
 
-const AIRDROP_CONTRACT = '0x7aece42003CD5Ac44D0063aC36Eb39c5650A1A1A'; // your airdrop contract address
+const AIRDROP_CONTRACT = '0x7aeee42003CD5Ac44D0063aC36Eb39c5650A1A1A';
 const AIRDROP_ABI = [
-  'function claimPhase1() public',
+  'function claim() public',
   'function hasClaimedPhase1(address) public view returns (bool)'
 ];
 
-const AIRDROP_START = 1745791200 * 1000;
+const AIRDROP_START = 1745791200 * 1000; // Adjusted UNIX timestamp in milliseconds
 const AIRDROP_END = 1747771200 * 1000;
 
 export default function AirdropClaim() {
@@ -44,7 +44,6 @@ export default function AirdropClaim() {
       alert('Connect your wallet first.');
       return;
     }
-
     setLoading(true);
     setStatus('');
     try {
@@ -53,11 +52,10 @@ export default function AirdropClaim() {
       const contract = new ethers.Contract(AIRDROP_CONTRACT, AIRDROP_ABI, signer);
 
       const alreadyClaimed = await contract.hasClaimedPhase1(wallet);
-
       if (alreadyClaimed) {
         setToast({ message: '❌ Already Claimed', type: 'error' });
       } else {
-        const tx = await contract.claimPhase1();
+        const tx = await contract.claim();
         await tx.wait();
         setToast({ message: '✅ Successfully claimed!', type: 'success' });
         triggerConfetti();
@@ -69,12 +67,40 @@ export default function AirdropClaim() {
     setLoading(false);
   };
 
+  const triggerConfetti = () => {
+    const duration = 1 * 1000;
+    const end = Date.now() + duration;
+
+    (function frame() {
+      const timeLeft = end - Date.now();
+      if (timeLeft <= 0) return;
+      const colors = ['#4ade80', '#facc15', '#f87171', '#60a5fa'];
+      const particleCount = 5 * (timeLeft / duration);
+      confetti({
+        particleCount,
+        angle: 60,
+        spread: 100,
+        origin: { x: 0 },
+        colors,
+      });
+      confetti({
+        particleCount,
+        angle: 120,
+        spread: 100,
+        origin: { x: 1 },
+        colors,
+      });
+      requestAnimationFrame(frame);
+    })();
+  };
+
   useEffect(() => {
     const updateTimer = () => {
       const now = Date.now();
       if (now >= AIRDROP_END) {
         setIsEnded(true);
         setIsLive(false);
+        setCountdown('');
         return;
       }
       if (now >= AIRDROP_START) {
@@ -89,62 +115,64 @@ export default function AirdropClaim() {
       const seconds = Math.floor((remaining % (60 * 1000)) / 1000);
       setCountdown(`${days}d ${hours}h ${minutes}m ${seconds}s`);
     };
-
     updateTimer();
     const interval = setInterval(updateTimer, 1000);
     return () => clearInterval(interval);
   }, []);
 
-  const triggerConfetti = () => {
-    const duration = 1 * 1000;
-    const end = Date.now() + duration;
-
-    (function frame() {
-      const timeLeft = end - Date.now();
-      if (timeLeft <= 0) return;
-      const colors = ['#4ade80', '#facc15', '#f87171', '#60a5fa'];
-      const particleCount = 5 * (timeLeft / duration);
-      confetti({ particleCount, angle: 60, spread: 100, origin: { x: 0 }, colors });
-      confetti({ particleCount, angle: 120, spread: 100, origin: { x: 1 }, colors });
-      requestAnimationFrame(frame);
-    })();
-  };
-
   return (
-    <div style={{ padding: '20px', textAlign: 'center', backgroundColor: '#f0f2fa', color: '#1f1f1f', borderRadius: '1rem', maxWidth: '600px', margin: '2rem auto', boxShadow: '0 0 10px #223dee55' }}>
+    <div style={{
+      padding: '20px',
+      textAlign: 'center',
+      backgroundColor: '#273c6d',
+      color: '#fff',
+      borderRadius: '1rem',
+      maxWidth: '600px',
+      margin: '1rem auto',
+      boxShadow: '0 0 10px #223dee55'
+    }}>
       <Toast message={toast.message} type={toast.type} />
-      <h2>🎁 XNAPZ Airdrop</h2>
+      <h2>🎁 XNAPZ Airdrop🎁</h2>
       <p>Mobile users must open the browser INSIDE their MetaMask app to claim.</p>
-      <p>Claim <b>500 XNAPZ</b> per wallet<br />(Available: April 27 – May 20)</p>
-      <p>Only <b>50%</b> of Airdrop Supply is available this Airdrop.</p>
-
-      {!isLive && !isEnded && <p style={{ color: '#facc15', fontWeight: '550' }}>⏳ Airdrop opens in: {countdown}</p>}
-      {isEnded && <p style={{ color: '#f87171', fontWeight: '550' }}>🔴 Airdrop has ended.</p>}
-
+      <p>Claim <strong>500 XNAPZ</strong> per wallet<br />(Available: April 27 — May 20)</p>
+      <p>Only <strong>50%</strong> of Airdrop Supply is available this Airdrop.</p>
+      {countdown && !isLive && (
+        <p style={{ color: '#facc15', fontWeight: '550' }}>⏳ Airdrop opens in: {countdown}</p>
+      )}
+      {isEnded && (
+        <p style={{ color: '#f87171', fontWeight: '550' }}>🔴 Airdrop has ended.</p>
+      )}
       {!wallet ? (
-        <button onClick={connectWallet} disabled={connecting} style={buttonStyle(connecting)}>
-          {connecting ? 'Connecting...' : 'Connect Wallet'}
-        </button>
+        <button onClick={connectWallet} disabled={connecting} style={{
+          padding: '12px 30px',
+          fontSize: '16px',
+          fontWeight: '600',
+          backgroundColor: connecting ? '#ccc' : '#273c6d',
+          color: 'white',
+          border: 'none',
+          borderRadius: '10px',
+          marginTop: '10px',
+          marginBottom: '10px',
+          cursor: connecting ? 'not-allowed' : 'pointer',
+          width: '100%',
+          maxWidth: '300px'
+        }}>{connecting ? 'Connecting...' : 'Connect Wallet'}</button>
       ) : (
-        <button onClick={claimTokens} disabled={loading || !isLive || isEnded} style={buttonStyle(loading || !isLive || isEnded)}>
-          {loading ? 'Claiming...' : isLive ? 'Claim My Airdrop' : 'Not Yet Available'}
-        </button>
+        <button onClick={claimTokens} disabled={loading || !isLive || isEnded} style={{
+          padding: '12px 30px',
+          fontSize: '16px',
+          fontWeight: '600',
+          backgroundColor: (loading || !isLive || isEnded) ? '#ccc' : '#4f46e5',
+          color: 'white',
+          border: 'none',
+          borderRadius: '10px',
+          marginTop: '10px',
+          marginBottom: '10px',
+          cursor: (loading || !isLive || isEnded) ? 'not-allowed' : 'pointer',
+          width: '100%',
+          maxWidth: '300px'
+        }}>{loading ? 'Claiming...' : isLive ? 'Claim My Airdrop' : 'Not Yet Available'}</button>
       )}
     </div>
   );
 }
-
-const buttonStyle = (disabled) => ({
-  padding: '12px 30px',
-  fontSize: '16px',
-  fontWeight: '600',
-  backgroundColor: disabled ? '#ccc' : '#4f46e5',
-  color: 'white',
-  border: 'none',
-  borderRadius: '10px',
-  marginTop: '10px',
-  marginBottom: '10px',
-  cursor: disabled ? 'not-allowed' : 'pointer',
-  width: '100%',
-  maxWidth: '300px',
-});

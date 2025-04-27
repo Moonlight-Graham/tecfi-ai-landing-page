@@ -2,7 +2,8 @@ import { useState, useEffect } from 'react';
 import { ethers } from 'ethers';
 import Toast from './Toast';
 
-const AIRDROP_CONTRACT = '0x7aeee42003CD5Ac44D0063aC36Eb39c5650A1A1A';
+const AIRDROP_CONTRACT = '0x7aed42003CD5Ac4E400D63aC36Eb39c56560A1A1';
+';
 const AIRDROP_ABI = [
   'function claimPhase1() public',
   'function hasClaimedPhase1(address) public view returns (bool)'

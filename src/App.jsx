@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { ethers } from 'ethers';
+import { BrowserProvider, Contract } from 'ethers';
 import Dashboard from './components/Dashboard';
 import tokenABI from './abi/XynapzCoinABI.json';
 import presaleABI from './abi/XynapzPresaleABI.json';
@@ -31,8 +31,9 @@ function App() {
     try {
       setLoading(true);
 
-      const provider = new ethers.BrowserProvider(window.ethereum);
+      const provider = new BrowserProvider(window.ethereum);
       const signer = await provider.getSigner();
+	  const contract = new Contract(address, abi, signer);
       const address = await signer.getAddress();
       setAccount(address);
 

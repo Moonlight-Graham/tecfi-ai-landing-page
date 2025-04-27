@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { BrowserProvider, Contract } from 'ethers';
+import { BrowserProvider, Contract, ethers } from 'ethers';
 import Dashboard from './components/Dashboard';
 import tokenABI from './abi/XynapzCoinABI.json';
 import presaleABI from './abi/XynapzPresaleABI.json';
@@ -16,9 +16,8 @@ const presaleStartTime = 1746464400;
 function App() {
   const [account, setAccount] = useState(null);
   const [tokenBalance, setTokenBalance] = useState(null);
-  const [symbol, setSymbol] = useState('');
+  const [symbol, setSymbol] = useState('XNAPZ');
   const [loading, setLoading] = useState(false);
-  const [ethRaised, setEthRaised] = useState('0');
   const [contributionAmount, setContributionAmount] = useState('');
   const [contributing, setContributing] = useState(false);
   const [now, setNow] = useState(Math.floor(Date.now() / 1000));
@@ -27,111 +26,94 @@ function App() {
   const [ethPrice, setEthPrice] = useState(null);
 
   const connectWallet = async () => {
-  if (window.ethereum) {
-    try {
-      setLoading(true);
+    if (window.ethereum) {
+      try {
+        setLoading(true);
+        const provider = new BrowserProvider(window.ethereum);
+        const signer = await provider.getSigner();
+        const address = await signer.getAddress();
+        const tokenContract = new Contract(tokenAddress, tokenABI, signer);
+        const presaleInstance = new Contract(presaleAddress, presaleABI, signer);
 
-      const provider = new BrowserProvider(window.ethereum);
-      const signer = await provider.getSigner();
-	  const contract = new Contract(address, abi, signer);
-      const address = await signer.getAddress();
-      setAccount(address);
+        const balance = await tokenContract.balanceOf(address);
+        const tokenSymbol = await tokenContract.symbol();
 
-      const tokenContract = new ethers.Contract(tokenAddress, tokenABI, signer);
-      const presaleInstance = new ethers.Contract(presaleAddress, presaleABI, signer);
+        setAccount(address);
+        setTokenBalance(ethers.formatUnits(balance, 6));
+        setSymbol(tokenSymbol);
+        setPresaleContract(presaleInstance);
 
-      const balance = await tokenContract.balanceOf(address);
-      const tokenSymbol = await tokenContract.symbol();
-
-      setTokenBalance(ethers.formatUnits(balance, 6)); // Adjust decimals if needed
-      setSymbol(tokenSymbol);
-      setPresaleContract(presaleInstance);
-
-      const raised = await provider.getBalance(presaleAddress);
-      setEthRaised(ethers.formatEther(raised));
-    } catch (error) {
-      console.error("Error during wallet connection:", error);
-      alert("Error connecting wallet: " + error.message);
+        const raised = await provider.getBalance(presaleAddress);
+        setEthPrice(parseFloat(ethers.formatEther(raised)));
+      } catch (error) {
+        console.error('Wallet Connection Error:', error);
+        alert('Error connecting wallet: ' + error.message);
+      }
+      setLoading(false);
+    } else {
+      alert('Please install MetaMask!');
     }
-    setLoading(false);
-  } else {
-    alert("Please install MetaMask to use this dApp.");
-  }
-};
+  };
 
   const disconnectWallet = () => {
     setAccount(null);
     setTokenBalance(null);
-    setSymbol('');
+    setSymbol('XNAPZ');
     setPresaleContract(null);
   };
 
-  const fetchEthPrice = async () => {
-    try {
-      const res = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=usd');
-      const data = await res.json();
-      setEthPrice(data.ethereum.usd);
-    } catch (err) {
-      console.error("Error fetching ETH price:", err);
-    }
-  };
-
   const contributeToPresale = async () => {
-    if (!contributionAmount || isNaN(contributionAmount) || !presaleContract) return;
+    if (!contributionAmount || !presaleContract) return;
     setContributing(true);
     try {
-      const provider = new ethers.BrowserProvider(window.ethereum);
-      const signer = provider.getSigner();
+      const provider = new BrowserProvider(window.ethereum);
+      const signer = await provider.getSigner();
       const tx = await signer.sendTransaction({
         to: presaleAddress,
-        value: ethers.utils.parseEther(contributionAmount)
+        value: ethers.parseEther(contributionAmount)
       });
       await tx.wait();
 
       const updated = await provider.getBalance(presaleAddress);
-      setEthRaised(ethers.utils.formatEther(updated));
+      setEthPrice(parseFloat(ethers.formatEther(updated)));
       setShowModal(true);
-    } catch (err) {
-      console.error(err);
+    } catch (error) {
+      console.error('Transaction failed', error);
       alert('Transaction failed.');
     }
     setContributing(false);
   };
 
   const claimTokens = async () => {
-    if (!presaleContract) return;
+    if (!presaleContract) {
+      alert('Presale contract not connected.');
+      return;
+    }
     try {
       const tx = await presaleContract.claimTokens();
       await tx.wait();
-      alert('Tokens claimed successfully!');
+      alert('🎉 Tokens claimed successfully!');
     } catch (error) {
       console.error('Claim failed:', error);
-      alert("Claiming failed. Are you eligible?");
+      alert('❌ Claim failed. Are you eligible?');
     }
-  };
-
-  const getCountdown = () => {
-    const remaining = presaleStartTime - now;
-    if (remaining <= 0) return 'LIVE';
-    const days = Math.floor(remaining / (24 * 3600));
-    const hours = Math.floor((remaining % (24 * 3600)) / 3600);
-    const minutes = Math.floor((remaining % 3600) / 60);
-    const seconds = remaining % 60;
-    return `${days}d ${hours}h ${minutes}m ${seconds}s`;
   };
 
   useEffect(() => {
     if (window.ethereum && window.ethereum.selectedAddress) connectWallet();
-    fetchEthPrice();
-    const priceInterval = setInterval(fetchEthPrice, 60000);
-    const timeInterval = setInterval(() => setNow(Math.floor(Date.now() / 1000)), 1000);
-    return () => {
-      clearInterval(priceInterval);
-      clearInterval(timeInterval);
-    };
-	const [walletAddress, setWalletAddress] = useState('');
-    const validateWalletAddress = (addr) => ethers.utils.isAddress(addr);
+    const timer = setInterval(() => setNow(Math.floor(Date.now() / 1000)), 1000);
+    return () => clearInterval(timer);
   }, []);
+
+  const getCountdown = () => {
+    const remaining = presaleStartTime - now;
+    if (remaining <= 0) return 'LIVE';
+    const days = Math.floor(remaining / (3600 * 24));
+    const hours = Math.floor((remaining % (3600 * 24)) / 3600);
+    const minutes = Math.floor((remaining % 3600) / 60);
+    const seconds = remaining % 60;
+    return `${days}d ${hours}h ${minutes}m ${seconds}s`;
+  };
 
   return (
     <>
@@ -458,46 +440,6 @@ function App() {
       <p>Your contribution has been received.</p>
     </div>
   )}
-</div>
-{/* LIVE STATS SECTION */}
-<div style={{
-  padding: '20px',
-  textAlign: 'center',
-  backgroundColor: '#F8E5FD',
-  borderRadius: '1rem',
-  maxWidth: '600px',
-  margin: '2rem auto',
-  boxShadow: '0 0 10px #22d3ee55'
-}}>
-  <h3 style={{ marginBottom: '10px', color: '#222' }}>📈 Live Presale Stats</h3>
-  
-  <p style={{ fontSize: '16px', marginBottom: '8px' }}>
-    <strong>Total ETH Raised:</strong> {parseFloat(ethRaised).toFixed(2)} ETH
-  </p>
-  <p style={{ fontSize: '16px', marginBottom: '8px' }}>
-    <strong>XNAPZ Tokens Sold:</strong> {(parseFloat(ethRaised) * 150000).toLocaleString()} XNAPZ
-  </p>
-  <p style={{ fontSize: '16px', marginBottom: '12px' }}>
-    <strong>Presale Target:</strong> 350 ETH
-  </p>
-
-  {/* Progress Bar */}
-  <div style={{
-    background: '#e0e0e0',
-    borderRadius: '50px',
-    overflow: 'hidden',
-    height: '16px',
-    width: '100%',
-    maxWidth: '365px',
-    margin: '20px auto'
-  }}>
-    <div style={{
-      width: `${Math.min((parseFloat(ethRaised) / 100) * 100, 100)}%`,
-      background: '#4caf50',
-      height: '100%',
-      transition: 'width 0.5s ease'
-    }}></div>
-  </div>
 </div>
 {/* Airdrop Section */}
       <div className="section" style={{ backgroundColor: '#3B496A', color: '#fff', padding: '20px', marginTop: '20px', marginBottom: '20px' }}>

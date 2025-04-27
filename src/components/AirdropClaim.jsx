@@ -1,15 +1,15 @@
 import { useState, useEffect } from 'react';
 import { ethers } from 'ethers';
-import Toast from './Toast'; // assuming you have Toast component
+import Toast from './Toast'; // make sure Toast.jsx exists
 
-const AIRDROP_CONTRACT = '0x7aed42003CD5Ac4E400D63aC36Eb39c56560A1A1';
+const AIRDROP_CONTRACT = '0x7aed42003CD5Ac4E400D63aC36Eb39c56560A1A1'; // ✅ your correct airdrop contract
 const AIRDROP_ABI = [
   'function claim() public',
   'function hasClaimedPhase1(address) public view returns (bool)'
 ];
 
-const AIRDROP_START = 1745791200 * 1000;
-const AIRDROP_END = 1747771200 * 1000;
+const AIRDROP_START = 1745791200 * 1000; // April 27, 2025
+const AIRDROP_END = 1747771200 * 1000;   // May 20, 2025
 
 export default function AirdropClaim() {
   const [status, setStatus] = useState('');
@@ -47,7 +47,7 @@ export default function AirdropClaim() {
     setLoading(true);
     setStatus('');
     try {
-      const provider = new ethers.BrowserProvider(window.ethereum);
+      const provider = new ethers.BrowserProvider(window.ethereum); // ✅ THIS IS NOW CORRECT FOR ETHERS v6
       const signer = await provider.getSigner();
       const contract = new ethers.Contract(AIRDROP_CONTRACT, AIRDROP_ABI, signer);
 
@@ -124,8 +124,8 @@ export default function AirdropClaim() {
     <div style={{
       padding: '20px',
       textAlign: 'center',
-      backgroundColor: '#1f2937',
-      color: 'white',
+      backgroundColor: '#f0f2fa',
+      color: '#000',
       borderRadius: '1rem',
       maxWidth: '600px',
       margin: '1rem auto',

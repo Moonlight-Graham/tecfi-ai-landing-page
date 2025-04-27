@@ -49,7 +49,7 @@ export default function AirdropClaim() {
       const provider = new ethers.BrowserProvider(window.ethereum);
       const signer = await provider.getSigner();
       const contract = new ethers.Contract(AIRDROP_CONTRACT, AIRDROP_ABI, signer);
-      const alreadyClaimed = await contract.claimed(wallet);
+      const alreadyClaimed = await contract.claimPhase1();
       if (alreadyClaimed) {
         setToast({ message: '❌ Already Claimed', type: 'error' });
       } else {

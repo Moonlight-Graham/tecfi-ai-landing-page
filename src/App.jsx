@@ -179,8 +179,8 @@ function App() {
 	<h2 style={{
       margin: '8px 4px 4px 4px',
       fontSize: '28px',
-      color: '#5dabf0',
-      fontWeight: '600'
+      color: '#2B6A74',
+      fontWeight: '650'
     }}>Xynapz Coin</h2>
     <p style={{
       fontSize: '18px',

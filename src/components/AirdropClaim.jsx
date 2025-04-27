@@ -1,110 +1,122 @@
 import { useState, useEffect } from 'react';
 import { ethers } from 'ethers';
+import Toast from './Toast'; // << NEW
 
-const AIRDROP_CONTRACT = '0x7aee42003CD5Ac44D0063aC36Eb39c56560A1A1A'; // <-- your contract
+const AIRDROP_CONTRACT = '0x7aee42003CD5Ac44D0063aC36Eb39c56560A1A1A';
 const AIRDROP_ABI = [
   'function claim() public',
   'function claimed(address) public view returns (bool)'
 ];
-
-// Fixed times (milliseconds)
-const AIRDROP_START = 1745791200 * 1000; // April 27, 2025
-const AIRDROP_END = 1747771200 * 1000;   // May 20, 2025
+const AIRDROP_START = 1745791200 * 1000;
+const AIRDROP_END = 1747771200 * 1000;
 
 export default function AirdropClaim() {
   const [status, setStatus] = useState('');
+  const [toast, setToast] = useState({ message: '', type: '' });
   const [wallet, setWallet] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [connecting, setConnecting] = useState(false); // NEW
+  const [connecting, setConnecting] = useState(false);
   const [countdown, setCountdown] = useState('');
   const [isLive, setIsLive] = useState(false);
   const [isEnded, setIsEnded] = useState(false);
 
   const connectWallet = async () => {
-  if (!window.ethereum) {
-    alert('MetaMask is required');
-    return;
-  }
-
-  setConnecting(true); // move it here
-  try {
-    const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
-
-    if (!accounts || accounts.length === 0) {
-      throw new Error('No accounts returned.');
+    if (!window.ethereum) {
+      alert('MetaMask is required');
+      return;
     }
-
-    console.log('Connected account:', accounts[0]);
-    setWallet(accounts[0]);
-    setStatus('✅ Wallet connected');
-    setConnecting(false); // ✅ move INSIDE try
-  } catch (err) {
-    console.error('Wallet connection failed', err);
-    setStatus('❌ Wallet connection failed');
-    setConnecting(false); // ✅ move INSIDE catch
-  }
-};
+    setConnecting(true);
+    try {
+      const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+      if (!accounts || accounts.length === 0) throw new Error('No accounts found');
+      setWallet(accounts[0]);
+      setToast({ message: '✅ Wallet Connected', type: 'success' });
+    } catch (err) {
+      console.error('Wallet connection failed', err);
+      setToast({ message: '❌ Wallet Connection Failed', type: 'error' });
+    }
+    setConnecting(false);
+  };
 
   const claimTokens = async () => {
     if (!wallet) {
       alert('Connect your wallet first.');
       return;
     }
-
     setLoading(true);
-    setStatus('🟰 Claiming tokens...');
-
+    setStatus('');
     try {
       const provider = new ethers.BrowserProvider(window.ethereum);
       const signer = await provider.getSigner();
       const contract = new ethers.Contract(AIRDROP_CONTRACT, AIRDROP_ABI, signer);
-
       const alreadyClaimed = await contract.claimed(wallet);
       if (alreadyClaimed) {
-        setStatus('❌ You already claimed.');
+        setToast({ message: '❌ Already Claimed', type: 'error' });
       } else {
         const tx = await contract.claim();
         await tx.wait();
-        setStatus('✅ Successfully claimed 500 XNAPZ!');
+        setToast({ message: '✅ Successfully claimed!', type: 'success' });
+        triggerConfetti();
       }
     } catch (err) {
       console.error('Claim failed', err);
-      setStatus('❌ Claim failed. Please try again.');
+      setToast({ message: '❌ Claim Failed', type: 'error' });
     }
-
     setLoading(false);
   };
 
   useEffect(() => {
     const updateTimer = () => {
       const now = Date.now();
-
       if (now >= AIRDROP_END) {
         setIsEnded(true);
         setIsLive(false);
         setCountdown('');
         return;
       }
-
       if (now >= AIRDROP_START) {
         setIsLive(true);
         setCountdown('');
         return;
       }
-
       const remaining = AIRDROP_START - now;
       const days = Math.floor(remaining / (24 * 60 * 60 * 1000));
       const hours = Math.floor((remaining % (24 * 60 * 60 * 1000)) / (60 * 60 * 1000));
       const minutes = Math.floor((remaining % (60 * 60 * 1000)) / (60 * 1000));
       const seconds = Math.floor((remaining % (60 * 1000)) / 1000);
-
       setCountdown(`${days}d ${hours}h ${minutes}m ${seconds}s`);
     };
-
     updateTimer();
     const interval = setInterval(updateTimer, 1000);
     return () => clearInterval(interval);
   }, []);
+
+  const triggerConfetti = () => {
+    const duration = 1 * 1000;
+    const end = Date.now() + duration;
+
+    (function frame() {
+      const timeLeft = end - Date.now();
+      if (timeLeft <= 0) return;
+      const colors = ['#4ade80', '#facc15', '#f87171', '#60a5fa'];
+      const particleCount = 5 * (timeLeft / duration);
+      confetti({
+        particleCount,
+        angle: 60,
+        spread: 100,
+        origin: { x: 0 },
+        colors,
+      });
+      confetti({
+        particleCount,
+        angle: 120,
+        spread: 100,
+        origin: { x: 1 },
+        colors,
+      });
+      requestAnimationFrame(frame);
+    })();
+  };
 
   return (
     <div style={{
@@ -117,7 +129,9 @@ export default function AirdropClaim() {
       margin: '2rem auto',
       boxShadow: '0 0 10px #223dee55'
     }}>
+      <Toast message={toast.message} type={toast.type} />
       <h2>🎁 XNAPZ Airdrop</h2>
+	  <p>Mobile users must open the browser INSIDE their MetaMask app to claim.</p>
       <p>Claim 500 XNAPZ per wallet<br />(Available: April 27 – May 20)</p>
       <p>Only 50% of Airdrop Supply is available this Airdrop.</p>
 
@@ -128,7 +142,6 @@ export default function AirdropClaim() {
         <p style={{ color: '#f87171', fontWeight: '550' }}>🔴 Airdrop has ended.</p>
       )}
 
-      {/* BUTTONS */}
       {!wallet ? (
         <button
           onClick={connectWallet}
@@ -171,11 +184,6 @@ export default function AirdropClaim() {
         >
           {loading ? 'Claiming...' : isLive ? 'Claim My Airdrop' : 'Not Yet Available'}
         </button>
-      )}
-
-      {/* STATUS */}
-      {status && (
-        <p style={{ marginTop: '1rem', fontWeight: '500' }}>{status}</p>
       )}
     </div>
   );

@@ -1,16 +1,15 @@
 import { useState, useEffect } from 'react';
 import { ethers } from 'ethers';
-import Toast from './Toast';
+import Toast from './Toast'; // assuming you have Toast component
 
 const AIRDROP_CONTRACT = '0x7aed42003CD5Ac4E400D63aC36Eb39c56560A1A1';
-';
 const AIRDROP_ABI = [
-  'function claimPhase1() public',
+  'function claim() public',
   'function hasClaimedPhase1(address) public view returns (bool)'
 ];
 
-const AIRDROP_START = 1745791200 * 1000; // Start time in ms
-const AIRDROP_END = 1747771200 * 1000; // End time in ms
+const AIRDROP_START = 1745791200 * 1000;
+const AIRDROP_END = 1747771200 * 1000;
 
 export default function AirdropClaim() {
   const [status, setStatus] = useState('');
@@ -48,15 +47,15 @@ export default function AirdropClaim() {
     setLoading(true);
     setStatus('');
     try {
-      const provider = new ethers.providers.Web3Provider(window.ethereum);
-      const signer = provider.getSigner();
+      const provider = new ethers.BrowserProvider(window.ethereum);
+      const signer = await provider.getSigner();
       const contract = new ethers.Contract(AIRDROP_CONTRACT, AIRDROP_ABI, signer);
 
       const alreadyClaimed = await contract.hasClaimedPhase1(wallet);
       if (alreadyClaimed) {
         setToast({ message: '❌ Already Claimed', type: 'error' });
       } else {
-        const tx = await contract.claimPhase1();
+        const tx = await contract.claim();
         await tx.wait();
         setToast({ message: '✅ Successfully claimed!', type: 'success' });
         triggerConfetti();
@@ -125,8 +124,8 @@ export default function AirdropClaim() {
     <div style={{
       padding: '20px',
       textAlign: 'center',
-      backgroundColor: '#f0f2fa',
-      color: '#273c6d',
+      backgroundColor: '#1f2937',
+      color: 'white',
       borderRadius: '1rem',
       maxWidth: '600px',
       margin: '1rem auto',

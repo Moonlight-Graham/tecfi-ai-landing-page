@@ -1,14 +1,17 @@
+// src/components/AirdropClaim.jsx
+
 import { useState, useEffect } from 'react';
 import { ethers } from 'ethers';
-import Toast from './Toast'; // << NEW
+import Toast from './Toast';
 
-const AIRDROP_CONTRACT = '0x7aee42003CD5Ac44D0063aC36Eb39c56560A1A1A';
+const AIRDROP_CONTRACT = '0x7aee42003CD5Ac44D0063aC36Eb39c5650A1A1A1'; // Your contract address
 const AIRDROP_ABI = [
-  'function claim() public',
-  'function claimed(address) public view returns (bool)'
+  'function claimPhase1() external',
+  'function hasClaimedPhase1(address) public view returns (bool)'
 ];
-const AIRDROP_START = 1745791200 * 1000;
-const AIRDROP_END = 1747771200 * 1000;
+
+const AIRDROP_START = 1745791200 * 1000; // Your airdrop start timestamp (ms)
+const AIRDROP_END = 1747771200 * 1000;   // Your airdrop end timestamp (ms)
 
 export default function AirdropClaim() {
   const [status, setStatus] = useState('');
@@ -49,11 +52,11 @@ export default function AirdropClaim() {
       const provider = new ethers.BrowserProvider(window.ethereum);
       const signer = await provider.getSigner();
       const contract = new ethers.Contract(AIRDROP_CONTRACT, AIRDROP_ABI, signer);
-      const alreadyClaimed = await contract.claimPhase1();
+      const alreadyClaimed = await contract.hasClaimedPhase1(wallet);
       if (alreadyClaimed) {
         setToast({ message: '❌ Already Claimed', type: 'error' });
       } else {
-        const tx = await contract.claim();
+        const tx = await contract.claimPhase1();
         await tx.wait();
         setToast({ message: '✅ Successfully claimed!', type: 'success' });
         triggerConfetti();
@@ -64,32 +67,6 @@ export default function AirdropClaim() {
     }
     setLoading(false);
   };
-
-  useEffect(() => {
-    const updateTimer = () => {
-      const now = Date.now();
-      if (now >= AIRDROP_END) {
-        setIsEnded(true);
-        setIsLive(false);
-        setCountdown('');
-        return;
-      }
-      if (now >= AIRDROP_START) {
-        setIsLive(true);
-        setCountdown('');
-        return;
-      }
-      const remaining = AIRDROP_START - now;
-      const days = Math.floor(remaining / (24 * 60 * 60 * 1000));
-      const hours = Math.floor((remaining % (24 * 60 * 60 * 1000)) / (60 * 60 * 1000));
-      const minutes = Math.floor((remaining % (60 * 60 * 1000)) / (60 * 1000));
-      const seconds = Math.floor((remaining % (60 * 1000)) / 1000);
-      setCountdown(`${days}d ${hours}h ${minutes}m ${seconds}s`);
-    };
-    updateTimer();
-    const interval = setInterval(updateTimer, 1000);
-    return () => clearInterval(interval);
-  }, []);
 
   const triggerConfetti = () => {
     const duration = 1 * 1000;
@@ -118,12 +95,38 @@ export default function AirdropClaim() {
     })();
   };
 
+  useEffect(() => {
+    const updateTimer = () => {
+      const now = Date.now();
+      if (now >= AIRDROP_END) {
+        setIsEnded(true);
+        setIsLive(false);
+        return;
+      }
+      if (now >= AIRDROP_START) {
+        setIsLive(true);
+        setCountdown('');
+        return;
+      }
+      const remaining = AIRDROP_START - now;
+      const days = Math.floor(remaining / (24 * 60 * 60 * 1000));
+      const hours = Math.floor((remaining % (24 * 60 * 60 * 1000)) / (60 * 60 * 1000));
+      const minutes = Math.floor((remaining % (60 * 60 * 1000)) / (60 * 1000));
+      const seconds = Math.floor((remaining % (60 * 1000)) / 1000);
+      setCountdown(`${days}d ${hours}h ${minutes}m ${seconds}s`);
+    };
+
+    updateTimer();
+    const interval = setInterval(updateTimer, 1000);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <div style={{
       padding: '20px',
       textAlign: 'center',
-      backgroundColor: '#0f172a',
-      color: '#fff',
+      backgroundColor: '#f0f2fa',
+      color: '#1f2937',
       borderRadius: '1rem',
       maxWidth: '600px',
       margin: '2rem auto',
@@ -131,11 +134,11 @@ export default function AirdropClaim() {
     }}>
       <Toast message={toast.message} type={toast.type} />
       <h2>🎁 XNAPZ Airdrop</h2>
-	  <p>Mobile users must open the browser INSIDE their MetaMask app to claim.</p>
-      <p>Claim 500 XNAPZ per wallet<br />(Available: April 27 – May 20)</p>
+      <p>Mobile users must open the browser INSIDE their MetaMask app to claim.</p>
+      <p>Claim 500 XNAPZ per wallet<br />(Available: April 27 — May 20)</p>
       <p>Only 50% of Airdrop Supply is available this Airdrop.</p>
 
-      {countdown && !isLive && (
+      {!isLive && !isEnded && (
         <p style={{ color: '#facc15', fontWeight: '550' }}>⏳ Airdrop opens in: {countdown}</p>
       )}
       {isEnded && (
@@ -158,9 +161,8 @@ export default function AirdropClaim() {
             marginBottom: '10px',
             cursor: connecting ? 'not-allowed' : 'pointer',
             width: '100%',
-            maxWidth: '300px',
-          }}
-        >
+            maxWidth: '300px'
+          }}>
           {connecting ? 'Connecting...' : 'Connect Wallet'}
         </button>
       ) : (
@@ -179,9 +181,8 @@ export default function AirdropClaim() {
             marginBottom: '10px',
             cursor: (loading || !isLive || isEnded) ? 'not-allowed' : 'pointer',
             width: '100%',
-            maxWidth: '300px',
-          }}
-        >
+            maxWidth: '300px'
+          }}>
           {loading ? 'Claiming...' : isLive ? 'Claim My Airdrop' : 'Not Yet Available'}
         </button>
       )}

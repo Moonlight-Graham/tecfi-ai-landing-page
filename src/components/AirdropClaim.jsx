@@ -1,15 +1,15 @@
 import { useState, useEffect } from 'react';
 import { ethers } from 'ethers';
-import Toast from './Toast'; // << NEW
+import Toast from './Toast';
 
 const AIRDROP_CONTRACT = '0x7aeee42003CD5Ac44D0063aC36Eb39c5650A1A1A';
 const AIRDROP_ABI = [
-  'function claim() public',
+  'function claimPhase1() public',
   'function hasClaimedPhase1(address) public view returns (bool)'
 ];
 
-const AIRDROP_START = 1745791200 * 1000; // Adjusted UNIX timestamp in milliseconds
-const AIRDROP_END = 1747771200 * 1000;
+const AIRDROP_START = 1745791200 * 1000; // Start time in ms
+const AIRDROP_END = 1747771200 * 1000; // End time in ms
 
 export default function AirdropClaim() {
   const [status, setStatus] = useState('');
@@ -48,14 +48,14 @@ export default function AirdropClaim() {
     setStatus('');
     try {
       const provider = new ethers.providers.Web3Provider(window.ethereum);
-      const signer = await provider.getSigner();
+      const signer = provider.getSigner();
       const contract = new ethers.Contract(AIRDROP_CONTRACT, AIRDROP_ABI, signer);
 
       const alreadyClaimed = await contract.hasClaimedPhase1(wallet);
       if (alreadyClaimed) {
         setToast({ message: '❌ Already Claimed', type: 'error' });
       } else {
-        const tx = await contract.claim();
+        const tx = await contract.claimPhase1();
         await tx.wait();
         setToast({ message: '✅ Successfully claimed!', type: 'success' });
         triggerConfetti();
@@ -124,15 +124,15 @@ export default function AirdropClaim() {
     <div style={{
       padding: '20px',
       textAlign: 'center',
-      backgroundColor: '#273c6d',
-      color: '#fff',
+      backgroundColor: '#f0f2fa',
+      color: '#273c6d',
       borderRadius: '1rem',
       maxWidth: '600px',
       margin: '1rem auto',
       boxShadow: '0 0 10px #223dee55'
     }}>
       <Toast message={toast.message} type={toast.type} />
-      <h2>🎁 XNAPZ Airdrop🎁</h2>
+      <h2>🎁 XNAPZ Airdrop 🎁</h2>
       <p>Mobile users must open the browser INSIDE their MetaMask app to claim.</p>
       <p>Claim <strong>500 XNAPZ</strong> per wallet<br />(Available: April 27 — May 20)</p>
       <p>Only <strong>50%</strong> of Airdrop Supply is available this Airdrop.</p>

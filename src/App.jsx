@@ -392,24 +392,6 @@ function App() {
 
       <br />
       <button
-        onClick={claimTokens}
-        style={{
-          padding: '10px 25px',
-          fontSize: '14px',
-          backgroundColor: '#888',
-          color: 'white',
-          border: '1px solid #ff4d4f',
-          borderRadius: '6px',
-          marginTop: '10px',
-          marginBottom: '6px',
-		  cursor: 'pointer'
-        }}
-      >
-        🎁 Claim $XNAPZ (after presale ends)
-      </button>
-
-      <br />
-      <button
         onClick={disconnectWallet}
         style={{
           padding: '8px 16px',

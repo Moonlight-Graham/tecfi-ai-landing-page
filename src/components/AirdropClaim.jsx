@@ -1,53 +1,51 @@
+// src/components/AirdropClaim.jsx
+
 import { useState, useEffect } from 'react';
 import { ethers } from 'ethers';
-import Toast from './Toast'; // make sure Toast.jsx exists
+import Toast from './Toast';
 
-const AIRDROP_CONTRACT = '0x7aed42003CD5Ac4E400D63aC36Eb39c56560A1A1'; // ✅ your correct airdrop contract
+const AIRDROP_CONTRACT = '0x7aed42003CD5Ac4E400D63aC36Eb39c56560A1A1';
 const AIRDROP_ABI = [
   'function claim() public',
   'function hasClaimedPhase1(address) public view returns (bool)'
 ];
 
-const AIRDROP_START = 1745791200 * 1000; // April 27, 2025
-const AIRDROP_END = 1747771200 * 1000;   // May 20, 2025
+const AIRDROP_START = 1745791200 * 1000; // April 27, 2025 (ms)
+const AIRDROP_END = 1747771200 * 1000;   // May 20, 2025 (ms)
 
 export default function AirdropClaim() {
-  const [status, setStatus] = useState('');
-  const [toast, setToast] = useState({ message: '', type: '' });
   const [wallet, setWallet] = useState(null);
+  const [toast, setToast] = useState({ message: '', type: '' });
   const [loading, setLoading] = useState(false);
-  const [connecting, setConnecting] = useState(false);
   const [countdown, setCountdown] = useState('');
   const [isLive, setIsLive] = useState(false);
   const [isEnded, setIsEnded] = useState(false);
 
   const connectWallet = async () => {
-    if (!window.ethereum) {
+    if (typeof window !== 'undefined' && window.ethereum) {
+      try {
+        const provider = new ethers.BrowserProvider(window.ethereum);
+        const signer = await provider.getSigner();
+        const address = await signer.getAddress();
+        setWallet(address);
+        setToast({ message: '✅ Wallet Connected', type: 'success' });
+      } catch (err) {
+        console.error('Wallet connection failed', err);
+        setToast({ message: '❌ Wallet Connection Failed', type: 'error' });
+      }
+    } else {
       alert('MetaMask is required');
-      return;
     }
-    setConnecting(true);
-    try {
-      const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
-      if (!accounts || accounts.length === 0) throw new Error('No accounts found');
-      setWallet(accounts[0]);
-      setToast({ message: '✅ Wallet Connected', type: 'success' });
-    } catch (err) {
-      console.error('Wallet connection failed', err);
-      setToast({ message: '❌ Wallet Connection Failed', type: 'error' });
-    }
-    setConnecting(false);
   };
 
-  const claimTokens = async () => {
+  const claimAirdrop = async () => {
     if (!wallet) {
       alert('Connect your wallet first.');
       return;
     }
     setLoading(true);
-    setStatus('');
     try {
-      const provider = new ethers.BrowserProvider(window.ethereum); // ✅ THIS IS NOW CORRECT FOR ETHERS v6
+      const provider = new ethers.BrowserProvider(window.ethereum);
       const signer = await provider.getSigner();
       const contract = new ethers.Contract(AIRDROP_CONTRACT, AIRDROP_ABI, signer);
 
@@ -58,7 +56,6 @@ export default function AirdropClaim() {
         const tx = await contract.claim();
         await tx.wait();
         setToast({ message: '✅ Successfully claimed!', type: 'success' });
-        triggerConfetti();
       }
     } catch (err) {
       console.error('Claim failed', err);
@@ -67,56 +64,25 @@ export default function AirdropClaim() {
     setLoading(false);
   };
 
-  const triggerConfetti = () => {
-    const duration = 1 * 1000;
-    const end = Date.now() + duration;
-
-    (function frame() {
-      const timeLeft = end - Date.now();
-      if (timeLeft <= 0) return;
-      const colors = ['#4ade80', '#facc15', '#f87171', '#60a5fa'];
-      const particleCount = 5 * (timeLeft / duration);
-      confetti({
-        particleCount,
-        angle: 60,
-        spread: 100,
-        origin: { x: 0 },
-        colors,
-      });
-      confetti({
-        particleCount,
-        angle: 120,
-        spread: 100,
-        origin: { x: 1 },
-        colors,
-      });
-      requestAnimationFrame(frame);
-    })();
-  };
-
   useEffect(() => {
-    const updateTimer = () => {
+    const interval = setInterval(() => {
       const now = Date.now();
       if (now >= AIRDROP_END) {
         setIsEnded(true);
         setIsLive(false);
-        setCountdown('');
-        return;
-      }
-      if (now >= AIRDROP_START) {
+        clearInterval(interval);
+      } else if (now >= AIRDROP_START) {
         setIsLive(true);
         setCountdown('');
-        return;
+      } else {
+        const diff = AIRDROP_START - now;
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+        const minutes = Math.floor((diff / (1000 * 60)) % 60);
+        const seconds = Math.floor((diff / 1000) % 60);
+        setCountdown(`${days}d ${hours}h ${minutes}m ${seconds}s`);
       }
-      const remaining = AIRDROP_START - now;
-      const days = Math.floor(remaining / (24 * 60 * 60 * 1000));
-      const hours = Math.floor((remaining % (24 * 60 * 60 * 1000)) / (60 * 60 * 1000));
-      const minutes = Math.floor((remaining % (60 * 60 * 1000)) / (60 * 1000));
-      const seconds = Math.floor((remaining % (60 * 1000)) / 1000);
-      setCountdown(`${days}d ${hours}h ${minutes}m ${seconds}s`);
-    };
-    updateTimer();
-    const interval = setInterval(updateTimer, 1000);
+    }, 1000);
     return () => clearInterval(interval);
   }, []);
 
@@ -125,7 +91,7 @@ export default function AirdropClaim() {
       padding: '20px',
       textAlign: 'center',
       backgroundColor: '#f0f2fa',
-      color: '#000',
+      color: '#333',
       borderRadius: '1rem',
       maxWidth: '600px',
       margin: '1rem auto',
@@ -133,45 +99,46 @@ export default function AirdropClaim() {
     }}>
       <Toast message={toast.message} type={toast.type} />
       <h2>🎁 XNAPZ Airdrop 🎁</h2>
-      <p>Mobile users must open the browser INSIDE their MetaMask app to claim.</p>
-      <p>Claim <strong>500 XNAPZ</strong> per wallet<br />(Available: April 27 — May 20)</p>
-      <p>Only <strong>50%</strong> of Airdrop Supply is available this Airdrop.</p>
+      <p>Mobile users must open inside MetaMask browser to claim.</p>
+      <p><strong>500 XNAPZ</strong> per wallet (April 27 — May 20)</p>
+      <p><strong>50%</strong> of supply available this airdrop.</p>
+
       {countdown && !isLive && (
-        <p style={{ color: '#facc15', fontWeight: '550' }}>⏳ Airdrop opens in: {countdown}</p>
+        <p style={{ color: '#facc15', fontWeight: '550' }}>⏳ Starts in: {countdown}</p>
       )}
-      {isEnded && (
-        <p style={{ color: '#f87171', fontWeight: '550' }}>🔴 Airdrop has ended.</p>
-      )}
-      {!wallet ? (
-        <button onClick={connectWallet} disabled={connecting} style={{
+
+      {isEnded ? (
+        <p style={{ color: '#f87171', fontWeight: '550' }}>🔴 Airdrop Ended</p>
+      ) : !wallet ? (
+        <button onClick={connectWallet} disabled={loading} style={{
           padding: '12px 30px',
           fontSize: '16px',
           fontWeight: '600',
-          backgroundColor: connecting ? '#ccc' : '#273c6d',
+          backgroundColor: '#273c6d',
           color: 'white',
           border: 'none',
           borderRadius: '10px',
           marginTop: '10px',
           marginBottom: '10px',
-          cursor: connecting ? 'not-allowed' : 'pointer',
+          cursor: 'pointer',
           width: '100%',
           maxWidth: '300px'
-        }}>{connecting ? 'Connecting...' : 'Connect Wallet'}</button>
+        }}>Connect Wallet</button>
       ) : (
-        <button onClick={claimTokens} disabled={loading || !isLive || isEnded} style={{
+        <button onClick={claimAirdrop} disabled={!isLive || loading} style={{
           padding: '12px 30px',
           fontSize: '16px',
           fontWeight: '600',
-          backgroundColor: (loading || !isLive || isEnded) ? '#ccc' : '#4f46e5',
+          backgroundColor: !isLive || loading ? '#ccc' : '#4f46e5',
           color: 'white',
           border: 'none',
           borderRadius: '10px',
           marginTop: '10px',
           marginBottom: '10px',
-          cursor: (loading || !isLive || isEnded) ? 'not-allowed' : 'pointer',
+          cursor: !isLive || loading ? 'not-allowed' : 'pointer',
           width: '100%',
           maxWidth: '300px'
-        }}>{loading ? 'Claiming...' : isLive ? 'Claim My Airdrop' : 'Not Yet Available'}</button>
+        }}>{loading ? 'Claiming...' : 'Claim My Airdrop'}</button>
       )}
     </div>
   );

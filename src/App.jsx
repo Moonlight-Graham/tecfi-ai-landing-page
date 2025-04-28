@@ -1,17 +1,16 @@
 import { useState, useEffect } from 'react';
-import { BrowserProvider, Contract, ethers } from 'ethers';
-import Dashboard from './components/Dashboard';
+import { ethers } from 'ethers';
 import tokenABI from './abi/XynapzCoinABI.json';
 import presaleABI from './abi/XynapzPresaleABI.json';
-import { SocialIcon } from 'react-social-icons'
+import { SocialIcon } from 'react-social-icons';
 import AirdropClaim from './components/AirdropClaim';
 import TokenomicsChart from './components/TokenomicsChart';
 
 // Smart contract addresses
-const tokenAddress = '0x72608ECBDfd2516F6Fe1d9341A9019C4305E0BA8';
+const tokenAddress = '0x72608ECBDfd2516F6Fe1d9341A9019C4305E0BA8'; 
 const presaleAddress = '0x1D8Ba8577C3012f614695393fcfDa7C308622939';
 const stakingAddress = '0xe003e6c6f2B9F36cAF30FF6985Ee3f52A0F1a8e1';
-const presaleStartTime = 1746464400;
+const presaleStartTime = 1746644000;
 
 function App() {
   const [account, setAccount] = useState(null);
@@ -29,22 +28,23 @@ function App() {
     if (window.ethereum) {
       try {
         setLoading(true);
-        const provider = new BrowserProvider(window.ethereum);
-        const signer = await provider.getSigner();
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
+        const signer = provider.getSigner();
         const address = await signer.getAddress();
-        const tokenContract = new Contract(tokenAddress, tokenABI, signer);
-        const presaleInstance = new Contract(presaleAddress, presaleABI, signer);
+
+        const tokenContract = new ethers.Contract(tokenAddress, tokenABI, signer);
+        const presaleInstance = new ethers.Contract(presaleAddress, presaleABI, signer);
 
         const balance = await tokenContract.balanceOf(address);
         const tokenSymbol = await tokenContract.symbol();
 
         setAccount(address);
-        setTokenBalance(ethers.formatUnits(balance, 6));
+        setTokenBalance(ethers.utils.formatUnits(balance, 6));
         setSymbol(tokenSymbol);
         setPresaleContract(presaleInstance);
 
         const raised = await provider.getBalance(presaleAddress);
-        setEthPrice(parseFloat(ethers.formatEther(raised)));
+        setEthPrice(parseFloat(ethers.utils.formatEther(raised)));
       } catch (error) {
         console.error('Wallet Connection Error:', error);
         alert('Error connecting wallet: ' + error.message);
@@ -66,19 +66,19 @@ function App() {
     if (!contributionAmount || !presaleContract) return;
     setContributing(true);
     try {
-      const provider = new BrowserProvider(window.ethereum);
-      const signer = await provider.getSigner();
+      const provider = new ethers.providers.Web3Provider(window.ethereum);
+      const signer = provider.getSigner();
       const tx = await signer.sendTransaction({
         to: presaleAddress,
-        value: ethers.parseEther(contributionAmount)
+        value: ethers.utils.parseEther(contributionAmount)
       });
       await tx.wait();
 
       const updated = await provider.getBalance(presaleAddress);
-      setEthPrice(parseFloat(ethers.formatEther(updated)));
+      setEthPrice(parseFloat(ethers.utils.formatEther(updated)));
       setShowModal(true);
     } catch (error) {
-      console.error('Transaction failed', error);
+      console.error('Transaction failed:', error);
       alert('Transaction failed.');
     }
     setContributing(false);
@@ -92,7 +92,7 @@ function App() {
 
   const getCountdown = () => {
     const remaining = presaleStartTime - now;
-    if (remaining <= 0) return 'LIVE';
+    if (remaining <= 0) return 'LIVE!';
     const days = Math.floor(remaining / (3600 * 24));
     const hours = Math.floor((remaining % (3600 * 24)) / 3600);
     const minutes = Math.floor((remaining % 3600) / 60);

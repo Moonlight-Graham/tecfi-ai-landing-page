@@ -84,21 +84,6 @@ function App() {
     setContributing(false);
   };
 
-  const claimTokens = async () => {
-    if (!presaleContract) {
-      alert('Presale contract not connected.');
-      return;
-    }
-    try {
-      const tx = await presaleContract.claimTokens();
-      await tx.wait();
-      alert('🎉 Tokens claimed successfully!');
-    } catch (error) {
-      console.error('Claim failed:', error);
-      alert('❌ Claim failed. Are you eligible?');
-    }
-  };
-
   useEffect(() => {
     if (window.ethereum && window.ethereum.selectedAddress) connectWallet();
     const timer = setInterval(() => setNow(Math.floor(Date.now() / 1000)), 1000);

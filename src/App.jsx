@@ -13,92 +13,107 @@ const stakingAddress = '0xe003e6c6f2B9F36cAF30FF6985Ee3f52A0F1a8e1';
 const presaleStartTime = 1746644000;
 
 function App() {
-  const [account, setAccount] = useState(null);
-  const [tokenBalance, setTokenBalance] = useState(null);
-  const [symbol, setSymbol] = useState('XNAPZ');
-  const [loading, setLoading] = useState(false);
-  const [contributionAmount, setContributionAmount] = useState('');
-  const [contributing, setContributing] = useState(false);
-  const [now, setNow] = useState(Math.floor(Date.now() / 1000));
-  const [showModal, setShowModal] = useState(false);
-  const [presaleContract, setPresaleContract] = useState(null);
-  const [ethPrice, setEthPrice] = useState(null);
+    const [account, setAccount] = useState(null);
+    const [tokenBalance, setTokenBalance] = useState(null);
+    const [symbol, setSymbol] = useState('XNAPZ');
+    const [loading, setLoading] = useState(false);
+    const [contributionAmount, setContributionAmount] = useState('');
+    const [contributing, setContributing] = useState(false);
+    const [showModal, setShowModal] = useState(false);
+    const [ethPrice, setEthPrice] = useState(null);
+    const [presaleContract, setPresaleContract] = useState(null);
+    const [now, setNow] = useState(Math.floor(Date.now() / 1000));
+    const presaleStartTime = 1746446400;  // Presale start time in Unix format
 
-  const connectWallet = async () => {
-    if (window.ethereum) {
-      try {
-        setLoading(true);
-        const provider = new ethers.providers.Web3Provider(window.ethereum);
-        const signer = provider.getSigner();
-        const address = await signer.getAddress();
+    // Connect wallet logic
+    const connectWallet = async () => {
+        if (window.ethereum) {
+            try {
+                setLoading(true);
+                const provider = new ethers.providers.Web3Provider(window.ethereum); // Use Web3Provider for ethers.js v5
+                const signer = provider.getSigner();
+                const address = await signer.getAddress();
 
-        const tokenContract = new ethers.Contract(tokenAddress, tokenABI, signer);
-        const presaleInstance = new ethers.Contract(presaleAddress, presaleABI, signer);
+                const tokenContract = new ethers.Contract(tokenAddress, tokenABI, signer);
+                const presaleInstance = new ethers.Contract(presaleAddress, presaleABI, signer);
 
-        const balance = await tokenContract.balanceOf(address);
-        const tokenSymbol = await tokenContract.symbol();
+                const balance = await tokenContract.balanceOf(address);
+                const tokenSymbol = await tokenContract.symbol();
 
-        setAccount(address);
-        setTokenBalance(ethers.utils.formatUnits(balance, 6));
-        setSymbol(tokenSymbol);
-        setPresaleContract(presaleInstance);
+                setAccount(address);
+                setTokenBalance(ethers.utils.formatUnits(balance, 6));
+                setSymbol(tokenSymbol);
+                setPresaleContract(presaleInstance);
 
-        const raised = await provider.getBalance(presaleAddress);
-        setEthPrice(parseFloat(ethers.utils.formatEther(raised)));
-      } catch (error) {
-        console.error('Wallet Connection Error:', error);
-        alert('Error connecting wallet: ' + error.message);
-      }
-      setLoading(false);
-    } else {
-      alert('Please install MetaMask!');
-    }
-  };
+                const raised = await provider.getBalance(presaleAddress);
+                setEthPrice(parseFloat(ethers.utils.formatEther(raised)));
 
-  const disconnectWallet = () => {
-    setAccount(null);
-    setTokenBalance(null);
-    setSymbol('XNAPZ');
-    setPresaleContract(null);
-  };
+                setLoading(false);
+            } catch (error) {
+                console.error('Wallet Connection Error:', error);
+                alert('Error connecting wallet: ' + error.message);
+                setLoading(false);
+            }
+        } else {
+            alert('Please install MetaMask!');
+        }
+    };
 
-  const contributeToPresale = async () => {
-    if (!contributionAmount || !presaleContract) return;
-    setContributing(true);
-    try {
-      const provider = new ethers.providers.Web3Provider(window.ethereum);
-      const signer = provider.getSigner();
-      const tx = await signer.sendTransaction({
-        to: presaleAddress,
-        value: ethers.utils.parseEther(contributionAmount)
-      });
-      await tx.wait();
+    // Disconnect wallet
+    const disconnectWallet = () => {
+        setAccount(null);
+        setTokenBalance(null);
+        setSymbol('XNAPZ');
+        setPresaleContract(null);
+    };
 
-      const updated = await provider.getBalance(presaleAddress);
-      setEthPrice(parseFloat(ethers.utils.formatEther(updated)));
-      setShowModal(true);
-    } catch (error) {
-      console.error('Transaction failed:', error);
-      alert('Transaction failed.');
-    }
-    setContributing(false);
-  };
+    // Contribute to presale with gas estimation
+    const contributeToPresale = async () => {
+        if (!contributionAmount || !presaleContract) return;
+        setContributing(true);
+        try {
+            // Estimate the gas limit
+            const gasLimit = await provider.estimateGas({
+                to: presaleAddress,
+                value: ethers.utils.parseEther(contributionAmount),
+            });
 
-  useEffect(() => {
-    if (window.ethereum && window.ethereum.selectedAddress) connectWallet();
-    const timer = setInterval(() => setNow(Math.floor(Date.now() / 1000)), 1000);
-    return () => clearInterval(timer);
-  }, []);
+            // Send the transaction with the estimated gas
+            const tx = await signer.sendTransaction({
+                to: presaleAddress,
+                value: ethers.utils.parseEther(contributionAmount),
+                gasLimit: gasLimit,  // Set the estimated gas limit
+            });
 
-  const getCountdown = () => {
-    const remaining = presaleStartTime - now;
-    if (remaining <= 0) return 'LIVE!';
-    const days = Math.floor(remaining / (3600 * 24));
-    const hours = Math.floor((remaining % (3600 * 24)) / 3600);
-    const minutes = Math.floor((remaining % 3600) / 60);
-    const seconds = remaining % 60;
-    return `${days}d ${hours}h ${minutes}m ${seconds}s`;
-  };
+            await tx.wait();  // Wait for the transaction to be mined
+
+            // Update the balance after the transaction
+            const updated = await provider.getBalance(presaleAddress);
+            setEthPrice(parseFloat(ethers.utils.formatEther(updated)));  // Update ETH balance
+            setShowModal(true);  // Show success modal
+        } catch (error) {
+            console.error('Transaction failed', error);
+            alert('Transaction failed.');
+        }
+        setContributing(false);
+    };
+
+    useEffect(() => {
+        if (window.ethereum && window.ethereum.selectedAddress) connectWallet();
+        const timer = setInterval(() => setNow(Math.floor(Date.now() / 1000)), 1000);
+        return () => clearInterval(timer);
+    }, []);
+
+    // Get countdown to presale start
+    const getCountdown = () => {
+        const remaining = presaleStartTime - now;
+        if (remaining <= 0) return 'LIVE';
+        const days = Math.floor(remaining / (3600 * 24));
+        const hours = Math.floor((remaining % (3600 * 24)) / 3600);
+        const minutes = Math.floor((remaining % 3600) / 60);
+        const seconds = remaining % 60;
+        return `${days}d ${hours}h ${minutes}m ${seconds}s`;
+    };
 
   return (
     <>

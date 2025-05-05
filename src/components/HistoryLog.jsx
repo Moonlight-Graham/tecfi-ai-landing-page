@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import supabase from './supabaseClient';
 
 const HistoryLog = () => {
   const [logEntries, setLogEntries] = useState([]);

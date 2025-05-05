@@ -2,10 +2,11 @@ export async function aiReviewProposal(proposalText) {
   const OPENAI_API_KEY = import.meta.env.VITE_OPENAI_API_KEY;
 
   const prompt = `
-You are an AI governance advisor for a crypto project called BRANI. A proposal was submitted by a community member. Analyze the text and return one of the following decisions:
+You are an AI governance advisor for a crypto project called XNAPZ. A proposal was submitted by a community member. 
+Analyze the text and return one of the following decisions:
 
-- "Approved" if the proposal is valuable, aligns with BRANI goals, or benefits the community.
-- "Rejected" if the proposal is vague, harmful, or off-topic.
+- "Approved" if the proposal is valuable, aligns with XNAPZ goals, and benefits the token holder community.
+- "Rejected" if the proposal is vague, harmful, off-topic, or does not benefit the community.
 
 Also include a short explanation of why you made that decision.
 
@@ -37,9 +38,10 @@ Respond ONLY in the following JSON format:
     });
 
     const data = await res.json();
-    const jsonText = data.choices?.[0]?.message?.content || "";
 
+    const jsonText = data.choices?.[0]?.message?.content || "";
     const parsed = JSON.parse(jsonText);
+
     return parsed;
   } catch (err) {
     console.error("OpenAI Review Error:", err);
@@ -49,4 +51,3 @@ Respond ONLY in the following JSON format:
     };
   }
 }
-

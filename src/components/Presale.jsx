@@ -1,329 +1,223 @@
 import React, { useState, useEffect } from 'react';
 import { ethers } from 'ethers';
-import tokenABI from './abi/XynapzCoinABI.json';
-import presaleABI from './abi/XynapzPresaleABI.json';
+import LiveStats from './LiveStats';
+import Toast from './Toast'; // Assuming you have a Toast component
 
-const tokenAddress = '0x72608ECBDfd2516F6Fe1d9341A9019C4305E0BA8';
-const presaleAddress = '0x1D8Ba8577C3012f614695393fcfDa7C308622939';
-const presaleStartTime = 1746464400;
+const PRESALE_CONTRACT = '0x1D8Ba8577C3012f614695393fcfDa7C308622939'; // Your presale contract address
+const PRESALE_ABI = [
+  'function buyTokens() public payable',
+  'function getCurrentRate() public view returns (uint256)',
+  'function MIN_BUY() public view returns (uint256)',
+  'function MAX_BUY() public view returns (uint256)',
+  'function PRESALE_CAP() public view returns (uint256)',
+  'function totalSold() public view returns (uint256)',
+  'function contributions(address) public view returns (uint256)',
+  'function xnapz() public view returns (address)'
+];
 
-const [account, setAccount] = useState(null);
-  const [tokenBalance, setTokenBalance] = useState(null);
-  const [symbol, setSymbol] = useState('');
-  const [loading, setLoading] = useState(false);
-  const [ethRaised, setEthRaised] = useState('0');
+export default function Presale() {
+  const [wallet, setWallet] = useState(null);
+  const [balance, setBalance] = useState(null);
+  const [tokenPrice, setTokenPrice] = useState(null);
   const [contributionAmount, setContributionAmount] = useState('');
-  const [contributing, setContributing] = useState(false);
-  const [now, setNow] = useState(Math.floor(Date.now() / 1000));
+  const [status, setStatus] = useState({ message: '', type: '' });
+  const [minBuy, setMinBuy] = useState(0);
+  const [maxBuy, setMaxBuy] = useState(0);
+  const [totalSold, setTotalSold] = useState(0);
+  const [presaleCap, setPresaleCap] = useState(0);
+  const [loading, setLoading] = useState(false);
   const [showModal, setShowModal] = useState(false);
-  const [presaleContract, setPresaleContract] = useState(null);
-  const [ethPrice, setEthPrice] = useState(null);
-  
+  const [now, setNow] = useState(Math.floor(Date.now() / 1000));
+
+  const presaleStartTime = 1746482400; // Update if needed
+
+  // Connect wallet
   const connectWallet = async () => {
     if (window.ethereum) {
       try {
         setLoading(true);
         const provider = new ethers.providers.Web3Provider(window.ethereum);
-        const accounts = await provider.send('eth_requestAccounts', []);
-        setAccount(accounts[0]);
-
         const signer = provider.getSigner();
-        const tokenContract = new ethers.Contract(tokenAddress, tokenABI, signer);
-        const presaleInstance = new ethers.Contract(presaleAddress, presaleABI, signer);
+        const address = await signer.getAddress();
+        setWallet(address);
 
-        const balance = await tokenContract.balanceOf(accounts[0]);
-        const tokenSymbol = await tokenContract.symbol();
+        const presaleContract = new ethers.Contract(PRESALE_CONTRACT, PRESALE_ABI, signer);
 
-        setTokenBalance(ethers.utils.formatUnits(balance, 6));
-        setSymbol(tokenSymbol);
-        setPresaleContract(presaleInstance);
+        const raised = await presaleContract.totalSold();
+        setTotalSold(parseFloat(ethers.utils.formatEther(raised)));
 
-        const raised = await provider.getBalance(presaleAddress);
-        setEthRaised(ethers.utils.formatEther(raised));
-      } catch (error) {
-        console.error("Error during wallet connection:", error);
-        alert("Error connecting wallet: " + error.message);
+        const min = await presaleContract.MIN_BUY();
+        const max = await presaleContract.MAX_BUY();
+        const cap = await presaleContract.PRESALE_CAP();
+
+        setMinBuy(parseFloat(ethers.utils.formatEther(min)));
+        setMaxBuy(parseFloat(ethers.utils.formatEther(max)));
+        setPresaleCap(parseFloat(ethers.utils.formatEther(cap)));
+
+        setLoading(false);
+      } catch (err) {
+        console.error('Wallet Connection Error:', err);
+        alert('Error connecting wallet: ' + err.message);
+        setLoading(false);
       }
-      setLoading(false);
     } else {
-      alert("Please install MetaMask to use this dApp.");
+      alert('Please install MetaMask!');
     }
   };
 
-  const disconnectWallet = () => {
-    setAccount(null);
-    setTokenBalance(null);
-    setSymbol('');
-    setPresaleContract(null);
-  };
-
+  // Fetch live ETH price
   const fetchEthPrice = async () => {
     try {
       const res = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=usd');
       const data = await res.json();
-      setEthPrice(data.ethereum.usd);
+      setTokenPrice(data.ethereum.usd);
     } catch (err) {
-      console.error("Error fetching ETH price:", err);
+      console.error('Error fetching ETH price:', err);
     }
   };
 
+  // Contribute to presale
   const contributeToPresale = async () => {
-    if (!contributionAmount || isNaN(contributionAmount) || !presaleContract) return;
-    setContributing(true);
+    if (!contributionAmount) return;
     try {
+      setLoading(true);
       const provider = new ethers.providers.Web3Provider(window.ethereum);
       const signer = provider.getSigner();
       const tx = await signer.sendTransaction({
-        to: presaleAddress,
+        to: PRESALE_CONTRACT,
         value: ethers.utils.parseEther(contributionAmount)
       });
       await tx.wait();
-
-      const updated = await provider.getBalance(presaleAddress);
-      setEthRaised(ethers.utils.formatEther(updated));
+      setStatus({ message: '✅ Contribution successful!', type: 'success' });
       setShowModal(true);
     } catch (err) {
-      console.error(err);
-      alert('Transaction failed.');
+      console.error('Contribution Error:', err);
+      setStatus({ message: '❌ Contribution failed.', type: 'error' });
     }
-    setContributing(false);
+    setLoading(false);
   };
 
-  const claimTokens = async () => {
-    if (!presaleContract) return;
-    try {
-      const tx = await presaleContract.claimTokens();
-      await tx.wait();
-      alert('Tokens claimed successfully!');
-    } catch (error) {
-      console.error('Claim failed:', error);
-      alert("Claiming failed. Are you eligible?");
-    }
-  };
-
+  // Countdown timer
   const getCountdown = () => {
     const remaining = presaleStartTime - now;
     if (remaining <= 0) return 'LIVE';
-    const days = Math.floor(remaining / (24 * 3600));
-    const hours = Math.floor((remaining % (24 * 3600)) / 3600);
+    const days = Math.floor(remaining / (3600 * 24));
+    const hours = Math.floor((remaining % (3600 * 24)) / 3600);
     const minutes = Math.floor((remaining % 3600) / 60);
     const seconds = remaining % 60;
     return `${days}d ${hours}h ${minutes}m ${seconds}s`;
   };
 
   useEffect(() => {
-    if (window.ethereum && window.ethereum.selectedAddress) connectWallet();
     fetchEthPrice();
-    const priceInterval = setInterval(fetchEthPrice, 60000);
-    const timeInterval = setInterval(() => setNow(Math.floor(Date.now() / 1000)), 1000);
-    return () => {
-      clearInterval(priceInterval);
-      clearInterval(timeInterval);
-    };
-	const [walletAddress, setWalletAddress] = useState('');
-    const validateWalletAddress = (addr) => ethers.utils.isAddress(addr);
+    const timer = setInterval(() => setNow(Math.floor(Date.now() / 1000)), 1000);
+    return () => clearInterval(timer);
   }, []);
-  
-function Presale() {
-  
- return (
 
-         <div style={{
-          padding: '20px',
-          textAlign: 'center',
-          backgroundColor: '#0f172a',
-          color: 'fff',
-          borderRadius: '12px',
-          maxWidth: '750px',
-          marginTop: '20px',
-          marginBottom: '20px',
-          margin: '2rem auto',
-          boxShadow: '0 0 10px #22d3ee55'
-        }}>
-        <h2 style={{
-         fontSize: '28px',
-         fontWeight: '700',
-         color: '#38bdf8',
-         marginBottom: '12px'
-        }}>
-        🚀 Brainzy AI Presale 
-        </h2>
-   
-  <p style={{
-    fontSize: '16.5px',
-    fontWeight: '500',
-    marginBottom: '20px',
-    color: '#d1d5db'
-  }}>
-    🎯 Presale Launch Countdown:<br />
-    <strong style={{ fontSize: '18px', color: '#facc15' }}>{getCountdown()}</strong>
-  </p>
-
-  <p style={{
-    fontSize: '15px',
-    fontWeight: '500',
-    color: '#f472b6',
-    marginBottom: '16px'
-  }}>
-    🥇 Price Increases Weekly · 5 Phases<br />
-       Early Supporters Get the Best Rate!
-  </p>
-
-  {ethPrice && (
-    <div style={{
-      backgroundColor: '#EFF4F2',
-      border: '1px solid #334155',
-      borderRadius: '8px',
-      padding: '8px 20px',
-      fontSize: '16px',
-      fontWeight: '500',
-      marginBottom: '10px'
-    }}>
-      🟢 Live ETH Price: ${ethPrice.toFixed(2)} USD
-    </div>
-  )}
-
-  <p style={{ fontSize: '15px', color: '#cbd5e1', marginBottom: '12px' }}>
-    💹 1 ETH = 150,000 BRANI (Week 1)<br />
-    1 BRANI ≈ ${ethPrice ? (ethPrice / 150000).toFixed(6) : '...'} USD
-  </p>
-
-  {!account ? (
-    <button
-      onClick={connectWallet}
-      style={{
-        padding: '10px 25px',
-        fontSize: '16px',
-		fontWeight: '500',
-        backgroundColor: '#417ebf',
-        color: 'white',
-        border: 'none',
-        borderRadius: '6px',
-        marginTop: '8px',
-        marginBottom: '8px',
-		cursor: 'pointer'
-      }}
-    >
-      🔗 Connect Wallet
-    </button>
-  ) : (
+  return (
     <>
-	<div style={{ marginTop: '15px', color: '#EDF4D8' }}>
-      <p>Connected: {account}</p>
-	  </div>
-      <p>Your Balance: {tokenBalance} {symbol}</p>
+      <div style={{ padding: '20px', textAlign: 'center', backgroundColor: '#0a0f2c', borderRadius: '1rem', margin: '20px auto', maxWidth: '600px' }}>
+        <h2 style={{ fontSize: '28px', fontWeight: '700', color: '#38bdf8', marginBottom: '12px' }}>
+          🚀 $XNAPZ Presale
+        </h2>
+        <p style={{ fontSize: '16.5px', fontWeight: '500', color: '#d1d5db', marginBottom: '20px' }}>
+          🎯 Presale Launch Countdown:
+        </p>
+        <p style={{ fontSize: '18px', color: '#facc15' }}>
+          {getCountdown()}
+        </p>
+        <p style={{ fontSize: '15px', fontWeight: '500', color: '#f472b6', marginBottom: '16px' }}>
+          🥇 Price Increases Weekly - 5 Phases<br />
+          🚀 Early Supporters Get the Best Rate!
+        </p>
 
-      <input
-        type="number"
-        placeholder="Enter ETH amount"
-        value={contributionAmount}
-        onChange={(e) => setContributionAmount(e.target.value)}
-        style={{
-          padding: '10px',
-          marginBottom: '10px',
-          width: '100%',
-          maxWidth: '300px'
-        }}
-      />
-	  {contributionAmount && !isNaN(contributionAmount) && (
-  <p style={{ fontSize: '15px', marginTop: '5px', color: '#333' }}>
-    💸 You’ll receive: <strong>{(parseFloat(contributionAmount) * 125000).toLocaleString()}</strong> BRANI
-  </p>
-)}
+        {tokenPrice && (
+          <div style={{
+            backgroundColor: '#fef2c0',
+            border: '1px solid #facc15',
+            borderRadius: '8px',
+            padding: '10px',
+            margin: '10px 0',
+            fontWeight: '500',
+			marginBottom: '4px'
+          }}>
+            🌐 Live ETH Price: ${tokenPrice.toFixed(2)} USD <br />
+			  150,000 XNAPZ = 1 ETH (Week 1) <br />
+            📈 1 XNAPZ ≈ ${(tokenPrice / 150000).toFixed(6)} USD 
+          </div>
+        )}
 
-      <br />
-      <button
-        onClick={contributeToPresale}
-        disabled={contributing}
-        style={{
-          padding: '10px 25px',
-          fontSize: '16px',
-          backgroundColor: '#28a745',
-          color: 'white',
-          border: 'none',
-          borderRadius: '6px',
-          marginTop: '10px',
-          marginBottom: '6px',
-		  cursor: 'pointer'
-        }}
-      >
-        {contributing ? '⏳ Processing...' : '💸 Buy $BRANI'}
-      </button>
-
-      <br />
-      <button
-        onClick={claimTokens}
-        style={{
-          padding: '10px 25px',
-          fontSize: '14px',
-          backgroundColor: '#888',
-          color: 'white',
-          border: '1px solid #ff4d4f',
-          borderRadius: '6px',
-          marginTop: '10px',
-          marginBottom: '6px',
-		  cursor: 'pointer'
-        }}
-      >
-        🎁 Claim $BRANI (after presale ends)
-      </button>
-
-      <br />
-      <button
-        onClick={disconnectWallet}
-        style={{
-          padding: '8px 16px',
-          fontSize: '13px',
-          backgroundColor: 'transparent',
-          color: '#ff4d4f',
-          border: '1px solid #ff4d4f',
-          borderRadius: '6px',
-          marginTop: '10px',
-          cursor: 'pointer'
-        }}
-      >
-        ❌ Disconnect Wallet
-      </button>
+        {!wallet ? (
+          <button
+            onClick={connectWallet}
+            style={{
+              padding: '12px 30px',
+              fontSize: '16px',
+              fontWeight: '600',
+              backgroundColor: '#3b82f6',
+              color: 'white',
+              border: 'none',
+              borderRadius: '8px',
+              marginTop: '20px',
+              cursor: 'pointer'
+            }}
+          >
+            Connect Wallet
+          </button>
+        ) : (
+          <>
+            <div style={{ marginTop: '20px', marginBottom: '20px', color: '#6ee7b7' }}>
+              Connected: {wallet}
+            </div>
+            <input
+              type="number"
+              placeholder="Enter ETH amount"
+              value={contributionAmount}
+              onChange={(e) => setContributionAmount(e.target.value)}
+              style={{
+                padding: '10px',
+                marginBottom: '10px',
+                width: '100%',
+                maxWidth: '300px'
+              }}
+            />
+            {contributionAmount && !isNaN(contributionAmount) && (
+              <p style={{ marginBottom: '10px' }}>
+                🧠 You’ll receive: <strong>{(parseFloat(contributionAmount) * 150000).toLocaleString()}</strong> XNAPZ
+              </p>
+            )}
+            <button
+              onClick={contributeToPresale}
+              disabled={loading}
+              style={{
+                padding: '10px 25px',
+                backgroundColor: '#22c55e',
+                color: 'white',
+                fontWeight: '600',
+                fontSize: '16px',
+                border: 'none',
+                borderRadius: '8px',
+                cursor: 'pointer'
+              }}
+            >
+              {loading ? 'Processing...' : 'Buy $XNAPZ'}
+            </button>
+          </>
+        )}
+		<LiveStats ethRaised={totalSold} />
+        {showModal && (
+          <div style={{
+            marginTop: '20px',
+            padding: '10px',
+            backgroundColor: '#ecfccb',
+            border: '1px solid #4ade80',
+            borderRadius: '8px',
+            color: '#166534'
+          }}>
+            🎉 Contribution received!
+          </div>
+        )}
+      </div>
     </>
-  )}
-
-  {showModal && (
-    <div style={{
-      marginTop: '20px',
-      padding: '10px',
-      backgroundColor: '#e6ffed',
-      border: '1px solid #52c41a',
-      borderRadius: '10px',
-      color: '#135200'
-    }}>
-      <h3>✅ Success!</h3>
-      <p>Your contribution has been received.</p>
-    </div>
-	 )}
-	 
-{/* LIVE STATS SECTION */}
-<div style={{
-  padding: '20px',
-  textAlign: 'center',
-  backgroundColor: '#FAFBFC',
-  borderRadius: '1rem',
-  maxWidth: '600px',
-  margin: '2rem auto',
-  boxShadow: '0 0 10px #22d3ee55'
-}}>
-  <h3 style={{ marginBottom: '10px', color: '#222' }}>📈 Live Presale Stats</h3>
-  
-  <p style={{ fontSize: '16px', marginBottom: '8px' }}>
-    <strong>Total ETH Raised:</strong> {parseFloat(ethRaised).toFixed(2)} ETH
-  </p>
-  <p style={{ fontSize: '16px', marginBottom: '8px' }}>
-    <strong>BRANI Tokens Sold:</strong> {(parseFloat(ethRaised) * 150000).toLocaleString()} BRANI
-  </p>
-  <p style={{ fontSize: '16px', marginBottom: '12px' }}>
-    <strong>Presale Target:</strong> 350 ETH
-	</p>
-</div>
- );     
+  );
 }
-
-export default Presale;

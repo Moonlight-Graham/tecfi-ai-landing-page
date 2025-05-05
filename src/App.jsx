@@ -1,126 +1,93 @@
 import { useState, useEffect } from 'react';
 import { ethers } from 'ethers';
 import tokenABI from './abi/XynapzCoinABI.json';
-import presaleABI from './abi/XynapzPresaleABI.json';
+import Presale from './components/Presale';
 import { SocialIcon } from 'react-social-icons';
 import AirdropClaim from './components/AirdropClaim';
 import TokenomicsChart from './components/TokenomicsChart';
+import DemoDashboard from './components/DemoDashboard';
 
 // Smart contract addresses
-const tokenAddress = '0x72608ECBDfd2516F6Fe1d9341A9019C4305E0BA8'; 
+const tokenAddress = '0x72608ECBDfd2516F6Fe1d9341A9019C4305E0BA8';
 const presaleAddress = '0x1D8Ba8577C3012f614695393fcfDa7C308622939';
-const stakingAddress = '0xe003e6c6f2B9F36cAF30FF6985Ee3f52A0F1a8e1';
-const presaleStartTime = 1746644000;
+const stakingAddress = '0xe0a6c66f2B9F36aAF30fEF6985Ee3f52A0F1a8e1';
+const presaleStartTime = 1746482400;
 
 function App() {
-    const [account, setAccount] = useState(null);
-    const [tokenBalance, setTokenBalance] = useState(null);
-    const [symbol, setSymbol] = useState('XNAPZ');
-    const [loading, setLoading] = useState(false);
-    const [contributionAmount, setContributionAmount] = useState('');
-    const [contributing, setContributing] = useState(false);
-    const [showModal, setShowModal] = useState(false);
-    const [ethPrice, setEthPrice] = useState(null);
-    const [presaleContract, setPresaleContract] = useState(null);
-    const [now, setNow] = useState(Math.floor(Date.now() / 1000));
-    const presaleStartTime = 1746446400;  // Presale start time in Unix format
+  const [walletConnected, setWalletConnected] = useState(false);
+  const [walletAddress, setWalletAddress] = useState('');
+  const [showDemo, setShowDemo] = useState(false);
+  const [hasAccess, setHasAccess] = useState(false);
+  const [account, setAccount] = useState(null);
+  const [tokenBalance, setTokenBalance] = useState(0);
+  const [symbol, setSymbol] = useState('XNAPZ');
+  const [loading, setLoading] = useState(false);
+  const [ethPrice, setEthPrice] = useState(null);
+  const [presaleContract, setPresaleContract] = useState(null);
+  const [ethRaised, setEthRaised] = useState('0');
+  const [now, setNow] = useState(Math.floor(Date.now() / 1000));
 
-    // Connect wallet logic
-    const connectWallet = async () => {
-        if (window.ethereum) {
-            try {
-                setLoading(true);
-                const provider = new ethers.providers.Web3Provider(window.ethereum); // Use Web3Provider for ethers.js v5
-                const signer = provider.getSigner();
-                const address = await signer.getAddress();
+  // 🟢 CONNECT WALLET FUNCTION
+  const connectDemoWallet = async () => {
+    if (!window.ethereum) return alert('Please install MetaMask.');
 
-                const tokenContract = new ethers.Contract(tokenAddress, tokenABI, signer);
-                const presaleInstance = new ethers.Contract(presaleAddress, presaleABI, signer);
+    try {
+      const provider = new ethers.providers.Web3Provider(window.ethereum);
+      const accounts = await provider.send('eth_requestAccounts', []);
+      const signer = provider.getSigner();
+      const address = await signer.getAddress();
 
-                const balance = await tokenContract.balanceOf(address);
-                const tokenSymbol = await tokenContract.symbol();
+      const tokenContract = new ethers.Contract(tokenAddress, tokenABI, provider);
+      const balance = await tokenContract.balanceOf(address);
+      const formatted = parseFloat(ethers.utils.formatUnits(balance, 6)); // Adjust decimals if needed
 
-                setAccount(address);
-                setTokenBalance(ethers.utils.formatUnits(balance, 6));
-                setSymbol(tokenSymbol);
-                setPresaleContract(presaleInstance);
+      setWalletConnected(true);
+      setWalletAddress(address);
+      setTokenBalance(formatted);
+      setAccount(address);
+      setHasAccess(formatted >= 500);
+    } catch (err) {
+      console.error('Wallet connect error:', err);
+      alert('Could not connect wallet.');
+    }
+  };
 
-                const raised = await provider.getBalance(presaleAddress);
-                setEthPrice(parseFloat(ethers.utils.formatEther(raised)));
+  // 🔴 DISCONNECT WALLET FUNCTION
+  const disconnectDemoWallet = () => {
+    setWalletConnected(false);
+    setWalletAddress('');
+    setTokenBalance(0);
+    setHasAccess(false);
+    setAccount(null);
+  };
 
-                setLoading(false);
-            } catch (error) {
-                console.error('Wallet Connection Error:', error);
-                alert('Error connecting wallet: ' + error.message);
-                setLoading(false);
-            }
-        } else {
-            alert('Please install MetaMask!');
-        }
-    };
+  // 🎨 Button Style
+  const demoButtonStyle = {
+    padding: '12px 24px',
+    fontSize: '16px',
+    fontWeight: '600',
+    borderRadius: '8px',
+    backgroundColor: '#10b981',
+    color: '#fff',
+    border: 'none',
+    cursor: 'pointer',
+    marginTop: '10px',
+    boxShadow: '0 0 10px rgba(16, 185, 129, 0.6)',
+    transition: 'all 0.3s ease-in-out',
+  };
 
-    // Disconnect wallet
-    const disconnectWallet = () => {
-        setAccount(null);
-        setTokenBalance(null);
-        setSymbol('XNAPZ');
-        setPresaleContract(null);
-    };
-
-    // Contribute to presale with gas estimation
-    const contributeToPresale = async () => {
-        if (!contributionAmount || !presaleContract) return;
-        setContributing(true);
-        try {
-            // Estimate the gas limit
-            const gasLimit = await provider.estimateGas({
-                to: presaleAddress,
-                value: ethers.utils.parseEther(contributionAmount),
-            });
-
-            // Send the transaction with the estimated gas
-            const tx = await signer.sendTransaction({
-                to: presaleAddress,
-                value: ethers.utils.parseEther(contributionAmount),
-                gasLimit: gasLimit,  // Set the estimated gas limit
-            });
-
-            await tx.wait();  // Wait for the transaction to be mined
-
-            // Update the balance after the transaction
-            const updated = await provider.getBalance(presaleAddress);
-            setEthPrice(parseFloat(ethers.utils.formatEther(updated)));  // Update ETH balance
-            setShowModal(true);  // Show success modal
-        } catch (error) {
-            console.error('Transaction failed', error);
-            alert('Transaction failed.');
-        }
-        setContributing(false);
-    };
-
-    useEffect(() => {
-        if (window.ethereum && window.ethereum.selectedAddress) connectWallet();
-        const timer = setInterval(() => setNow(Math.floor(Date.now() / 1000)), 1000);
-        return () => clearInterval(timer);
-    }, []);
-
-    // Get countdown to presale start
-    const getCountdown = () => {
-        const remaining = presaleStartTime - now;
-        if (remaining <= 0) return 'LIVE';
-        const days = Math.floor(remaining / (3600 * 24));
-        const hours = Math.floor((remaining % (3600 * 24)) / 3600);
-        const minutes = Math.floor((remaining % 3600) / 60);
-        const seconds = remaining % 60;
-        return `${days}d ${hours}h ${minutes}m ${seconds}s`;
-    };
+  const disconnectButtonStyle = {
+    ...demoButtonStyle,
+    backgroundColor: '#e11d48',
+    boxShadow: '0 0 10px rgba(225, 29, 72, 0.6)',
+  };
 
   return (
     <>
       
 {/* HEADER */}
 <div style={{
-  backgroundColor: 'white',
+  backgroundColor: '#03162f',
   padding: '20px 0',
   borderBottom: '1px solid #ddd',
   textAlign: 'center',
@@ -156,27 +123,36 @@ function App() {
     <p style={{
       borderTop: '4px',
 	  fontSize: '16px',
-      color: '#666',
+      color: '#e9ecec',
       margin: '0 0 6px 6px',
     }}>The Official Governance dApp of Xynapz Coin</p>
 	<h2 style={{
-      margin: '8px 4px 4px 4px',
-      fontSize: '28px',
-      color: '#2B6A74',
-      fontWeight: '650'
-    }}>Xynapz Coin</h2>
-    <p style={{
-      fontSize: '18px',
-	  fontWeight: '600',
-      color: '#b873c4',
-      margin: '0 0 6px 0',
-    }}>Holders Vote & AI Decides</p>
+  margin: '10px 4px 6px 4px',
+  fontSize: '34px',
+  fontWeight: '800',
+  color: '#38bdf8', // light cyan
+  textShadow: '0 0 10px rgba(56, 189, 248, 0.4)', // soft glow
+  letterSpacing: '0.5px'
+}}>
+  Xynapz Coin
+</h2>
+
+<p style={{
+  fontSize: '18px',
+  fontWeight: '600',
+  color: '#c084fc', // soft purple
+  margin: '0 0 10px 0',
+  letterSpacing: '0.4px',
+  textShadow: '0 0 6px rgba(192, 132, 252, 0.3)' // glowing subline
+}}>
+  Holders Vote • AI Decides
+</p>
 	<div style={{ marginTop: '15px', marginBottom: '10' }}>
-    <img src="/xnapz-icon-32x32.svg" alt="XNAPZ Icon" width={48} height={48} />
+    <img src="/xnapz-icon-64x64.png" alt="XNAPZ Icon" width={48} height={48} />
 	<p style={{
       fontWeight: '500',
       fontSize: '15px',
-      color: '#699419',
+      color: '#5ea32f',
       marginTop: '4px',
 	  marginBottom: '6px',
     }}>AI-Governed. DAO Powered. 50% Rewards.</p>
@@ -184,7 +160,7 @@ function App() {
 </div>
 {/* SOCIAL LINKS SECTION */}
 <div style={{
-  backgroundColor: '#ffffff',
+  backgroundColor: '#03162f',
   padding: '10px 0px',
   display: 'flex',
   justifyContent: 'center',
@@ -213,7 +189,7 @@ function App() {
 </div>
 {/* Contract Links */}
 <div style={{
-  backgroundColor: 'white',
+  backgroundColor: '#03162f',
   padding: '10px',
   display: 'flex',
   justifyContent: 'center',
@@ -222,7 +198,7 @@ function App() {
   gap: '40px'
 }}>
 <h3 style={{
-    color: '#222',
+    color: '#e8e4e5',
 	fontWeight: '500',
 	fontSize: '14.5px',
     marginBottom: '4px',
@@ -233,7 +209,7 @@ function App() {
       target="_blank"
       rel="noopener noreferrer"
       style={{
-        color: '#273C6D',
+        color: '#e8e4e5',
         fontWeight: '500',
         fontSize: '14px',
         textDecoration: 'none',
@@ -246,7 +222,7 @@ function App() {
       target="_blank"
       rel="noopener noreferrer"
       style={{
-        color: '#273C6D',
+        color: '#e8e4e5',
         fontWeight: '500',
         fontSize: '14px',
         textDecoration: 'none',
@@ -260,7 +236,7 @@ function App() {
       target="_blank"
       rel="noopener noreferrer"
       style={{
-        color: '#273C6D',
+        color: '#e8e4e5',
         fontWeight: '500',
         fontSize: '14px',
         textDecoration: 'none',
@@ -268,161 +244,52 @@ function App() {
       }}
     >
       <u>Staking Contract</u></a>
-<div className="section" style={{
- padding: '20px',
- textAlign: 'center',
- backgroundColor: '#0f172a',
- color: 'fff',
- borderRadius: '12px',
- maxWidth: '750px',
- marginTop: '20px',
- marginBottom: '20px',
- margin: '2rem auto',
- boxShadow: '0 0 10px #22d3ee55'
-}}>
-  <h2 style={{
-    fontSize: '28px',
-    fontWeight: '700',
-    color: '#38bdf8',
-    marginBottom: '12px'
-  }}>
-    🚀 $XNAPZ Presale 
-  </h2>
+ {/* 🔐 Demo Dashboard Access Section */}
+      <div style={{ textAlign: 'center', marginTop: '2rem', marginBottom: '2rem' }}>
+        {!walletConnected ? (
+          <button onClick={connectDemoWallet} style={demoButtonStyle}>
+            ⚡ Connect Wallet to Access Demo
+          </button>
+        ) : hasAccess ? (
+          <>
+            <p style={{ color: '#38bdf8' }}>
+              ✅ Connected: <strong>{walletAddress.slice(0, 6)}...{walletAddress.slice(-4)}</strong>
+            </p>
+            <p style={{ color: '#ccc' }}>Your Balance: {tokenBalance} XNAPZ</p>
+            <button onClick={disconnectDemoWallet} style={disconnectButtonStyle}>
+              🛑 Disconnect Wallet
+            </button>
 
-  <p style={{
-    fontSize: '16.5px',
-    fontWeight: '500',
-    marginBottom: '20px',
-    color: '#d1d5db'
-  }}>
-    🎯 Presale Launch Countdown:<br />
-    <strong style={{ fontSize: '18px', color: '#facc15' }}>{getCountdown()}</strong>
-  </p>
+            <div style={{ marginTop: '2rem' }}>
+              <DemoDashboard
+                walletAddress={walletAddress}
+                tokenBalance={tokenBalance}
+                onDisconnect={disconnectDemoWallet}
+              />
+            </div>
+          </>
+        ) : (
+          <p style={{ color: '#facc15' }}>
+            ⚠️ You need at least <strong>500 XNAPZ</strong> to view the demo.
+          </p>
+        )}
+      </div>
 
-  <p style={{
-    fontSize: '15px',
-    fontWeight: '500',
-    color: '#f472b6',
-    marginBottom: '16px'
-  }}>
-    🥇 Price Increases Weekly · 5 Phases<br />
-       Early Supporters Get the Best Rate!
-  </p>
-
-  {ethPrice && (
-    <div style={{
-      backgroundColor: '#EFF4F2',
-      border: '1px solid #334155',
-      borderRadius: '8px',
-      padding: '8px 20px',
-      fontSize: '16px',
-      fontWeight: '500',
-      marginBottom: '10px'
+{/* Presale Section */}
+     <div className="section" style={{ 
+	  backgroundColor: '#0f172a', 
+	  color: 'fff', 
+	  padding: '20px', 
+	  textAlign: 'center', 
+	  borderRadius: '12px', 
+	  maxWidth: '750px',
+      marginTop: '10px',
+      marginBottom: '10px',
+      margin: '1.5rem auto',
+      boxShadow: '0 0 10px #22d3ee55'
     }}>
-      🟢 Live ETH Price: ${ethPrice.toFixed(2)} USD
-    </div>
-  )}
-
-  <p style={{ fontSize: '15px', color: '#cbd5e1', marginBottom: '12px' }}>
-    💹 1 ETH = 150,000 XNAPZ (Week 1)<br />
-    1 XNAPZ ≈ ${ethPrice ? (ethPrice / 150000).toFixed(6) : '...'} USD
-  </p>
-
-  {!account ? (
-    <button
-      onClick={connectWallet}
-      style={{
-        padding: '10px 25px',
-        fontSize: '16px',
-		fontWeight: '500',
-        backgroundColor: '#417ebf',
-        color: 'white',
-        border: 'none',
-        borderRadius: '6px',
-        marginTop: '8px',
-        marginBottom: '8px',
-		cursor: 'pointer'
-      }}
-    >
-      🔗 Connect Wallet
-    </button>
-  ) : (
-    <>
-	<div style={{ marginTop: '15px', color: '#EDF4D8' }}>
-      <p>Connected: {account}</p>
-	  </div>
-      <p>Your Balance: {tokenBalance} {symbol}</p>
-
-      <input
-        type="number"
-        placeholder="Enter ETH amount"
-        value={contributionAmount}
-        onChange={(e) => setContributionAmount(e.target.value)}
-        style={{
-          padding: '10px',
-          marginBottom: '10px',
-          width: '100%',
-          maxWidth: '300px'
-        }}
-      />
-	  {contributionAmount && !isNaN(contributionAmount) && (
-  <p style={{ fontSize: '15px', marginTop: '5px', color: '#333' }}>
-    💸 You’ll receive: <strong>{(parseFloat(contributionAmount) * 150000).toLocaleString()}</strong> XNAPZ
-  </p>
-)}
-
-      <br />
-      <button
-        onClick={contributeToPresale}
-        disabled={contributing}
-        style={{
-          padding: '10px 25px',
-          fontSize: '16px',
-          backgroundColor: '#28a745',
-          color: 'white',
-          border: 'none',
-          borderRadius: '6px',
-          marginTop: '10px',
-          marginBottom: '6px',
-		  cursor: 'pointer'
-        }}
-      >
-        {contributing ? '⏳ Processing...' : '💸 Buy $XNAPZ'}
-      </button>
-
-      <br />
-      <button
-        onClick={disconnectWallet}
-        style={{
-          padding: '8px 16px',
-          fontSize: '13px',
-          backgroundColor: 'transparent',
-          color: '#ff4d4f',
-          border: '1px solid #ff4d4f',
-          borderRadius: '6px',
-          marginTop: '10px',
-          cursor: 'pointer'
-        }}
-      >
-        ❌ Disconnect Wallet
-      </button>
-    </>
-  )}
-
-  {showModal && (
-    <div style={{
-      marginTop: '20px',
-      padding: '10px',
-      backgroundColor: '#e6ffed',
-      border: '1px solid #52c41a',
-      borderRadius: '10px',
-      color: '#135200'
-    }}>
-      <h3>✅ Success!</h3>
-      <p>Your contribution has been received.</p>
-    </div>
-  )}
-</div>
+	  <Presale />
+	 </div>
 {/* Airdrop Section */}
       <div className="section" style={{ backgroundColor: '#3B496A', color: '#fff', padding: '20px', marginTop: '20px', marginBottom: '20px' }}>
         <AirdropClaim />
@@ -463,7 +330,7 @@ function App() {
   backgroundColor: '#f1f8fe',
   padding: '30px',
   borderRadius: '10px',
-  marginTop: '20px',
+  marginTop: '10px',
   textAlign: 'center',
   maxWidth: '1100px',
   marginLeft: 'auto',
@@ -534,7 +401,7 @@ function App() {
 }}>
   <h2 style={{
     fontSize: '24px',
-    color: '#222',
+    color: '#a7e5f9',
     marginBottom: '10px',
     letterSpacing: '1px'
   }}>
@@ -542,7 +409,7 @@ function App() {
   </h2>
   <p style={{
     fontSize: '16px',
-    color: '#444',
+    color: '#fafdff',
     maxWidth: '700px',
     margin: '0 auto'
   }}>

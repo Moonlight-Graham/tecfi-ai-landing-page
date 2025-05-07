@@ -11,7 +11,7 @@ import DemoDashboard from './components/DemoDashboard';
 const tokenAddress = '0x72608ECBDfd2516F6Fe1d9341A9019C4305E0BA8';
 const presaleAddress = '0x1D8Ba8577C3012f614695393fcfDa7C308622939';
 const stakingAddress = '0xe0a6c66f2B9F36aAF30fEF6985Ee3f52A0F1a8e1';
-const presaleStartTime = 1746482400;
+const presaleStartTime = 1748041200;
 
 function App() {
   const [walletConnected, setWalletConnected] = useState(false);
@@ -109,7 +109,7 @@ function App() {
       paddingLeft: '100%',
       animation: 'scrollBanner 30s linear infinite'
     }}>
-      🚀 Presale Goes Live May 5 · Price increases weekly · Ends June 9 · Follow us on X and join Telegram!
+      🚀 Presale Goes Live May 23 · Price increases weekly · Ends June 27 · Follow us on X and join Telegram!
     </div>
   <style>
     {`
@@ -446,7 +446,7 @@ function App() {
         <li>Website & Whitepaper Live✅</li>
         <li>Smart Contract Verified✅</li>
         <li>Telegram + Twitter Launch✅</li>
-        <li><strong>Presale Starts: May 5, 2025</strong></li>
+        <li><strong>Presale Starts: May 23, 2025</strong></li>
         <li>Token Claim Opens After Presale</li>
 		<li>DAO Governance Deployed</li>
         <li>Proposal + Voting Enabled</li>
